@@ -1,0 +1,280 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8E90F7FA-2815-4F19-AB86-15731084D567}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CIDAGENDA2018</RootNamespace>
+    <AssemblyName>CIDAGENDA2018</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>favicon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Telerik.WinControls, Version=2016.1.216.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Telerik\UI for WinForms Q1 2016\Bin40\Telerik.WinControls.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.GridView, Version=2016.1.216.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Telerik\UI for WinForms Q1 2016\Bin40\Telerik.WinControls.GridView.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.Scheduler, Version=2016.1.216.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Telerik\UI for WinForms Q1 2016\Bin40\Telerik.WinControls.Scheduler.dll</HintPath>
+    </Reference>
+    <Reference Include="Telerik.WinControls.UI, Version=2016.1.216.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Telerik\UI for WinForms Q1 2016\Bin40\Telerik.WinControls.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="TelerikCommon, Version=2016.1.216.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Telerik\UI for WinForms Q1 2016\Bin40\TelerikCommon.dll</HintPath>
+    </Reference>
+    <Reference Include="TelerikData, Version=2016.1.216.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Telerik\UI for WinForms Q1 2016\Bin40\TelerikData.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Conmutador\frmViewAgenda.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Conmutador\frmViewAgenda.Designer.cs">
+      <DependentUpon>frmViewAgenda.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Conmutador\frm_AddAppointment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Conmutador\frm_AddAppointment.Designer.cs">
+      <DependentUpon>frm_AddAppointment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="crEtiquetas.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>crEtiquetas.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="cs_cita.cs" />
+    <Compile Include="cs_funciones.cs" />
+    <Compile Include="cs_pacientes.cs" />
+    <Compile Include="cs_reservar.cs" />
+    <Compile Include="cs_sapbo.cs" />
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_agendar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_agendar.Designer.cs">
+      <DependentUpon>frm_agendar.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_cat_complementos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_cat_complementos.Designer.cs">
+      <DependentUpon>frm_cat_complementos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_cat_diagnostico.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_cat_diagnostico.Designer.cs">
+      <DependentUpon>frm_cat_diagnostico.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_cat_preparacion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_cat_preparacion.Designer.cs">
+      <DependentUpon>frm_cat_preparacion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_conmutador.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_conmutador.Designer.cs">
+      <DependentUpon>frm_conmutador.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_login.Designer.cs">
+      <DependentUpon>frm_login.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frm_search_paciente.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_search_paciente.Designer.cs">
+      <DependentUpon>frm_search_paciente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Recepcion\frmEditAppointment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Recepcion\frmEditAppointment.Designer.cs">
+      <DependentUpon>frmEditAppointment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Recepcion\frmViewAppointment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Recepcion\frmViewAppointment.Designer.cs">
+      <DependentUpon>frmViewAppointment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="schedulerDataDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>schedulerDataDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ViewEtiquetas.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewEtiquetas.Designer.cs">
+      <DependentUpon>ViewEtiquetas.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Conmutador\frmViewAgenda.resx">
+      <DependentUpon>frmViewAgenda.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Conmutador\frm_AddAppointment.resx">
+      <DependentUpon>frm_AddAppointment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="crEtiquetas.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>crEtiquetas.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_agendar.resx">
+      <DependentUpon>frm_agendar.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_cat_complementos.resx">
+      <DependentUpon>frm_cat_complementos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_cat_diagnostico.resx">
+      <DependentUpon>frm_cat_diagnostico.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_cat_preparacion.resx">
+      <DependentUpon>frm_cat_preparacion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_conmutador.resx">
+      <DependentUpon>frm_conmutador.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_login.resx">
+      <DependentUpon>frm_login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_search_paciente.resx">
+      <DependentUpon>frm_search_paciente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Recepcion\frmEditAppointment.resx">
+      <DependentUpon>frmEditAppointment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Recepcion\frmViewAppointment.resx">
+      <DependentUpon>frmViewAppointment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewEtiquetas.resx">
+      <DependentUpon>ViewEtiquetas.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="schedulerDataDataSet.xsc">
+      <DependentUpon>schedulerDataDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="schedulerDataDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>schedulerDataDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="schedulerDataDataSet.xss">
+      <DependentUpon>schedulerDataDataSet.xsd</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="favicon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="SAPbobsCOM">
+      <Guid>{FC8030BE-F5D2-4B8E-8F92-44228FE30090}</Guid>
+      <VersionMajor>9</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
