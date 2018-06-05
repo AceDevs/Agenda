@@ -32,9 +32,9 @@
             Telerik.WinControls.UI.AppointmentMappingInfo appointmentMappingInfo1 = new Telerik.WinControls.UI.AppointmentMappingInfo();
             Telerik.WinControls.UI.ResourceMappingInfo resourceMappingInfo1 = new Telerik.WinControls.UI.ResourceMappingInfo();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEditAppointment));
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition3 = new Telerik.WinControls.UI.TableViewDefinition();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
             Telerik.WinControls.UI.TableViewDefinition tableViewDefinition4 = new Telerik.WinControls.UI.TableViewDefinition();
             this.salasTableAdapter1 = new CIDAGENDA2018.schedulerDataDataSetTableAdapters.SALASTableAdapter();
             this.citasTableAdapter1 = new CIDAGENDA2018.schedulerDataDataSetTableAdapters.CITASTableAdapter();
@@ -56,6 +56,7 @@
             this.txt_end = new System.Windows.Forms.TextBox();
             this.txt_start = new System.Windows.Forms.TextBox();
             this.panelGeneral = new System.Windows.Forms.Panel();
+            this.radGridEstudios = new Telerik.WinControls.UI.RadGridView();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.txt_medico = new System.Windows.Forms.TextBox();
@@ -108,9 +109,8 @@
             this.btn_ambulancia = new System.Windows.Forms.Button();
             this.radGridRecursos = new Telerik.WinControls.UI.RadGridView();
             this.tabPage6 = new System.Windows.Forms.TabPage();
-            this.cita1TableAdapter1 = new CIDAGENDA2018.schedulerDataDataSetTableAdapters.CITA1TableAdapter();
-            this.radGridEstudios = new Telerik.WinControls.UI.RadGridView();
             this.radGridRequisitos = new Telerik.WinControls.UI.RadGridView();
+            this.cita1TableAdapter1 = new CIDAGENDA2018.schedulerDataDataSetTableAdapters.CITA1TableAdapter();
             ((System.ComponentModel.ISupportInitialize)(this.radSchedulerNavigator1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radScheduler1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.schedulerBindingDataSource1)).BeginInit();
@@ -121,6 +121,8 @@
             this.toolStrip1.SuspendLayout();
             this.panelDayTop.SuspendLayout();
             this.panelGeneral.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radGridEstudios)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radGridEstudios.MasterTemplate)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radGridPrecios)).BeginInit();
@@ -133,8 +135,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.radGridRecursos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridRecursos.MasterTemplate)).BeginInit();
             this.tabPage6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radGridEstudios)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGridEstudios.MasterTemplate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridRequisitos)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridRequisitos.MasterTemplate)).BeginInit();
             this.SuspendLayout();
@@ -150,6 +150,7 @@
             // radSchedulerNavigator1
             // 
             this.radSchedulerNavigator1.AssociatedScheduler = this.radScheduler1;
+            this.radSchedulerNavigator1.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.radSchedulerNavigator1.DateFormat = "dddd dd MMMM yyyy";
             this.radSchedulerNavigator1.Dock = System.Windows.Forms.DockStyle.Top;
             this.radSchedulerNavigator1.Location = new System.Drawing.Point(0, 0);
@@ -158,8 +159,9 @@
             // 
             // 
             // 
+            this.radSchedulerNavigator1.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 0, 472, 78);
             this.radSchedulerNavigator1.RootElement.StretchVertically = false;
-            this.radSchedulerNavigator1.Size = new System.Drawing.Size(1113, 77);
+            this.radSchedulerNavigator1.Size = new System.Drawing.Size(1130, 77);
             this.radSchedulerNavigator1.TabIndex = 110;
             this.radSchedulerNavigator1.Text = "radSchedulerNavigator1";
             // 
@@ -170,9 +172,10 @@
             this.radScheduler1.AllowAppointmentResize = false;
             this.radScheduler1.AllowCopyPaste = Telerik.WinControls.UI.CopyPasteMode.Disallow;
             this.radScheduler1.AutoScroll = true;
+            this.radScheduler1.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.radScheduler1.Culture = new System.Globalization.CultureInfo("es-MX");
             this.radScheduler1.DataSource = this.schedulerBindingDataSource1;
-            this.radScheduler1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.radScheduler1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radScheduler1.HeaderFormat = "dddd dd MMMM yyyy";
             this.radScheduler1.Location = new System.Drawing.Point(0, 77);
             this.radScheduler1.Name = "radScheduler1";
@@ -182,8 +185,12 @@
             schedulerDailyPrintStyle1.DateStartRange = new System.DateTime(2018, 4, 10, 0, 0, 0, 0);
             schedulerDailyPrintStyle1.PageHeadingFont = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Bold);
             this.radScheduler1.PrintStyle = schedulerDailyPrintStyle1;
+            // 
+            // 
+            // 
+            this.radScheduler1.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 0, 500, 500);
             this.radScheduler1.ShowAllDayAppointmentStatus = true;
-            this.radScheduler1.Size = new System.Drawing.Size(1113, 421);
+            this.radScheduler1.Size = new System.Drawing.Size(1130, 223);
             this.radScheduler1.TabIndex = 111;
             this.radScheduler1.Text = "radScheduler1";
             this.radScheduler1.ContextMenuOpening += new Telerik.WinControls.UI.SchedulerContextMenuOpeningEventHandler(this.radScheduler1_ContextMenuOpening);
@@ -353,6 +360,30 @@
             this.panelGeneral.Size = new System.Drawing.Size(1130, 307);
             this.panelGeneral.TabIndex = 912;
             // 
+            // radGridEstudios
+            // 
+            this.radGridEstudios.AutoScroll = true;
+            this.radGridEstudios.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.radGridEstudios.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radGridEstudios.Location = new System.Drawing.Point(0, 150);
+            // 
+            // 
+            // 
+            this.radGridEstudios.MasterTemplate.AllowAddNewRow = false;
+            this.radGridEstudios.MasterTemplate.AllowDragToGroup = false;
+            this.radGridEstudios.MasterTemplate.AllowEditRow = false;
+            this.radGridEstudios.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
+            this.radGridEstudios.MasterTemplate.ViewDefinition = tableViewDefinition1;
+            this.radGridEstudios.Name = "radGridEstudios";
+            // 
+            // 
+            // 
+            this.radGridEstudios.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 0, 240, 150);
+            this.radGridEstudios.ShowGroupPanel = false;
+            this.radGridEstudios.Size = new System.Drawing.Size(1130, 157);
+            this.radGridEstudios.TabIndex = 903;
+            this.radGridEstudios.Text = "radGridView2";
+            // 
             // tabControl1
             // 
             this.tabControl1.Appearance = System.Windows.Forms.TabAppearance.FlatButtons;
@@ -386,8 +417,8 @@
             this.tabPage1.Controls.Add(this.txt_apellido_materno);
             this.tabPage1.Controls.Add(this.btn_AgregarEstudio);
             this.tabPage1.Controls.Add(this.btn_BuscarPaciente);
-            this.tabPage1.Controls.Add(this.radGridPrecios);
             this.tabPage1.Controls.Add(this.txt_salas);
+            this.tabPage1.Controls.Add(this.radGridPrecios);
             this.tabPage1.Controls.Add(this.label2);
             this.tabPage1.Controls.Add(this.txt_instituciones);
             this.tabPage1.Controls.Add(this.txt_estudios);
@@ -540,6 +571,7 @@
             // radGridPrecios
             // 
             this.radGridPrecios.AutoScroll = true;
+            this.radGridPrecios.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.radGridPrecios.Font = new System.Drawing.Font("Segoe UI", 6.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radGridPrecios.Location = new System.Drawing.Point(935, 4);
             // 
@@ -552,6 +584,10 @@
             this.radGridPrecios.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
             this.radGridPrecios.MasterTemplate.ViewDefinition = tableViewDefinition2;
             this.radGridPrecios.Name = "radGridPrecios";
+            // 
+            // 
+            // 
+            this.radGridPrecios.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 0, 240, 150);
             this.radGridPrecios.ShowGroupPanel = false;
             this.radGridPrecios.Size = new System.Drawing.Size(179, 77);
             this.radGridPrecios.TabIndex = 14;
@@ -560,6 +596,8 @@
             // 
             // txt_salas
             // 
+            this.txt_salas.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txt_salas.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.txt_salas.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_salas.FormattingEnabled = true;
             this.txt_salas.Location = new System.Drawing.Point(590, 5);
@@ -579,6 +617,7 @@
             // 
             // txt_instituciones
             // 
+            this.txt_instituciones.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.txt_instituciones.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_instituciones.FormattingEnabled = true;
             this.txt_instituciones.Location = new System.Drawing.Point(590, 49);
@@ -588,6 +627,8 @@
             // 
             // txt_estudios
             // 
+            this.txt_estudios.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txt_estudios.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.txt_estudios.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_estudios.FormattingEnabled = true;
             this.txt_estudios.Location = new System.Drawing.Point(590, 27);
@@ -627,6 +668,8 @@
             // 
             // txt_sexo
             // 
+            this.txt_sexo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txt_sexo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.txt_sexo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_sexo.FormattingEnabled = true;
             this.txt_sexo.Location = new System.Drawing.Point(354, 6);
@@ -892,6 +935,7 @@
             // radGridRecursos
             // 
             this.radGridRecursos.AutoScroll = true;
+            this.radGridRecursos.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.radGridRecursos.Location = new System.Drawing.Point(311, 13);
             // 
             // 
@@ -902,6 +946,10 @@
             this.radGridRecursos.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
             this.radGridRecursos.MasterTemplate.ViewDefinition = tableViewDefinition3;
             this.radGridRecursos.Name = "radGridRecursos";
+            // 
+            // 
+            // 
+            this.radGridRecursos.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 0, 240, 150);
             this.radGridRecursos.ShowGroupPanel = false;
             this.radGridRecursos.Size = new System.Drawing.Size(382, 98);
             this.radGridRecursos.TabIndex = 2;
@@ -917,32 +965,10 @@
             this.tabPage6.Text = "Requsitos";
             this.tabPage6.UseVisualStyleBackColor = true;
             // 
-            // cita1TableAdapter1
-            // 
-            this.cita1TableAdapter1.ClearBeforeFill = true;
-            // 
-            // radGridEstudios
-            // 
-            this.radGridEstudios.AutoScroll = true;
-            this.radGridEstudios.Dock = System.Windows.Forms.DockStyle.Top;
-            this.radGridEstudios.Location = new System.Drawing.Point(0, 150);
-            // 
-            // 
-            // 
-            this.radGridEstudios.MasterTemplate.AllowAddNewRow = false;
-            this.radGridEstudios.MasterTemplate.AllowDragToGroup = false;
-            this.radGridEstudios.MasterTemplate.AllowEditRow = false;
-            this.radGridEstudios.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            this.radGridEstudios.MasterTemplate.ViewDefinition = tableViewDefinition1;
-            this.radGridEstudios.Name = "radGridEstudios";
-            this.radGridEstudios.ShowGroupPanel = false;
-            this.radGridEstudios.Size = new System.Drawing.Size(1130, 137);
-            this.radGridEstudios.TabIndex = 903;
-            this.radGridEstudios.Text = "radGridView2";
-            // 
             // radGridRequisitos
             // 
             this.radGridRequisitos.AutoScroll = true;
+            this.radGridRequisitos.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.radGridRequisitos.Location = new System.Drawing.Point(8, 3);
             // 
             // 
@@ -952,10 +978,18 @@
             this.radGridRequisitos.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
             this.radGridRequisitos.MasterTemplate.ViewDefinition = tableViewDefinition4;
             this.radGridRequisitos.Name = "radGridRequisitos";
+            // 
+            // 
+            // 
+            this.radGridRequisitos.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 0, 240, 150);
             this.radGridRequisitos.ShowGroupPanel = false;
             this.radGridRequisitos.Size = new System.Drawing.Size(647, 112);
             this.radGridRequisitos.TabIndex = 904;
             this.radGridRequisitos.Text = "radGridView2";
+            // 
+            // cita1TableAdapter1
+            // 
+            this.cita1TableAdapter1.ClearBeforeFill = true;
             // 
             // frmEditAppointment
             // 
@@ -990,6 +1024,8 @@
             this.panelDayTop.ResumeLayout(false);
             this.panelDayTop.PerformLayout();
             this.panelGeneral.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.radGridEstudios.MasterTemplate)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radGridEstudios)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
@@ -1004,8 +1040,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.radGridRecursos.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridRecursos)).EndInit();
             this.tabPage6.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.radGridEstudios.MasterTemplate)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.radGridEstudios)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridRequisitos.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridRequisitos)).EndInit();
             this.ResumeLayout(false);

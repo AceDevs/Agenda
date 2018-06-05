@@ -73,6 +73,7 @@ namespace CIDAGENDA2018
                 dayView.RulerScaleSize = 15;
                 dayView.RulerStartScale = 6;
                 dayView.RulerEndScale = 22;
+                dayView.RulerFormatStrings = new RulerFormatStrings("hh", "tt", "", "");
 
                 dayView.WorkTime = new TimeInterval(new TimeSpan(6, 0, 0), new TimeSpan(22, 0, 0));
                 dayView.WorkWeekStart = DayOfWeek.Monday;

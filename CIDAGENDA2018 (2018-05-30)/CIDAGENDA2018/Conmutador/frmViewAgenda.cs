@@ -11,16 +11,13 @@ using System.Windows.Forms;
 using Telerik.WinControls;
 using Telerik.WinControls.UI;
 
-
-
 namespace CIDAGENDA2018.Conmutador
 {
     public partial class frmViewAgenda : Form
     {
-        bool flag_FillSala = false;
-        bool flag_FillUN = false;
-        int _NewDocEntry = 0;
-
+        private bool flag_FillSala = false;
+        private bool flag_FillUN = false;
+        private int _NewDocEntry = 0;
 
         public frmViewAgenda()
         {
@@ -30,28 +27,29 @@ namespace CIDAGENDA2018.Conmutador
         private void frmViewAgenda_Load(object sender, EventArgs e)
         {
             this.Text = cs_funciones.CompanyName;
-            
         }
+
         private void frmViewAgenda_Shown(object sender, EventArgs e)
         {
             this.InitializeForm();
 
-            this.InitializeRadScheduler();  
+            this.InitializeRadScheduler();
 
             this.InitializeRadSchedulerDataBinding(); // primero carga los datos de la base de datos
             this.InitializeRadSchedulerResources(); // segundo, se da formato y estilo al radscheduler
         }
+
         private void frmViewAgenda_ResizeEnd(object sender, EventArgs e)
         {
             //this.panelScheduler.Height = this.Height;
             //this.radScheduler1.Height = this.Height;
         }
+
         private void frmViewAgenda_SizeChanged(object sender, EventArgs e)
         {
             this.panelScheduler.Height = this.Height;
             this.radScheduler1.Height = this.Height;
         }
-
 
         private void InitializeForm()
         {
@@ -59,7 +57,7 @@ namespace CIDAGENDA2018.Conmutador
             {
                 cs_sapbo sapo = new cs_sapbo();
 
-                DataTable  dt = sapo.GET_UnidadNegocio();
+                DataTable dt = sapo.GET_UnidadNegocio();
                 txt_unidad_negocio.DataSource = dt;
                 txt_unidad_negocio.ValueMember = "PrcCode";
                 txt_unidad_negocio.DisplayMember = "PrcName";
@@ -81,6 +79,7 @@ namespace CIDAGENDA2018.Conmutador
                 MessageBox.Show(ex.Message);
             }
         }
+
         private void InitializeRadScheduler()
         {
             try
@@ -93,6 +92,7 @@ namespace CIDAGENDA2018.Conmutador
                 dayView.RulerScaleSize = 15;
                 dayView.RulerStartScale = 6;
                 dayView.RulerEndScale = 22;
+                dayView.RulerFormatStrings = new RulerFormatStrings("hh", "tt", "", "");
 
                 dayView.WorkTime = new TimeInterval(new TimeSpan(6, 0, 0), new TimeSpan(22, 0, 0));
                 dayView.WorkWeekStart = DayOfWeek.Monday;
@@ -106,6 +106,7 @@ namespace CIDAGENDA2018.Conmutador
                 MessageBox.Show(ex.Message);
             }
         }
+
         private void InitializeRadSchedulerResource()
         {
             try
@@ -119,6 +120,8 @@ namespace CIDAGENDA2018.Conmutador
 
                 SchedulerDayView dayView = this.radScheduler1.GetDayView();
                 dayView.DayCount = 7;
+                dayView.RulerFormatStrings = new RulerFormatStrings("hh", "tt", "", "");
+
                 dayView = null;
             }
             catch (Exception ex)
@@ -126,6 +129,7 @@ namespace CIDAGENDA2018.Conmutador
                 MessageBox.Show(ex.Message);
             }
         }
+
         private void InitializeRadSchedulerResources()
         {
             try
@@ -152,6 +156,8 @@ namespace CIDAGENDA2018.Conmutador
 
                     SchedulerDayView dayView = this.radScheduler1.GetDayView();
                     dayView.DayCount = 1;
+                    dayView.RulerFormatStrings = new RulerFormatStrings("hh", "tt", "", "");
+
                     dayView = null;
 
                     //txt_mostrar_salas.Text = this.radScheduler1.ActiveView.ResourcesPerView.ToString();
@@ -166,6 +172,7 @@ namespace CIDAGENDA2018.Conmutador
                 MessageBox.Show(ex.Message);
             }
         }
+
         private void InitializeRadSchedulerDataBinding()
         {
             try
@@ -245,6 +252,7 @@ namespace CIDAGENDA2018.Conmutador
                 return false;
             }
         }
+
         private bool AppointmentNuevaCita(AppointmentEditDialogShowingEventArgs e)
         {
             try
@@ -302,7 +310,6 @@ namespace CIDAGENDA2018.Conmutador
             }
         }
 
-
         private void txt_unidad_negocio_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -333,6 +340,7 @@ namespace CIDAGENDA2018.Conmutador
                 MessageBox.Show(ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
         private void txt_salas_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -361,6 +369,7 @@ namespace CIDAGENDA2018.Conmutador
 
             ((SchedulerViewGroupedByResourceElementBase)this.radScheduler1.ViewElement).ResourceStartIndex = (inicio - resources);
         }
+
         private void btn_forward_resource_Click(object sender, EventArgs e)
         {
             int resources = this.radScheduler1.ActiveView.ResourcesPerView;
@@ -373,6 +382,7 @@ namespace CIDAGENDA2018.Conmutador
         {
             e.Cancel = true;
         }
+
         private void radScheduler1_ToolTipTextNeeded(object sender, ToolTipTextNeededEventArgs e)
         {
             AppointmentElement appElement = sender as AppointmentElement;
@@ -394,6 +404,7 @@ namespace CIDAGENDA2018.Conmutador
                 sapo = null;
             }
         }
+
         private void radScheduler1_AppointmentFormatting(object sender, SchedulerAppointmentEventArgs e)
         {
             try
@@ -449,6 +460,7 @@ namespace CIDAGENDA2018.Conmutador
                 MessageBox.Show(ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
         private void radScheduler1_AppointmentResizeEnd(object sender, SchedulerAppointmentEventArgs e)
         {
             try
@@ -464,6 +476,7 @@ namespace CIDAGENDA2018.Conmutador
                 MessageBox.Show(ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
         private void radScheduler1_AppointmentDropping(object sender, AppointmentMovingEventArgs e)
         {
             try
@@ -508,6 +521,7 @@ namespace CIDAGENDA2018.Conmutador
                 MessageBox.Show(ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
         private void radScheduler1_AppointmentEditDialogShowing(object sender, AppointmentEditDialogShowingEventArgs e)
         {
             e.Cancel = true;
@@ -534,31 +548,31 @@ namespace CIDAGENDA2018.Conmutador
                     //}
                     //else
                     //{
-                        if (this.AppointmentNuevaCita(e) == true)
-                        {
-                            cs_reservar.Start = e.Appointment.Start;
-                            cs_reservar.End = e.Appointment.End;
-                            cs_reservar.Estado = "RESERVADO";
-                            cs_reservar.ResourceId = e.Appointment.ResourceId.KeyValue.ToString();
-                            cs_reservar.UnidadNegocio = int.Parse(txt_unidad_negocio.SelectedValue.ToString());
-                            cs_reservar.NewDocEntry = _NewDocEntry;
+                    if (this.AppointmentNuevaCita(e) == true)
+                    {
+                        cs_reservar.Start = e.Appointment.Start;
+                        cs_reservar.End = e.Appointment.End;
+                        cs_reservar.Estado = "RESERVADO";
+                        cs_reservar.ResourceId = e.Appointment.ResourceId.KeyValue.ToString();
+                        cs_reservar.UnidadNegocio = int.Parse(txt_unidad_negocio.SelectedValue.ToString());
+                        cs_reservar.NewDocEntry = _NewDocEntry;
 
-                            this.InitializeRadSchedulerDataBinding(); // primero carga los datos de la base de datos
-                            if (txt_salas.Text != "") this.InitializeRadSchedulerResource();
-                            else this.InitializeRadSchedulerResources();
+                        this.InitializeRadSchedulerDataBinding(); // primero carga los datos de la base de datos
+                        if (txt_salas.Text != "") this.InitializeRadSchedulerResource();
+                        else this.InitializeRadSchedulerResources();
 
-                            frm_AddAppointment frm = new frm_AddAppointment();
-                            frm.ShowDialog();
-                            frm = null;
-                            
-                            this.InitializeRadSchedulerDataBinding(); // primero carga los datos de la base de datos
-                            if (txt_salas.Text != "") this.InitializeRadSchedulerResource();
-                            else this.InitializeRadSchedulerResources();
-                        }
-                        else
-                        {
-                            return;
-                        }
+                        frm_AddAppointment frm = new frm_AddAppointment();
+                        frm.ShowDialog();
+                        frm = null;
+
+                        this.InitializeRadSchedulerDataBinding(); // primero carga los datos de la base de datos
+                        if (txt_salas.Text != "") this.InitializeRadSchedulerResource();
+                        else this.InitializeRadSchedulerResources();
+                    }
+                    else
+                    {
+                        return;
+                    }
                     //}
                 }
             }

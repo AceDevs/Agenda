@@ -93,7 +93,7 @@
             // 
             // 
             // 
-            this.radScheduler1.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 0, 500, 500);
+            this.radScheduler1.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 77, 500, 500);
             this.radScheduler1.ShowAllDayAppointmentStatus = true;
             this.radScheduler1.Size = new System.Drawing.Size(1039, 488);
             this.radScheduler1.TabIndex = 111;
@@ -239,6 +239,8 @@
             // 
             // txt_unidad_negocio
             // 
+            this.txt_unidad_negocio.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txt_unidad_negocio.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.txt_unidad_negocio.FormattingEnabled = true;
             this.txt_unidad_negocio.Location = new System.Drawing.Point(115, 8);
             this.txt_unidad_negocio.Name = "txt_unidad_negocio";
@@ -257,7 +259,8 @@
             // 
             // txt_salas
             // 
-            this.txt_salas.FormattingEnabled = true;
+            this.txt_salas.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txt_salas.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.txt_salas.Location = new System.Drawing.Point(115, 28);
             this.txt_salas.Name = "txt_salas";
             this.txt_salas.Size = new System.Drawing.Size(213, 21);

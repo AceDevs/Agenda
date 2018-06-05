@@ -346,7 +346,7 @@
             // 
             this.radGridEstudios.AutoScroll = true;
             this.radGridEstudios.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.radGridEstudios.Dock = System.Windows.Forms.DockStyle.Top;
+            this.radGridEstudios.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radGridEstudios.Location = new System.Drawing.Point(0, 151);
             // 
             // 
@@ -362,7 +362,7 @@
             // 
             this.radGridEstudios.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 151, 240, 150);
             this.radGridEstudios.ShowGroupPanel = false;
-            this.radGridEstudios.Size = new System.Drawing.Size(1130, 137);
+            this.radGridEstudios.Size = new System.Drawing.Size(1130, 154);
             this.radGridEstudios.TabIndex = 1;
             this.radGridEstudios.Text = "radGridView2";
             // 
@@ -560,6 +560,8 @@
             // 
             // txt_salas
             // 
+            this.txt_salas.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txt_salas.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.txt_salas.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_salas.FormattingEnabled = true;
             this.txt_salas.Location = new System.Drawing.Point(590, 5);
@@ -580,6 +582,8 @@
             // 
             // txt_instituciones
             // 
+            this.txt_instituciones.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txt_instituciones.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.txt_instituciones.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_instituciones.FormattingEnabled = true;
             this.txt_instituciones.Location = new System.Drawing.Point(590, 49);
@@ -590,6 +594,8 @@
             // 
             // txt_estudios
             // 
+            this.txt_estudios.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txt_estudios.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.txt_estudios.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_estudios.FormattingEnabled = true;
             this.txt_estudios.Location = new System.Drawing.Point(590, 27);
@@ -630,6 +636,8 @@
             // 
             // txt_sexo
             // 
+            this.txt_sexo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txt_sexo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.txt_sexo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_sexo.FormattingEnabled = true;
             this.txt_sexo.Location = new System.Drawing.Point(354, 6);

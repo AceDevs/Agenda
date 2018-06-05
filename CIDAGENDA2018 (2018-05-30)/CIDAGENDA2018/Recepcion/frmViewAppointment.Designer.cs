@@ -82,6 +82,8 @@
             // 
             // txt_unidad_negocio
             // 
+            this.txt_unidad_negocio.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txt_unidad_negocio.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.txt_unidad_negocio.FormattingEnabled = true;
             this.txt_unidad_negocio.Location = new System.Drawing.Point(115, 15);
             this.txt_unidad_negocio.Name = "txt_unidad_negocio";
@@ -131,6 +133,8 @@
             // 
             // txt_salas
             // 
+            this.txt_salas.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txt_salas.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.txt_salas.FormattingEnabled = true;
             this.txt_salas.Location = new System.Drawing.Point(115, 42);
             this.txt_salas.Name = "txt_salas";
@@ -153,6 +157,7 @@
             // 
             this.radScheduler1.AllowCopyPaste = Telerik.WinControls.UI.CopyPasteMode.Disallow;
             this.radScheduler1.AutoScroll = true;
+            this.radScheduler1.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.radScheduler1.Culture = new System.Globalization.CultureInfo("es-MX");
             this.radScheduler1.DataSource = this.schedulerBindingDataSource1;
             this.radScheduler1.Dock = System.Windows.Forms.DockStyle.Top;
@@ -165,6 +170,10 @@
             schedulerDailyPrintStyle1.DateStartRange = new System.DateTime(2018, 4, 10, 0, 0, 0, 0);
             schedulerDailyPrintStyle1.PageHeadingFont = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Bold);
             this.radScheduler1.PrintStyle = schedulerDailyPrintStyle1;
+            // 
+            // 
+            // 
+            this.radScheduler1.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 0, 500, 500);
             this.radScheduler1.ShowAllDayAppointmentStatus = true;
             this.radScheduler1.Size = new System.Drawing.Size(1039, 421);
             this.radScheduler1.TabIndex = 111;
@@ -199,6 +208,7 @@
             // radSchedulerNavigator1
             // 
             this.radSchedulerNavigator1.AssociatedScheduler = this.radScheduler1;
+            this.radSchedulerNavigator1.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.radSchedulerNavigator1.DateFormat = "dddd dd MMMM yyyy";
             this.radSchedulerNavigator1.Dock = System.Windows.Forms.DockStyle.Top;
             this.radSchedulerNavigator1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(21)))), ((int)(((byte)(66)))), ((int)(((byte)(139)))));
@@ -208,6 +218,7 @@
             // 
             // 
             // 
+            this.radSchedulerNavigator1.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 0, 472, 78);
             this.radSchedulerNavigator1.RootElement.StretchVertically = false;
             this.radSchedulerNavigator1.Size = new System.Drawing.Size(1039, 77);
             this.radSchedulerNavigator1.TabIndex = 110;

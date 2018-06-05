@@ -666,5 +666,13 @@ namespace CIDAGENDA2018
                 MessageBox.Show(ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
+
+        private void btn_Salas_Click(object sender, EventArgs e)
+        {
+        }
+
+        private void btn_Usuarios_Click(object sender, EventArgs e)
+        {
+        }
     }
 }

@@ -78,6 +78,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.txt_edad = new System.Windows.Forms.TextBox();
+            this.txt_fecha_naci = new System.Windows.Forms.DateTimePicker();
             this.label4 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.list_Preparacion = new System.Windows.Forms.ListView();
@@ -92,8 +94,6 @@
             this.radGridEstudios = new Telerik.WinControls.UI.RadGridView();
             this.panel1 = new System.Windows.Forms.Panel();
             this.salasTableAdapter1 = new CIDAGENDA2018.schedulerDataDataSetTableAdapters.SALASTableAdapter();
-            this.txt_edad = new System.Windows.Forms.TextBox();
-            this.txt_fecha_naci = new System.Windows.Forms.DateTimePicker();
             ((System.ComponentModel.ISupportInitialize)(this.radGridPrecios)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridPrecios.MasterTemplate)).BeginInit();
             this.panelScheduler.SuspendLayout();
@@ -183,7 +183,7 @@
             // 
             // 
             // 
-            this.radGridPrecios.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 0, 240, 150);
+            this.radGridPrecios.RootElement.ControlBounds = new System.Drawing.Rectangle(878, 6, 240, 150);
             this.radGridPrecios.ShowGroupPanel = false;
             this.radGridPrecios.Size = new System.Drawing.Size(296, 142);
             this.radGridPrecios.TabIndex = 12;
@@ -279,7 +279,7 @@
             this.radScheduler1.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.radScheduler1.Culture = new System.Globalization.CultureInfo("es-MX");
             this.radScheduler1.DataSource = this.schedulerBindingDataSource1;
-            this.radScheduler1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.radScheduler1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radScheduler1.HeaderFormat = "dddd dd MMMM yyyy";
             this.radScheduler1.Location = new System.Drawing.Point(0, 77);
             this.radScheduler1.Name = "radScheduler1";
@@ -292,9 +292,9 @@
             // 
             // 
             // 
-            this.radScheduler1.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 0, 500, 500);
+            this.radScheduler1.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 77, 500, 500);
             this.radScheduler1.ShowAllDayAppointmentStatus = true;
-            this.radScheduler1.Size = new System.Drawing.Size(1173, 421);
+            this.radScheduler1.Size = new System.Drawing.Size(1190, 303);
             this.radScheduler1.TabIndex = 111;
             this.radScheduler1.Text = "radScheduler1";
             this.radScheduler1.ContextMenuOpening += new Telerik.WinControls.UI.SchedulerContextMenuOpeningEventHandler(this.radScheduler1_ContextMenuOpening);
@@ -333,7 +333,7 @@
             // 
             this.radSchedulerNavigator1.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 0, 472, 78);
             this.radSchedulerNavigator1.RootElement.StretchVertically = false;
-            this.radSchedulerNavigator1.Size = new System.Drawing.Size(1173, 77);
+            this.radSchedulerNavigator1.Size = new System.Drawing.Size(1190, 77);
             this.radSchedulerNavigator1.TabIndex = 110;
             this.radSchedulerNavigator1.Text = "radSchedulerNavigator1";
             // 
@@ -604,6 +604,24 @@
             this.tabPage1.Text = "Datos Generales";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // txt_edad
+            // 
+            this.txt_edad.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_edad.Location = new System.Drawing.Point(105, 90);
+            this.txt_edad.MaxLength = 3;
+            this.txt_edad.Name = "txt_edad";
+            this.txt_edad.Size = new System.Drawing.Size(36, 20);
+            this.txt_edad.TabIndex = 117;
+            // 
+            // txt_fecha_naci
+            // 
+            this.txt_fecha_naci.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_fecha_naci.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.txt_fecha_naci.Location = new System.Drawing.Point(147, 90);
+            this.txt_fecha_naci.Name = "txt_fecha_naci";
+            this.txt_fecha_naci.Size = new System.Drawing.Size(120, 20);
+            this.txt_fecha_naci.TabIndex = 118;
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -732,7 +750,7 @@
             // 
             // 
             // 
-            this.radGridEstudios.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 0, 240, 150);
+            this.radGridEstudios.RootElement.ControlBounds = new System.Drawing.Rectangle(8, 3, 240, 150);
             this.radGridEstudios.Size = new System.Drawing.Size(789, 148);
             this.radGridEstudios.TabIndex = 1;
             this.radGridEstudios.Text = "radGridView2";
@@ -749,24 +767,6 @@
             // salasTableAdapter1
             // 
             this.salasTableAdapter1.ClearBeforeFill = true;
-            // 
-            // txt_edad
-            // 
-            this.txt_edad.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_edad.Location = new System.Drawing.Point(105, 90);
-            this.txt_edad.MaxLength = 3;
-            this.txt_edad.Name = "txt_edad";
-            this.txt_edad.Size = new System.Drawing.Size(36, 20);
-            this.txt_edad.TabIndex = 117;
-            // 
-            // txt_fecha_naci
-            // 
-            this.txt_fecha_naci.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_fecha_naci.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.txt_fecha_naci.Location = new System.Drawing.Point(147, 90);
-            this.txt_fecha_naci.Name = "txt_fecha_naci";
-            this.txt_fecha_naci.Size = new System.Drawing.Size(120, 20);
-            this.txt_fecha_naci.TabIndex = 118;
             // 
             // frm_conmutador
             // 

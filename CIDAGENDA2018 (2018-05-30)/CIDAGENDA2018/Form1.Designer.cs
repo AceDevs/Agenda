@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.SchedulerDailyPrintStyle schedulerDailyPrintStyle2 = new Telerik.WinControls.UI.SchedulerDailyPrintStyle();
-            Telerik.WinControls.UI.AppointmentMappingInfo appointmentMappingInfo2 = new Telerik.WinControls.UI.AppointmentMappingInfo();
-            Telerik.WinControls.UI.ResourceMappingInfo resourceMappingInfo2 = new Telerik.WinControls.UI.ResourceMappingInfo();
+            Telerik.WinControls.UI.SchedulerDailyPrintStyle schedulerDailyPrintStyle1 = new Telerik.WinControls.UI.SchedulerDailyPrintStyle();
+            Telerik.WinControls.UI.AppointmentMappingInfo appointmentMappingInfo1 = new Telerik.WinControls.UI.AppointmentMappingInfo();
+            Telerik.WinControls.UI.ResourceMappingInfo resourceMappingInfo1 = new Telerik.WinControls.UI.ResourceMappingInfo();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.panel1 = new System.Windows.Forms.Panel();
             this.radScheduler1 = new Telerik.WinControls.UI.RadScheduler();
@@ -97,16 +97,16 @@
             this.radScheduler1.HeaderFormat = "dddd dd MMMM yyyy";
             this.radScheduler1.Location = new System.Drawing.Point(0, 77);
             this.radScheduler1.Name = "radScheduler1";
-            schedulerDailyPrintStyle2.AppointmentFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            schedulerDailyPrintStyle2.DateEndRange = new System.DateTime(2018, 4, 15, 0, 0, 0, 0);
-            schedulerDailyPrintStyle2.DateHeadingFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            schedulerDailyPrintStyle2.DateStartRange = new System.DateTime(2018, 4, 10, 0, 0, 0, 0);
-            schedulerDailyPrintStyle2.PageHeadingFont = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Bold);
-            this.radScheduler1.PrintStyle = schedulerDailyPrintStyle2;
+            schedulerDailyPrintStyle1.AppointmentFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            schedulerDailyPrintStyle1.DateEndRange = new System.DateTime(2018, 4, 15, 0, 0, 0, 0);
+            schedulerDailyPrintStyle1.DateHeadingFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            schedulerDailyPrintStyle1.DateStartRange = new System.DateTime(2018, 4, 10, 0, 0, 0, 0);
+            schedulerDailyPrintStyle1.PageHeadingFont = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Bold);
+            this.radScheduler1.PrintStyle = schedulerDailyPrintStyle1;
             // 
             // 
             // 
-            this.radScheduler1.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 0, 500, 500);
+            this.radScheduler1.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 77, 500, 500);
             this.radScheduler1.ShowAllDayAppointmentStatus = true;
             this.radScheduler1.Size = new System.Drawing.Size(1096, 248);
             this.radScheduler1.TabIndex = 109;
@@ -125,13 +125,13 @@
             // 
             this.schedulerBindingDataSource1.EventProvider.DataMember = "CITAS";
             this.schedulerBindingDataSource1.EventProvider.DataSource = this.schedulerDataDataSet;
-            this.schedulerBindingDataSource1.EventProvider.Mapping = appointmentMappingInfo2;
+            this.schedulerBindingDataSource1.EventProvider.Mapping = appointmentMappingInfo1;
             // 
             // 
             // 
             this.schedulerBindingDataSource1.ResourceProvider.DataMember = "SALAS";
             this.schedulerBindingDataSource1.ResourceProvider.DataSource = this.schedulerDataDataSet;
-            this.schedulerBindingDataSource1.ResourceProvider.Mapping = resourceMappingInfo2;
+            this.schedulerBindingDataSource1.ResourceProvider.Mapping = resourceMappingInfo1;
             // 
             // schedulerDataDataSet
             // 
@@ -339,6 +339,7 @@
             this.btn_Usuarios.Size = new System.Drawing.Size(52, 49);
             this.btn_Usuarios.Text = "Usuarios";
             this.btn_Usuarios.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btn_Usuarios.Click += new System.EventHandler(this.btn_Usuarios_Click);
             // 
             // toolStripSeparator5
             // 
@@ -420,6 +421,7 @@
             this.btn_Salas.Size = new System.Drawing.Size(37, 49);
             this.btn_Salas.Text = "Salas";
             this.btn_Salas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btn_Salas.Click += new System.EventHandler(this.btn_Salas_Click);
             // 
             // toolStripButton1
             // 

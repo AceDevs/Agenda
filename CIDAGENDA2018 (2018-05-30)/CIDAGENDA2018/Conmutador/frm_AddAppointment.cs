@@ -159,6 +159,7 @@ namespace CIDAGENDA2018.Conmutador
                 dayView.RulerScaleSize = 15;
                 dayView.RulerStartScale = 6;
                 dayView.RulerEndScale = 22;
+                dayView.RulerFormatStrings = new RulerFormatStrings("hh", "tt", "", "");
 
                 dayView.WorkTime = new TimeInterval(new TimeSpan(6, 0, 0), new TimeSpan(22, 0, 0));
                 dayView.WorkWeekStart = DayOfWeek.Monday;
@@ -452,6 +453,7 @@ namespace CIDAGENDA2018.Conmutador
                 radGridPrecios.Refresh();
 
                 DataTable dt = sapo.GET_PREPARACION((string)txt_estudios.SelectedValue);
+                listPreparacion.Clear();
                 if (dt != null)
                 {
                     for (int i = 0; i < dt.Rows.Count; i++)
@@ -460,6 +462,7 @@ namespace CIDAGENDA2018.Conmutador
                     }
                 }
                 dt = sapo.GET_COMPLEMENTOS((string)txt_estudios.SelectedValue);
+                listComplementos.Clear();
                 if (dt != null)
                 {
                     for (int i = 0; i < dt.Rows.Count; i++)
@@ -468,6 +471,7 @@ namespace CIDAGENDA2018.Conmutador
                     }
                 }
                 dt = sapo.GET_DIAGNOSTICO((string)txt_estudios.SelectedValue);
+                listDiagnostico.Clear();
                 if (dt != null)
                 {
                     for (int i = 0; i < dt.Rows.Count; i++)
@@ -596,6 +600,7 @@ namespace CIDAGENDA2018.Conmutador
                     txt_apellido_paterno.Text = dt.Rows[0]["FirstSurname"].ToString();
                     txt_apellido_materno.Text = dt.Rows[0]["SecondSurname"].ToString();
                     txt_fecha_naci.Value = Convert.ToDateTime(dt.Rows[0]["Birthday"].ToString());
+                    txt_edad.Text = dt.Rows[0]["Age"].ToString();
                     txt_sexo.Text = dt.Rows[0]["Sex"].ToString();
                     txt_telefono.Text = dt.Rows[0]["Phone1"].ToString();
                     txt_celular.Text = dt.Rows[0]["Cellular"].ToString();

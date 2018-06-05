@@ -152,6 +152,7 @@ namespace CIDAGENDA2018.Recepcion
                 dayView.RulerScaleSize = 15;
                 dayView.RulerStartScale = 6;
                 dayView.RulerEndScale = 22;
+                dayView.RulerFormatStrings = new RulerFormatStrings("hh", "tt", "", "");
 
                 dayView.WorkTime = new TimeInterval(new TimeSpan(6, 0, 0), new TimeSpan(22, 0, 0));
                 dayView.WorkWeekStart = DayOfWeek.Monday;
@@ -545,6 +546,7 @@ namespace CIDAGENDA2018.Recepcion
                 radGridPrecios.Refresh();
 
                 DataTable dt = sapo.GET_PREPARACION((string)txt_estudios.SelectedValue);
+                listPreparacion.Clear();
                 if (dt != null)
                 {
                     for (int i = 0; i < dt.Rows.Count; i++)
@@ -553,6 +555,7 @@ namespace CIDAGENDA2018.Recepcion
                     }
                 }
                 dt = sapo.GET_COMPLEMENTOS((string)txt_estudios.SelectedValue);
+                listComplementos.Clear();
                 if (dt != null)
                 {
                     for (int i = 0; i < dt.Rows.Count; i++)
@@ -561,6 +564,7 @@ namespace CIDAGENDA2018.Recepcion
                     }
                 }
                 dt = sapo.GET_DIAGNOSTICO((string)txt_estudios.SelectedValue);
+                listDiagnostico.Clear();
                 if (dt != null)
                 {
                     for (int i = 0; i < dt.Rows.Count; i++)
