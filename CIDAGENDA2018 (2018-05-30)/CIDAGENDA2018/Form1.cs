@@ -655,10 +655,6 @@ namespace CIDAGENDA2018
                         if (txt_salas.Text != "") this.InitializeRadSchedulerResource();
                         else this.InitializeRadSchedulerResources();
                     }
-                    else
-                    {
-                        return;
-                    }
                 }
             }
             catch (Exception ex)

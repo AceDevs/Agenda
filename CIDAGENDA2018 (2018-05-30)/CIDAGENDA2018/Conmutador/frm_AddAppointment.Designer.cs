@@ -1040,7 +1040,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frm_AddAppointment";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "frm_AddAppointment";
+            this.Text = "Agendar - Unidad Radiologica IRM, S. de R.L. de C.V.";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frm_AddAppointment_FormClosed);
             this.Load += new System.EventHandler(this.frm_AddAppointment_Load);
             this.Shown += new System.EventHandler(this.frm_AddAppointment_Shown);

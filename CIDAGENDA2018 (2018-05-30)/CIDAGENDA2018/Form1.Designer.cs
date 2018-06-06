@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.SchedulerDailyPrintStyle schedulerDailyPrintStyle1 = new Telerik.WinControls.UI.SchedulerDailyPrintStyle();
-            Telerik.WinControls.UI.AppointmentMappingInfo appointmentMappingInfo1 = new Telerik.WinControls.UI.AppointmentMappingInfo();
-            Telerik.WinControls.UI.ResourceMappingInfo resourceMappingInfo1 = new Telerik.WinControls.UI.ResourceMappingInfo();
+            Telerik.WinControls.UI.SchedulerDailyPrintStyle schedulerDailyPrintStyle2 = new Telerik.WinControls.UI.SchedulerDailyPrintStyle();
+            Telerik.WinControls.UI.AppointmentMappingInfo appointmentMappingInfo2 = new Telerik.WinControls.UI.AppointmentMappingInfo();
+            Telerik.WinControls.UI.ResourceMappingInfo resourceMappingInfo2 = new Telerik.WinControls.UI.ResourceMappingInfo();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.panel1 = new System.Windows.Forms.Panel();
             this.radScheduler1 = new Telerik.WinControls.UI.RadScheduler();
@@ -66,6 +66,8 @@
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.btn_Salas = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             ((System.ComponentModel.ISupportInitialize)(this.radScheduler1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.schedulerBindingDataSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.schedulerBindingDataSource1.EventProvider)).BeginInit();
@@ -97,12 +99,12 @@
             this.radScheduler1.HeaderFormat = "dddd dd MMMM yyyy";
             this.radScheduler1.Location = new System.Drawing.Point(0, 77);
             this.radScheduler1.Name = "radScheduler1";
-            schedulerDailyPrintStyle1.AppointmentFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            schedulerDailyPrintStyle1.DateEndRange = new System.DateTime(2018, 4, 15, 0, 0, 0, 0);
-            schedulerDailyPrintStyle1.DateHeadingFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            schedulerDailyPrintStyle1.DateStartRange = new System.DateTime(2018, 4, 10, 0, 0, 0, 0);
-            schedulerDailyPrintStyle1.PageHeadingFont = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Bold);
-            this.radScheduler1.PrintStyle = schedulerDailyPrintStyle1;
+            schedulerDailyPrintStyle2.AppointmentFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            schedulerDailyPrintStyle2.DateEndRange = new System.DateTime(2018, 4, 15, 0, 0, 0, 0);
+            schedulerDailyPrintStyle2.DateHeadingFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            schedulerDailyPrintStyle2.DateStartRange = new System.DateTime(2018, 4, 10, 0, 0, 0, 0);
+            schedulerDailyPrintStyle2.PageHeadingFont = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Bold);
+            this.radScheduler1.PrintStyle = schedulerDailyPrintStyle2;
             // 
             // 
             // 
@@ -125,13 +127,13 @@
             // 
             this.schedulerBindingDataSource1.EventProvider.DataMember = "CITAS";
             this.schedulerBindingDataSource1.EventProvider.DataSource = this.schedulerDataDataSet;
-            this.schedulerBindingDataSource1.EventProvider.Mapping = appointmentMappingInfo1;
+            this.schedulerBindingDataSource1.EventProvider.Mapping = appointmentMappingInfo2;
             // 
             // 
             // 
             this.schedulerBindingDataSource1.ResourceProvider.DataMember = "SALAS";
             this.schedulerBindingDataSource1.ResourceProvider.DataSource = this.schedulerDataDataSet;
-            this.schedulerBindingDataSource1.ResourceProvider.Mapping = resourceMappingInfo1;
+            this.schedulerBindingDataSource1.ResourceProvider.Mapping = resourceMappingInfo2;
             // 
             // schedulerDataDataSet
             // 
@@ -364,6 +366,8 @@
             this.btn_IniciarSesion,
             this.btn_CerrarSesion,
             this.toolStripSeparator6,
+            this.toolStripButton2,
+            this.toolStripSeparator4,
             this.btnAgendarCitas,
             this.toolStripSeparator1,
             this.btnRecepcion,
@@ -434,6 +438,21 @@
             this.toolStripButton1.Name = "toolStripButton1";
             this.toolStripButton1.Size = new System.Drawing.Size(63, 49);
             this.toolStripButton1.ToolTipText = "Unidad Radiologica IRM, S. de R.L. de C.V.";
+            // 
+            // toolStripButton2
+            // 
+            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
+            this.toolStripButton2.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton2.Name = "toolStripButton2";
+            this.toolStripButton2.Size = new System.Drawing.Size(55, 49);
+            this.toolStripButton2.Text = "Cotizador";
+            this.toolStripButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 52);
             // 
             // Form1
             // 
@@ -509,6 +528,8 @@
         private System.Windows.Forms.ToolStripButton btn_Salas;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
         private System.Windows.Forms.ToolStripButton btn_CerrarSesion;
+        private System.Windows.Forms.ToolStripButton toolStripButton2;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
     }
 }
 

@@ -40,6 +40,7 @@
     <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.Windows.Forms, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="FlashControlV71, Version=1.0.3187.32366, Culture=neutral, PublicKeyToken=692fbea5521e1304" />
+    <Reference Include="RadControlSpy, Version=2016.1.216.20, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
@@ -57,18 +58,31 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files (x86)\Telerik\UI for WinForms Q1 2016\Bin40\Telerik.WinControls.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.WinControls.GridView, Version=2016.1.216.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files (x86)\Telerik\UI for WinForms Q1 2016\Bin40\Telerik.WinControls.GridView.dll</HintPath>
-    </Reference>
-    <Reference Include="Telerik.WinControls.Scheduler, Version=2016.1.216.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files (x86)\Telerik\UI for WinForms Q1 2016\Bin40\Telerik.WinControls.Scheduler.dll</HintPath>
-    </Reference>
-    <Reference Include="Telerik.WinControls.UI, Version=2016.1.216.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files (x86)\Telerik\UI for WinForms Q1 2016\Bin40\Telerik.WinControls.UI.dll</HintPath>
-    </Reference>
+    <Reference Include="Telerik.WinControls.ChartView, Version=2016.1.216.20, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
+    <Reference Include="Telerik.WinControls.GridView, Version=2016.1.216.20, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.WinControls.PdfViewer, Version=2016.1.216.20, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
+    <Reference Include="Telerik.WinControls.PivotGrid, Version=2016.1.216.20, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
+    <Reference Include="Telerik.WinControls.RadDock, Version=2016.1.216.20, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
+    <Reference Include="Telerik.WinControls.Scheduler, Version=2016.1.216.20, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
+    <Reference Include="Telerik.WinControls.Themes.Aqua, Version=2016.1.216.20, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
+    <Reference Include="Telerik.WinControls.Themes.Breeze, Version=2016.1.216.20, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
+    <Reference Include="Telerik.WinControls.Themes.Desert, Version=2016.1.216.20, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
+    <Reference Include="Telerik.WinControls.Themes.HighContrastBlack, Version=2016.1.216.20, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
+    <Reference Include="Telerik.WinControls.Themes.Office2007Black, Version=2016.1.216.20, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
+    <Reference Include="Telerik.WinControls.Themes.Office2007Silver, Version=2016.1.216.20, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
+    <Reference Include="Telerik.WinControls.Themes.Office2010Black, Version=2016.1.216.20, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
+    <Reference Include="Telerik.WinControls.Themes.Office2010Blue, Version=2016.1.216.20, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
+    <Reference Include="Telerik.WinControls.Themes.Office2010Silver, Version=2016.1.216.20, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
+    <Reference Include="Telerik.WinControls.Themes.Office2013Dark, Version=2016.1.216.20, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
+    <Reference Include="Telerik.WinControls.Themes.Office2013Light, Version=2016.1.216.20, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
+    <Reference Include="Telerik.WinControls.Themes.TelerikMetro, Version=2016.1.216.20, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
+    <Reference Include="Telerik.WinControls.Themes.TelerikMetroBlue, Version=2016.1.216.20, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
+    <Reference Include="Telerik.WinControls.Themes.TelerikMetroTouch, Version=2016.1.216.20, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
+    <Reference Include="Telerik.WinControls.Themes.VisualStudio2012Dark, Version=2016.1.216.20, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
+    <Reference Include="Telerik.WinControls.Themes.VisualStudio2012Light, Version=2016.1.216.20, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
+    <Reference Include="Telerik.WinControls.Themes.Windows7, Version=2016.1.216.20, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
+    <Reference Include="Telerik.WinControls.Themes.Windows8, Version=2016.1.216.20, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
+    <Reference Include="Telerik.WinControls.UI, Version=2016.1.216.20, Culture=neutral, PublicKeyToken=5bb2a467cbec794e" />
     <Reference Include="TelerikCommon, Version=2016.1.216.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files (x86)\Telerik\UI for WinForms Q1 2016\Bin40\TelerikCommon.dll</HintPath>
@@ -77,6 +91,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files (x86)\Telerik\UI for WinForms Q1 2016\Bin40\TelerikData.dll</HintPath>
     </Reference>
+    <Reference Include="VisualStyleBuilder.Design, Version=2016.1.216.20, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Conmutador\frmViewAgenda.cs">
@@ -138,6 +153,12 @@
     <Compile Include="frm_conmutador.Designer.cs">
       <DependentUpon>frm_conmutador.cs</DependentUpon>
     </Compile>
+    <Compile Include="frm_cotizador.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_cotizador.Designer.cs">
+      <DependentUpon>frm_cotizador.cs</DependentUpon>
+    </Compile>
     <Compile Include="frm_login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -152,6 +173,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QuotingItem.cs" />
     <Compile Include="Recepcion\frmEditAppointment.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -202,6 +224,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frm_conmutador.resx">
       <DependentUpon>frm_conmutador.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_cotizador.resx">
+      <DependentUpon>frm_cotizador.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frm_login.resx">
       <DependentUpon>frm_login.cs</DependentUpon>
