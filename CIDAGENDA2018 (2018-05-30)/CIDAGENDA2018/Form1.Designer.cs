@@ -28,12 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.SchedulerDailyPrintStyle schedulerDailyPrintStyle2 = new Telerik.WinControls.UI.SchedulerDailyPrintStyle();
-            Telerik.WinControls.UI.AppointmentMappingInfo appointmentMappingInfo2 = new Telerik.WinControls.UI.AppointmentMappingInfo();
-            Telerik.WinControls.UI.ResourceMappingInfo resourceMappingInfo2 = new Telerik.WinControls.UI.ResourceMappingInfo();
+            Telerik.WinControls.UI.AppointmentMappingInfo appointmentMappingInfo1 = new Telerik.WinControls.UI.AppointmentMappingInfo();
+            Telerik.WinControls.UI.ResourceMappingInfo resourceMappingInfo1 = new Telerik.WinControls.UI.ResourceMappingInfo();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            Telerik.WinControls.UI.SchedulerDailyPrintStyle schedulerDailyPrintStyle1 = new Telerik.WinControls.UI.SchedulerDailyPrintStyle();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.radScheduler1 = new Telerik.WinControls.UI.RadScheduler();
             this.schedulerBindingDataSource1 = new Telerik.WinControls.UI.SchedulerBindingDataSource();
             this.schedulerDataDataSet = new CIDAGENDA2018.schedulerDataDataSet();
             this.radSchedulerNavigator1 = new Telerik.WinControls.UI.RadSchedulerNavigator();
@@ -62,13 +61,13 @@
             this.btn_Salir = new System.Windows.Forms.ToolStripButton();
             this.toolStrip_Menu = new System.Windows.Forms.ToolStrip();
             this.btn_CerrarSesion = new System.Windows.Forms.ToolStripButton();
+            this.btnCotizador = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.btn_Diagnostico = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.btn_Salas = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            ((System.ComponentModel.ISupportInitialize)(this.radScheduler1)).BeginInit();
+            this.radScheduler1 = new Telerik.WinControls.UI.RadScheduler();
             ((System.ComponentModel.ISupportInitialize)(this.schedulerBindingDataSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.schedulerBindingDataSource1.EventProvider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.schedulerBindingDataSource1.ResourceProvider)).BeginInit();
@@ -77,6 +76,7 @@
             this.panelTool.SuspendLayout();
             this.panelScheduler.SuspendLayout();
             this.toolStrip_Menu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radScheduler1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -88,38 +88,6 @@
             this.panel1.Size = new System.Drawing.Size(1096, 6);
             this.panel1.TabIndex = 102;
             // 
-            // radScheduler1
-            // 
-            this.radScheduler1.AllowCopyPaste = Telerik.WinControls.UI.CopyPasteMode.Disallow;
-            this.radScheduler1.AutoScroll = true;
-            this.radScheduler1.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.radScheduler1.Culture = new System.Globalization.CultureInfo("es-MX");
-            this.radScheduler1.DataSource = this.schedulerBindingDataSource1;
-            this.radScheduler1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radScheduler1.HeaderFormat = "dddd dd MMMM yyyy";
-            this.radScheduler1.Location = new System.Drawing.Point(0, 77);
-            this.radScheduler1.Name = "radScheduler1";
-            schedulerDailyPrintStyle2.AppointmentFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            schedulerDailyPrintStyle2.DateEndRange = new System.DateTime(2018, 4, 15, 0, 0, 0, 0);
-            schedulerDailyPrintStyle2.DateHeadingFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            schedulerDailyPrintStyle2.DateStartRange = new System.DateTime(2018, 4, 10, 0, 0, 0, 0);
-            schedulerDailyPrintStyle2.PageHeadingFont = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Bold);
-            this.radScheduler1.PrintStyle = schedulerDailyPrintStyle2;
-            // 
-            // 
-            // 
-            this.radScheduler1.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 77, 500, 500);
-            this.radScheduler1.ShowAllDayAppointmentStatus = true;
-            this.radScheduler1.Size = new System.Drawing.Size(1096, 248);
-            this.radScheduler1.TabIndex = 109;
-            this.radScheduler1.Text = "radScheduler1";
-            this.radScheduler1.AppointmentDropping += new System.EventHandler<Telerik.WinControls.UI.AppointmentMovingEventArgs>(this.radScheduler1_AppointmentDropping);
-            this.radScheduler1.AppointmentResizeEnd += new System.EventHandler<Telerik.WinControls.UI.SchedulerAppointmentEventArgs>(this.radScheduler1_AppointmentResizeEnd);
-            this.radScheduler1.ContextMenuOpening += new Telerik.WinControls.UI.SchedulerContextMenuOpeningEventHandler(this.radScheduler1_ContextMenuOpening);
-            this.radScheduler1.AppointmentFormatting += new System.EventHandler<Telerik.WinControls.UI.SchedulerAppointmentEventArgs>(this.radScheduler1_AppointmentFormatting);
-            this.radScheduler1.AppointmentEditDialogShowing += new System.EventHandler<Telerik.WinControls.UI.AppointmentEditDialogShowingEventArgs>(this.radScheduler1_AppointmentEditDialogShowing);
-            this.radScheduler1.ToolTipTextNeeded += new Telerik.WinControls.ToolTipTextNeededEventHandler(this.radScheduler1_ToolTipTextNeeded);
-            // 
             // schedulerBindingDataSource1
             // 
             // 
@@ -127,13 +95,13 @@
             // 
             this.schedulerBindingDataSource1.EventProvider.DataMember = "CITAS";
             this.schedulerBindingDataSource1.EventProvider.DataSource = this.schedulerDataDataSet;
-            this.schedulerBindingDataSource1.EventProvider.Mapping = appointmentMappingInfo2;
+            this.schedulerBindingDataSource1.EventProvider.Mapping = appointmentMappingInfo1;
             // 
             // 
             // 
             this.schedulerBindingDataSource1.ResourceProvider.DataMember = "SALAS";
             this.schedulerBindingDataSource1.ResourceProvider.DataSource = this.schedulerDataDataSet;
-            this.schedulerBindingDataSource1.ResourceProvider.Mapping = resourceMappingInfo2;
+            this.schedulerBindingDataSource1.ResourceProvider.Mapping = resourceMappingInfo1;
             // 
             // schedulerDataDataSet
             // 
@@ -341,7 +309,6 @@
             this.btn_Usuarios.Size = new System.Drawing.Size(52, 49);
             this.btn_Usuarios.Text = "Usuarios";
             this.btn_Usuarios.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btn_Usuarios.Click += new System.EventHandler(this.btn_Usuarios_Click);
             // 
             // toolStripSeparator5
             // 
@@ -366,7 +333,7 @@
             this.btn_IniciarSesion,
             this.btn_CerrarSesion,
             this.toolStripSeparator6,
-            this.toolStripButton2,
+            this.btnCotizador,
             this.toolStripSeparator4,
             this.btnAgendarCitas,
             this.toolStripSeparator1,
@@ -399,6 +366,22 @@
             this.btn_CerrarSesion.Text = "Cerrar Sesión";
             this.btn_CerrarSesion.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btn_CerrarSesion.Click += new System.EventHandler(this.btn_CerrarSesion_Click);
+            // 
+            // btnCotizador
+            // 
+            this.btnCotizador.Image = ((System.Drawing.Image)(resources.GetObject("btnCotizador.Image")));
+            this.btnCotizador.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnCotizador.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnCotizador.Name = "btnCotizador";
+            this.btnCotizador.Size = new System.Drawing.Size(55, 49);
+            this.btnCotizador.Text = "Cotizador";
+            this.btnCotizador.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnCotizador.Click += new System.EventHandler(this.btnCotizador_Click);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 52);
             // 
             // btn_Diagnostico
             // 
@@ -439,20 +422,34 @@
             this.toolStripButton1.Size = new System.Drawing.Size(63, 49);
             this.toolStripButton1.ToolTipText = "Unidad Radiologica IRM, S. de R.L. de C.V.";
             // 
-            // toolStripButton2
+            // radScheduler1
             // 
-            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
-            this.toolStripButton2.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton2.Name = "toolStripButton2";
-            this.toolStripButton2.Size = new System.Drawing.Size(55, 49);
-            this.toolStripButton2.Text = "Cotizador";
-            this.toolStripButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.radScheduler1.AllowCopyPaste = Telerik.WinControls.UI.CopyPasteMode.Disallow;
+            this.radScheduler1.AutoScroll = true;
+            this.radScheduler1.Culture = new System.Globalization.CultureInfo("es-MX");
+            this.radScheduler1.DataSource = this.schedulerBindingDataSource1;
+            this.radScheduler1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radScheduler1.HeaderFormat = "dddd dd MMMM yyyy";
+            this.radScheduler1.Location = new System.Drawing.Point(0, 77);
+            this.radScheduler1.Name = "radScheduler1";
+            schedulerDailyPrintStyle1.AppointmentFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            schedulerDailyPrintStyle1.DateEndRange = new System.DateTime(2018, 6, 12, 0, 0, 0, 0);
+            schedulerDailyPrintStyle1.DateHeadingFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            schedulerDailyPrintStyle1.DateStartRange = new System.DateTime(2018, 6, 7, 0, 0, 0, 0);
+            schedulerDailyPrintStyle1.PageHeadingFont = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Bold);
+            this.radScheduler1.PrintStyle = schedulerDailyPrintStyle1;
             // 
-            // toolStripSeparator4
             // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 52);
+            // 
+            this.radScheduler1.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 77, 1096, 248);
+            this.radScheduler1.ShowAllDayAppointmentStatus = true;
+            this.radScheduler1.Size = new System.Drawing.Size(1096, 248);
+            this.radScheduler1.TabIndex = 1;
+            this.radScheduler1.Text = "radScheduler1";
+            this.radScheduler1.AppointmentDropping += new System.EventHandler<Telerik.WinControls.UI.AppointmentMovingEventArgs>(this.radScheduler1_AppointmentDropping);
+            this.radScheduler1.AppointmentResizeEnd += new System.EventHandler<Telerik.WinControls.UI.SchedulerAppointmentEventArgs>(this.radScheduler1_AppointmentResizeEnd);
+            this.radScheduler1.ContextMenuOpening += new Telerik.WinControls.UI.SchedulerContextMenuOpeningEventHandler(this.radScheduler1_ContextMenuOpening);
+            this.radScheduler1.AppointmentFormatting += new System.EventHandler<Telerik.WinControls.UI.SchedulerAppointmentEventArgs>(this.radScheduler1_AppointmentFormatting_1);
             // 
             // Form1
             // 
@@ -475,7 +472,6 @@
             this.Load += new System.EventHandler(this.Form1_Load);
             this.Shown += new System.EventHandler(this.Form1_Shown);
             this.ResizeEnd += new System.EventHandler(this.Form1_ResizeEnd);
-            ((System.ComponentModel.ISupportInitialize)(this.radScheduler1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.schedulerBindingDataSource1.EventProvider)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.schedulerBindingDataSource1.ResourceProvider)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.schedulerBindingDataSource1)).EndInit();
@@ -487,6 +483,7 @@
             this.panelScheduler.PerformLayout();
             this.toolStrip_Menu.ResumeLayout(false);
             this.toolStrip_Menu.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radScheduler1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -495,7 +492,6 @@
         #endregion
 
         private System.Windows.Forms.Panel panel1;
-        private Telerik.WinControls.UI.RadScheduler radScheduler1;
         private Telerik.WinControls.UI.RadSchedulerNavigator radSchedulerNavigator1;
         private System.Windows.Forms.Panel panelTool;
         private System.Windows.Forms.Label label1;
@@ -528,8 +524,9 @@
         private System.Windows.Forms.ToolStripButton btn_Salas;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
         private System.Windows.Forms.ToolStripButton btn_CerrarSesion;
-        private System.Windows.Forms.ToolStripButton toolStripButton2;
+        private System.Windows.Forms.ToolStripButton btnCotizador;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private Telerik.WinControls.UI.RadScheduler radScheduler1;
     }
 }
 

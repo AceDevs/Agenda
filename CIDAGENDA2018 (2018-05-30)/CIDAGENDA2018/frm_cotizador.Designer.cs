@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_cotizador));
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition3 = new Telerik.WinControls.UI.TableViewDefinition();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition4 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
             this.panelBarraAmarilla = new System.Windows.Forms.Panel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btn_Salir = new System.Windows.Forms.ToolStripButton();
@@ -166,8 +166,16 @@
             // 
             // 
             // 
-            this.rgvPrecios.MasterTemplate.ViewDefinition = tableViewDefinition3;
+            this.rgvPrecios.MasterTemplate.AllowAddNewRow = false;
+            this.rgvPrecios.MasterTemplate.AllowColumnReorder = false;
+            this.rgvPrecios.MasterTemplate.AllowDeleteRow = false;
+            this.rgvPrecios.MasterTemplate.AllowDragToGroup = false;
+            this.rgvPrecios.MasterTemplate.AllowEditRow = false;
+            this.rgvPrecios.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
+            this.rgvPrecios.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.rgvPrecios.Name = "rgvPrecios";
+            this.rgvPrecios.ReadOnly = true;
+            this.rgvPrecios.ShowGroupPanel = false;
             this.rgvPrecios.Size = new System.Drawing.Size(324, 130);
             this.rgvPrecios.TabIndex = 119;
             this.rgvPrecios.Text = "radGridView1";
@@ -182,6 +190,7 @@
             this.txt_salas.Name = "txt_salas";
             this.txt_salas.Size = new System.Drawing.Size(268, 21);
             this.txt_salas.TabIndex = 113;
+            this.txt_salas.SelectedIndexChanged += new System.EventHandler(this.txt_salas_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -203,6 +212,7 @@
             this.txt_instituciones.Name = "txt_instituciones";
             this.txt_instituciones.Size = new System.Drawing.Size(268, 21);
             this.txt_instituciones.TabIndex = 115;
+            this.txt_instituciones.SelectedIndexChanged += new System.EventHandler(this.txt_instituciones_SelectedIndexChanged);
             // 
             // txt_estudios
             // 
@@ -214,6 +224,7 @@
             this.txt_estudios.Name = "txt_estudios";
             this.txt_estudios.Size = new System.Drawing.Size(268, 21);
             this.txt_estudios.TabIndex = 114;
+            this.txt_estudios.SelectedIndexChanged += new System.EventHandler(this.txt_estudios_SelectedIndexChanged);
             // 
             // label12
             // 
@@ -252,9 +263,14 @@
             // 
             // 
             // 
-            this.rgvListado.MasterTemplate.ViewDefinition = tableViewDefinition4;
+            this.rgvListado.MasterTemplate.AllowAddNewRow = false;
+            this.rgvListado.MasterTemplate.AllowColumnReorder = false;
+            this.rgvListado.MasterTemplate.AllowEditRow = false;
+            this.rgvListado.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
+            this.rgvListado.MasterTemplate.ViewDefinition = tableViewDefinition2;
             this.rgvListado.Name = "rgvListado";
             this.rgvListado.Padding = new System.Windows.Forms.Padding(5);
+            this.rgvListado.ShowGroupPanel = false;
             this.rgvListado.Size = new System.Drawing.Size(671, 237);
             this.rgvListado.TabIndex = 0;
             this.rgvListado.Text = "radGridView1";
