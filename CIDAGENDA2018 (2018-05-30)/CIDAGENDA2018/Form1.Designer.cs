@@ -30,12 +30,13 @@
         {
             Telerik.WinControls.UI.AppointmentMappingInfo appointmentMappingInfo1 = new Telerik.WinControls.UI.AppointmentMappingInfo();
             Telerik.WinControls.UI.ResourceMappingInfo resourceMappingInfo1 = new Telerik.WinControls.UI.ResourceMappingInfo();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             Telerik.WinControls.UI.SchedulerDailyPrintStyle schedulerDailyPrintStyle1 = new Telerik.WinControls.UI.SchedulerDailyPrintStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.panel1 = new System.Windows.Forms.Panel();
             this.schedulerBindingDataSource1 = new Telerik.WinControls.UI.SchedulerBindingDataSource();
             this.schedulerDataDataSet = new CIDAGENDA2018.schedulerDataDataSet();
             this.radSchedulerNavigator1 = new Telerik.WinControls.UI.RadSchedulerNavigator();
+            this.radScheduler1 = new Telerik.WinControls.UI.RadScheduler();
             this.panelTool = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.btn_forward_resource = new System.Windows.Forms.Button();
@@ -67,16 +68,15 @@
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.btn_Salas = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
-            this.radScheduler1 = new Telerik.WinControls.UI.RadScheduler();
             ((System.ComponentModel.ISupportInitialize)(this.schedulerBindingDataSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.schedulerBindingDataSource1.EventProvider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.schedulerBindingDataSource1.ResourceProvider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.schedulerDataDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radSchedulerNavigator1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radScheduler1)).BeginInit();
             this.panelTool.SuspendLayout();
             this.panelScheduler.SuspendLayout();
             this.toolStrip_Menu.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radScheduler1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -125,6 +125,37 @@
             this.radSchedulerNavigator1.Size = new System.Drawing.Size(1096, 77);
             this.radSchedulerNavigator1.TabIndex = 0;
             this.radSchedulerNavigator1.Text = "radSchedulerNavigator1";
+            // 
+            // radScheduler1
+            // 
+            this.radScheduler1.AllowCopyPaste = Telerik.WinControls.UI.CopyPasteMode.Disallow;
+            this.radScheduler1.AutoScroll = true;
+            this.radScheduler1.Culture = new System.Globalization.CultureInfo("es-MX");
+            this.radScheduler1.DataSource = this.schedulerBindingDataSource1;
+            this.radScheduler1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.radScheduler1.HeaderFormat = "dddd dd MMMM yyyy";
+            this.radScheduler1.Location = new System.Drawing.Point(0, 77);
+            this.radScheduler1.Name = "radScheduler1";
+            schedulerDailyPrintStyle1.AppointmentFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            schedulerDailyPrintStyle1.DateEndRange = new System.DateTime(2018, 6, 12, 0, 0, 0, 0);
+            schedulerDailyPrintStyle1.DateHeadingFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            schedulerDailyPrintStyle1.DateStartRange = new System.DateTime(2018, 6, 7, 0, 0, 0, 0);
+            schedulerDailyPrintStyle1.PageHeadingFont = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Bold);
+            this.radScheduler1.PrintStyle = schedulerDailyPrintStyle1;
+            // 
+            // 
+            // 
+            this.radScheduler1.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 77, 500, 500);
+            this.radScheduler1.ShowAllDayAppointmentStatus = true;
+            this.radScheduler1.Size = new System.Drawing.Size(1096, 248);
+            this.radScheduler1.TabIndex = 1;
+            this.radScheduler1.Text = "radScheduler1";
+            this.radScheduler1.AppointmentDropping += new System.EventHandler<Telerik.WinControls.UI.AppointmentMovingEventArgs>(this.radScheduler1_AppointmentDropping);
+            this.radScheduler1.AppointmentResizeEnd += new System.EventHandler<Telerik.WinControls.UI.SchedulerAppointmentEventArgs>(this.radScheduler1_AppointmentResizeEnd);
+            this.radScheduler1.ContextMenuOpening += new Telerik.WinControls.UI.SchedulerContextMenuOpeningEventHandler(this.radScheduler1_ContextMenuOpening);
+            this.radScheduler1.AppointmentFormatting += new System.EventHandler<Telerik.WinControls.UI.SchedulerAppointmentEventArgs>(this.radScheduler1_AppointmentFormatting_1);
+            this.radScheduler1.AppointmentEditDialogShowing += new System.EventHandler<Telerik.WinControls.UI.AppointmentEditDialogShowingEventArgs>(this.radScheduler1_AppointmentEditDialogShowing);
+            this.radScheduler1.ToolTipTextNeeded += new Telerik.WinControls.ToolTipTextNeededEventHandler(this.radScheduler1_ToolTipTextNeeded);
             // 
             // panelTool
             // 
@@ -422,35 +453,6 @@
             this.toolStripButton1.Size = new System.Drawing.Size(63, 49);
             this.toolStripButton1.ToolTipText = "Unidad Radiologica IRM, S. de R.L. de C.V.";
             // 
-            // radScheduler1
-            // 
-            this.radScheduler1.AllowCopyPaste = Telerik.WinControls.UI.CopyPasteMode.Disallow;
-            this.radScheduler1.AutoScroll = true;
-            this.radScheduler1.Culture = new System.Globalization.CultureInfo("es-MX");
-            this.radScheduler1.DataSource = this.schedulerBindingDataSource1;
-            this.radScheduler1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.radScheduler1.HeaderFormat = "dddd dd MMMM yyyy";
-            this.radScheduler1.Location = new System.Drawing.Point(0, 77);
-            this.radScheduler1.Name = "radScheduler1";
-            schedulerDailyPrintStyle1.AppointmentFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            schedulerDailyPrintStyle1.DateEndRange = new System.DateTime(2018, 6, 12, 0, 0, 0, 0);
-            schedulerDailyPrintStyle1.DateHeadingFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            schedulerDailyPrintStyle1.DateStartRange = new System.DateTime(2018, 6, 7, 0, 0, 0, 0);
-            schedulerDailyPrintStyle1.PageHeadingFont = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Bold);
-            this.radScheduler1.PrintStyle = schedulerDailyPrintStyle1;
-            // 
-            // 
-            // 
-            this.radScheduler1.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 77, 1096, 248);
-            this.radScheduler1.ShowAllDayAppointmentStatus = true;
-            this.radScheduler1.Size = new System.Drawing.Size(1096, 248);
-            this.radScheduler1.TabIndex = 1;
-            this.radScheduler1.Text = "radScheduler1";
-            this.radScheduler1.AppointmentDropping += new System.EventHandler<Telerik.WinControls.UI.AppointmentMovingEventArgs>(this.radScheduler1_AppointmentDropping);
-            this.radScheduler1.AppointmentResizeEnd += new System.EventHandler<Telerik.WinControls.UI.SchedulerAppointmentEventArgs>(this.radScheduler1_AppointmentResizeEnd);
-            this.radScheduler1.ContextMenuOpening += new Telerik.WinControls.UI.SchedulerContextMenuOpeningEventHandler(this.radScheduler1_ContextMenuOpening);
-            this.radScheduler1.AppointmentFormatting += new System.EventHandler<Telerik.WinControls.UI.SchedulerAppointmentEventArgs>(this.radScheduler1_AppointmentFormatting_1);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -477,13 +479,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.schedulerBindingDataSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.schedulerDataDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radSchedulerNavigator1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.radScheduler1)).EndInit();
             this.panelTool.ResumeLayout(false);
             this.panelTool.PerformLayout();
             this.panelScheduler.ResumeLayout(false);
             this.panelScheduler.PerformLayout();
             this.toolStrip_Menu.ResumeLayout(false);
             this.toolStrip_Menu.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radScheduler1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

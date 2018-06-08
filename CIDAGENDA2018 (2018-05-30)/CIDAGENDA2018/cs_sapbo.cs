@@ -1140,6 +1140,32 @@ namespace CIDAGENDA2018
             }
         }
 
+        public bool CANCEL_CITAS(int DocEntry)
+        {
+            try
+            {
+                bool resul = false;
+                SqlConnection conn;
+                SqlCommand cmd;
+
+                conn = new SqlConnection(_SQLClientConnection);
+                conn.Open();
+                cmd = new SqlCommand("EXEC [dbo].[CANCEL_CITAS] @DocEnty", conn);
+                cmd.Parameters.AddWithValue("DocEntry", DocEntry);
+                int r = cmd.ExecuteNonQuery();
+                if (r > 0) { resul = true; }
+                cmd.Connection.Close();
+                conn.Close();
+
+                return resul;
+            }
+            catch (Exception ex)
+            {
+                _message_error = "Warning: " + ex.Message;
+                return false;
+            }
+        }
+
         public bool UPDATE_CITAS(DateTime Start, DateTime End, DateTime DocDate, int DocEntry)
         {
             try
@@ -1484,12 +1510,15 @@ namespace CIDAGENDA2018
                 DataTable dt = new DataTable();
                 SqlDataAdapter sda;
 
-                string query = "select '' as 'ItemCode', '' as 'ItemName' union all select ItemCode,ItemName from " + _DataBaseSAP + ".[dbo].[OITM] where U_SalaDepto=@RoomCode and validFor='Y'";
+                string query = "select '' as 'ItemCode', '' as 'ItemName' union all select ItemCode,ItemName from " + _DataBaseSAP + ".[dbo].[OITM] where validFor='Y'";
+                if (RoomCode != "")
+                    query += " and U_SalaDepto=@RoomCode";
 
                 conn = new SqlConnection(_SQLClientConnection);
                 conn.Open();
                 cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("RoomCode", RoomCode);
+                if (RoomCode != "")
+                    cmd.Parameters.AddWithValue("RoomCode", RoomCode);
 
                 sda = new SqlDataAdapter(cmd);
                 sda.Fill(dt);
@@ -1521,6 +1550,84 @@ namespace CIDAGENDA2018
                 conn.Open();
                 cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("RoomCode", RoomCode);
+
+                sda = new SqlDataAdapter(cmd);
+                sda.Fill(dt);
+
+                cmd.Connection.Close();
+                conn.Close();
+
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                _message_error = ex.Message;
+                return null;
+            }
+        }
+
+        public DataTable GET_PRECIOS(string ItemCode)
+        {
+            try
+            {
+                SqlConnection conn;
+                SqlCommand cmd;
+                DataTable dt = new DataTable();
+                SqlDataAdapter sda;
+
+                string query = "select CONVERT(varchar, CAST(T1.Price AS money), 1) as 'Price',T2.ListName,T1.PriceList " +
+                                "from " + _DataBaseSAP + ".[dbo].OITM T0 " +
+                                "    inner join " + _DataBaseSAP + ".[dbo].ITM1 T1 on T1.ItemCode = T0.ItemCode " +
+                                "    inner join " + _DataBaseSAP + ".[dbo].OPLN T2 on T2.ListNum=T1.PriceList " +
+                                "where T1.Price>0 and T0.ItemCode=@ItemCode";
+
+                conn = new SqlConnection(_SQLClientConnection);
+                conn.Open();
+                cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("ItemCode", ItemCode);
+
+                sda = new SqlDataAdapter(cmd);
+                sda.Fill(dt);
+
+                cmd.Connection.Close();
+                conn.Close();
+
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                _message_error = ex.Message;
+                return null;
+            }
+        }
+
+        public DataTable GET_PRECIOS(string ItemCode, string CardCode, bool setter)
+        {
+            try
+            {
+                SqlConnection conn;
+                SqlCommand cmd;
+                DataTable dt = new DataTable();
+                SqlDataAdapter sda;
+
+                string query = "select CONVERT(varchar, CAST(T1.Price AS money), 1) as 'Price',T2.ListName,T1.PriceList " +
+                                "from " + _DataBaseSAP + ".[dbo].OITM T0 " +
+                                "    inner join " + _DataBaseSAP + ".[dbo].ITM1 T1 on T1.ItemCode=T0.ItemCode " +
+                                "    inner join " + _DataBaseSAP + ".[dbo].OPLN T2 on T2.ListNum=T1.PriceList " +
+                                "    inner join " + _DataBaseSAP + ".[dbo].OCRD T3 on T3.ListNum=T2.ListNum " +
+                                "where (T1.Price>0 and T0.ItemCode=@ItemCode and T3.CardCode=@CardCode) " +
+                                "union " +
+                                "select CONVERT(varchar, CAST(T1.Price AS money), 1) as 'Price',T2.ListName,T1.PriceList " +
+                                "from " + _DataBaseSAP + ".[dbo].OITM T0 " +
+                                "    inner join " + _DataBaseSAP + ".[dbo].ITM1 T1 on T1.ItemCode=T0.ItemCode " +
+                                "    inner join " + _DataBaseSAP + ".[dbo].OPLN T2 on T2.ListNum=T1.PriceList " +
+                                "where (T1.Price>0 and T0.ItemCode=@ItemCode and T1.PriceList=1)";
+
+                conn = new SqlConnection(_SQLClientConnection);
+                conn.Open();
+                cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("ItemCode", ItemCode);
+                cmd.Parameters.AddWithValue("CardCode", CardCode);
 
                 sda = new SqlDataAdapter(cmd);
                 sda.Fill(dt);
@@ -1625,7 +1732,7 @@ namespace CIDAGENDA2018
                                 "    inner join " + _DataBaseSAP + ".[dbo].OPLN T2 on T2.ListNum=T1.PriceList " +
                                 "    inner join " + _DataBaseSAP + ".[dbo].OCRD T3 on T3.ListNum=T2.ListNum " +
                                 "where (T1.Price>0 and T0.U_SalaDepto=@RoomCode and T0.ItemCode=@ItemCode and T3.CardCode=@CardCode) " +
-                                "union all " +
+                                "union " +
                                 "select CONVERT(varchar, CAST(T1.Price AS money), 1) as 'Price',T2.ListName,T1.PriceList " +
                                 "from " + _DataBaseSAP + ".[dbo].OITM T0 " +
                                 "    inner join " + _DataBaseSAP + ".[dbo].ITM1 T1 on T1.ItemCode=T0.ItemCode " +

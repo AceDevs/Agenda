@@ -370,7 +370,7 @@ namespace CIDAGENDA2018.Recepcion
 
         private void frmEditAppointment_Load(object sender, EventArgs e)
         {
-            this.Text = cs_funciones.CompanyName;
+            this.Text = "Editar - " + cs_funciones.CompanyName;
         }
 
         private void frmEditAppointment_Shown(object sender, EventArgs e)
@@ -422,6 +422,9 @@ namespace CIDAGENDA2018.Recepcion
 
                         radGridRequisitos.DataSource = sapo.GET_CITAREQUISITOS(int.Parse(txt_DocEntry.Text));
                         radGridRequisitos.Refresh();
+
+                        radGridRecursos.DataSource = sapo.GET_CITARECURSOS(int.Parse(txt_DocEntry.Text));
+                        radGridRecursos.Refresh();
 
                         txt_doc_total.Text = this.GetLineTotal().ToString("C");
                     }
@@ -732,6 +735,24 @@ namespace CIDAGENDA2018.Recepcion
                     }
                 }
                 sapo = null;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (MessageBox.Show("Desea cancelar la cita?", this.Text, MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    cs_sapbo sapbo = new cs_sapbo();
+                    sapbo.CANCEL_CITAS(int.Parse(txt_DocEntry.Text));
+                    if (MessageBox.Show("Cita cancelada!\nDesea cerrar esta ventana?", this.Text, MessageBoxButtons.YesNo) == DialogResult.Yes)
+                        this.Close();
+                }
             }
             catch (Exception ex)
             {

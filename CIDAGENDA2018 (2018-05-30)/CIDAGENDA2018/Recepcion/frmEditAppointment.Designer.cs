@@ -28,14 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.SchedulerDailyPrintStyle schedulerDailyPrintStyle1 = new Telerik.WinControls.UI.SchedulerDailyPrintStyle();
-            Telerik.WinControls.UI.AppointmentMappingInfo appointmentMappingInfo1 = new Telerik.WinControls.UI.AppointmentMappingInfo();
-            Telerik.WinControls.UI.ResourceMappingInfo resourceMappingInfo1 = new Telerik.WinControls.UI.ResourceMappingInfo();
+            Telerik.WinControls.UI.SchedulerDailyPrintStyle schedulerDailyPrintStyle2 = new Telerik.WinControls.UI.SchedulerDailyPrintStyle();
+            Telerik.WinControls.UI.AppointmentMappingInfo appointmentMappingInfo2 = new Telerik.WinControls.UI.AppointmentMappingInfo();
+            Telerik.WinControls.UI.ResourceMappingInfo resourceMappingInfo2 = new Telerik.WinControls.UI.ResourceMappingInfo();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEditAppointment));
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition3 = new Telerik.WinControls.UI.TableViewDefinition();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition4 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition5 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition6 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition7 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition8 = new Telerik.WinControls.UI.TableViewDefinition();
             this.salasTableAdapter1 = new CIDAGENDA2018.schedulerDataDataSetTableAdapters.SALASTableAdapter();
             this.citasTableAdapter1 = new CIDAGENDA2018.schedulerDataDataSetTableAdapters.CITASTableAdapter();
             this.radSchedulerNavigator1 = new Telerik.WinControls.UI.RadSchedulerNavigator();
@@ -73,8 +73,8 @@
             this.txt_apellido_materno = new System.Windows.Forms.TextBox();
             this.btn_AgregarEstudio = new System.Windows.Forms.Button();
             this.btn_BuscarPaciente = new System.Windows.Forms.Button();
-            this.radGridPrecios = new Telerik.WinControls.UI.RadGridView();
             this.txt_salas = new System.Windows.Forms.ComboBox();
+            this.radGridPrecios = new Telerik.WinControls.UI.RadGridView();
             this.label2 = new System.Windows.Forms.Label();
             this.txt_instituciones = new System.Windows.Forms.ComboBox();
             this.txt_estudios = new System.Windows.Forms.ComboBox();
@@ -111,6 +111,8 @@
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.radGridRequisitos = new Telerik.WinControls.UI.RadGridView();
             this.cita1TableAdapter1 = new CIDAGENDA2018.schedulerDataDataSetTableAdapters.CITA1TableAdapter();
+            this.btnCancel = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             ((System.ComponentModel.ISupportInitialize)(this.radSchedulerNavigator1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radScheduler1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.schedulerBindingDataSource1)).BeginInit();
@@ -179,16 +181,16 @@
             this.radScheduler1.HeaderFormat = "dddd dd MMMM yyyy";
             this.radScheduler1.Location = new System.Drawing.Point(0, 77);
             this.radScheduler1.Name = "radScheduler1";
-            schedulerDailyPrintStyle1.AppointmentFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            schedulerDailyPrintStyle1.DateEndRange = new System.DateTime(2018, 4, 15, 0, 0, 0, 0);
-            schedulerDailyPrintStyle1.DateHeadingFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            schedulerDailyPrintStyle1.DateStartRange = new System.DateTime(2018, 4, 10, 0, 0, 0, 0);
-            schedulerDailyPrintStyle1.PageHeadingFont = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Bold);
-            this.radScheduler1.PrintStyle = schedulerDailyPrintStyle1;
+            schedulerDailyPrintStyle2.AppointmentFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            schedulerDailyPrintStyle2.DateEndRange = new System.DateTime(2018, 4, 15, 0, 0, 0, 0);
+            schedulerDailyPrintStyle2.DateHeadingFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            schedulerDailyPrintStyle2.DateStartRange = new System.DateTime(2018, 4, 10, 0, 0, 0, 0);
+            schedulerDailyPrintStyle2.PageHeadingFont = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Bold);
+            this.radScheduler1.PrintStyle = schedulerDailyPrintStyle2;
             // 
             // 
             // 
-            this.radScheduler1.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 0, 500, 500);
+            this.radScheduler1.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 77, 500, 500);
             this.radScheduler1.ShowAllDayAppointmentStatus = true;
             this.radScheduler1.Size = new System.Drawing.Size(1130, 223);
             this.radScheduler1.TabIndex = 111;
@@ -202,13 +204,13 @@
             // 
             this.schedulerBindingDataSource1.EventProvider.DataMember = "CITAS";
             this.schedulerBindingDataSource1.EventProvider.DataSource = this.schedulerDataDataSet;
-            this.schedulerBindingDataSource1.EventProvider.Mapping = appointmentMappingInfo1;
+            this.schedulerBindingDataSource1.EventProvider.Mapping = appointmentMappingInfo2;
             // 
             // 
             // 
             this.schedulerBindingDataSource1.ResourceProvider.DataMember = "SALAS";
             this.schedulerBindingDataSource1.ResourceProvider.DataSource = this.schedulerDataDataSet;
-            this.schedulerBindingDataSource1.ResourceProvider.Mapping = resourceMappingInfo1;
+            this.schedulerBindingDataSource1.ResourceProvider.Mapping = resourceMappingInfo2;
             // 
             // schedulerDataDataSet
             // 
@@ -231,6 +233,8 @@
             this.toolStrip1.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btn_Guardar,
+            this.toolStripSeparator2,
+            this.btnCancel,
             this.toolStripSeparator1,
             this.btn_Salir,
             this.toolStripButton1});
@@ -373,12 +377,12 @@
             this.radGridEstudios.MasterTemplate.AllowDragToGroup = false;
             this.radGridEstudios.MasterTemplate.AllowEditRow = false;
             this.radGridEstudios.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            this.radGridEstudios.MasterTemplate.ViewDefinition = tableViewDefinition1;
+            this.radGridEstudios.MasterTemplate.ViewDefinition = tableViewDefinition5;
             this.radGridEstudios.Name = "radGridEstudios";
             // 
             // 
             // 
-            this.radGridEstudios.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 0, 240, 150);
+            this.radGridEstudios.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 150, 240, 150);
             this.radGridEstudios.ShowGroupPanel = false;
             this.radGridEstudios.Size = new System.Drawing.Size(1130, 157);
             this.radGridEstudios.TabIndex = 903;
@@ -568,6 +572,17 @@
             this.btn_BuscarPaciente.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btn_BuscarPaciente.UseVisualStyleBackColor = true;
             // 
+            // txt_salas
+            // 
+            this.txt_salas.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txt_salas.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.txt_salas.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_salas.FormattingEnabled = true;
+            this.txt_salas.Location = new System.Drawing.Point(590, 5);
+            this.txt_salas.Name = "txt_salas";
+            this.txt_salas.Size = new System.Drawing.Size(268, 21);
+            this.txt_salas.TabIndex = 11;
+            // 
             // radGridPrecios
             // 
             this.radGridPrecios.AutoScroll = true;
@@ -582,28 +597,17 @@
             this.radGridPrecios.MasterTemplate.AllowDragToGroup = false;
             this.radGridPrecios.MasterTemplate.AllowEditRow = false;
             this.radGridPrecios.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            this.radGridPrecios.MasterTemplate.ViewDefinition = tableViewDefinition2;
+            this.radGridPrecios.MasterTemplate.ViewDefinition = tableViewDefinition6;
             this.radGridPrecios.Name = "radGridPrecios";
             // 
             // 
             // 
-            this.radGridPrecios.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 0, 240, 150);
+            this.radGridPrecios.RootElement.ControlBounds = new System.Drawing.Rectangle(935, 4, 240, 150);
             this.radGridPrecios.ShowGroupPanel = false;
             this.radGridPrecios.Size = new System.Drawing.Size(179, 77);
             this.radGridPrecios.TabIndex = 14;
             this.radGridPrecios.Text = "radGridView2";
             this.radGridPrecios.Visible = false;
-            // 
-            // txt_salas
-            // 
-            this.txt_salas.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.txt_salas.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.txt_salas.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_salas.FormattingEnabled = true;
-            this.txt_salas.Location = new System.Drawing.Point(590, 5);
-            this.txt_salas.Name = "txt_salas";
-            this.txt_salas.Size = new System.Drawing.Size(268, 21);
-            this.txt_salas.TabIndex = 11;
             // 
             // label2
             // 
@@ -944,12 +948,12 @@
             this.radGridRecursos.MasterTemplate.AllowDragToGroup = false;
             this.radGridRecursos.MasterTemplate.AllowEditRow = false;
             this.radGridRecursos.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            this.radGridRecursos.MasterTemplate.ViewDefinition = tableViewDefinition3;
+            this.radGridRecursos.MasterTemplate.ViewDefinition = tableViewDefinition7;
             this.radGridRecursos.Name = "radGridRecursos";
             // 
             // 
             // 
-            this.radGridRecursos.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 0, 240, 150);
+            this.radGridRecursos.RootElement.ControlBounds = new System.Drawing.Rectangle(311, 13, 240, 150);
             this.radGridRecursos.ShowGroupPanel = false;
             this.radGridRecursos.Size = new System.Drawing.Size(382, 98);
             this.radGridRecursos.TabIndex = 2;
@@ -976,12 +980,12 @@
             this.radGridRequisitos.MasterTemplate.AllowAddNewRow = false;
             this.radGridRequisitos.MasterTemplate.AllowDragToGroup = false;
             this.radGridRequisitos.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            this.radGridRequisitos.MasterTemplate.ViewDefinition = tableViewDefinition4;
+            this.radGridRequisitos.MasterTemplate.ViewDefinition = tableViewDefinition8;
             this.radGridRequisitos.Name = "radGridRequisitos";
             // 
             // 
             // 
-            this.radGridRequisitos.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 0, 240, 150);
+            this.radGridRequisitos.RootElement.ControlBounds = new System.Drawing.Rectangle(8, 3, 240, 150);
             this.radGridRequisitos.ShowGroupPanel = false;
             this.radGridRequisitos.Size = new System.Drawing.Size(647, 112);
             this.radGridRequisitos.TabIndex = 904;
@@ -990,6 +994,22 @@
             // cita1TableAdapter1
             // 
             this.cita1TableAdapter1.ClearBeforeFill = true;
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.Image")));
+            this.btnCancel.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnCancel.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(57, 41);
+            this.btnCancel.Text = "Cancelar";
+            this.btnCancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 44);
             // 
             // frmEditAppointment
             // 
@@ -1123,5 +1143,7 @@
         private System.Windows.Forms.Label label13;
         private Telerik.WinControls.UI.RadGridView radGridEstudios;
         private Telerik.WinControls.UI.RadGridView radGridRequisitos;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripButton btnCancel;
     }
 }

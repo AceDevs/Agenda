@@ -26,7 +26,7 @@ namespace CIDAGENDA2018.Conmutador
 
         private void frmViewAgenda_Load(object sender, EventArgs e)
         {
-            this.Text = cs_funciones.CompanyName;
+            this.Text = "Agenda - " + cs_funciones.CompanyName;
         }
 
         private void frmViewAgenda_Shown(object sender, EventArgs e)
