@@ -64,6 +64,12 @@
     <Reference Include="VisualStyleBuilder.Design, Version=2016.1.216.20, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Administracion\frm_usuarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Administracion\frm_usuarios.Designer.cs">
+      <DependentUpon>frm_usuarios.cs</DependentUpon>
+    </Compile>
     <Compile Include="Conmutador\frmViewAgenda.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -167,6 +173,9 @@
     <Compile Include="ViewEtiquetas.Designer.cs">
       <DependentUpon>ViewEtiquetas.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Administracion\frm_usuarios.resx">
+      <DependentUpon>frm_usuarios.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Conmutador\frmViewAgenda.resx">
       <DependentUpon>frmViewAgenda.cs</DependentUpon>
     </EmbeddedResource>

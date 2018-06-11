@@ -159,7 +159,7 @@ namespace CIDAGENDA2018.Recepcion
                 appointmentMappingInfo.Start = "Start";
                 appointmentMappingInfo.End = "End";
                 appointmentMappingInfo.Summary = "PatientName";
-                appointmentMappingInfo.Description = "Description";
+                appointmentMappingInfo.Description = "DocStatus";
                 appointmentMappingInfo.Location = "Location";
                 appointmentMappingInfo.BackgroundId = "BackgroundID";
                 appointmentMappingInfo.StatusId = "StatusID";

@@ -182,6 +182,34 @@ namespace CIDAGENDA2018
 
         // ===============================================================================================================
 
+        public DataTable GET_Usuario(string userCode)
+        {
+            try
+            {
+                bool resul = false;
+
+                SqlConnection conn;
+                SqlCommand cmd;
+                SqlDataAdapter sda;
+                DataTable dt = new DataTable();
+                conn = new SqlConnection(_SQLClientConnection);
+                conn.Open();
+                cmd = new SqlCommand("select * from [cid].[USUARIOS] where [USER_CODE]=@USER_CODE", conn);
+                cmd.Parameters.AddWithValue("USER_CODE", userCode);
+                sda = new SqlDataAdapter(cmd);
+                sda.Fill(dt);
+
+                cmd.Connection.Close();
+                conn.Close();
+
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+        }
+
         public bool Autentificar(string USER_CODE, string PASSWORD)
         {
             try
@@ -1150,7 +1178,7 @@ namespace CIDAGENDA2018
 
                 conn = new SqlConnection(_SQLClientConnection);
                 conn.Open();
-                cmd = new SqlCommand("EXEC [dbo].[CANCEL_CITAS] @DocEnty", conn);
+                cmd = new SqlCommand("EXEC [dbo].[CANCEL_CITAS] @DocEntry", conn);
                 cmd.Parameters.AddWithValue("DocEntry", DocEntry);
                 int r = cmd.ExecuteNonQuery();
                 if (r > 0) { resul = true; }

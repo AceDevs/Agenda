@@ -340,6 +340,7 @@
             this.btn_Usuarios.Size = new System.Drawing.Size(52, 49);
             this.btn_Usuarios.Text = "Usuarios";
             this.btn_Usuarios.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btn_Usuarios.Click += new System.EventHandler(this.btn_Usuarios_Click);
             // 
             // toolStripSeparator5
             // 

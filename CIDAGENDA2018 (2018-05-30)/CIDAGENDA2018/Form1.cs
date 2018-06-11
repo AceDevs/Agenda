@@ -180,7 +180,7 @@ namespace CIDAGENDA2018
                 appointmentMappingInfo.Start = "Start";
                 appointmentMappingInfo.End = "End";
                 appointmentMappingInfo.Summary = "PatientName";
-                appointmentMappingInfo.Description = "Description";
+                appointmentMappingInfo.Description = "DocStatus";
                 appointmentMappingInfo.Location = "Location";
                 appointmentMappingInfo.BackgroundId = "BackgroundID";
                 appointmentMappingInfo.StatusId = "StatusID";
@@ -676,6 +676,14 @@ namespace CIDAGENDA2018
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void btn_Usuarios_Click(object sender, EventArgs e)
+        {
+            if (cs_funciones.session_type != "Y")
+            {
+                MessageBox.Show("No tienes permiso para ingresar a este modulo.");
             }
         }
     }
