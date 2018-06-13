@@ -52,6 +52,8 @@
             this.panelBarraAmarilla = new System.Windows.Forms.Panel();
             this.cita1TableAdapter1 = new CIDAGENDA2018.schedulerDataDataSetTableAdapters.CITA1TableAdapter();
             this.panelGeneral = new System.Windows.Forms.Panel();
+            this.radAutoCompleteBox1 = new Telerik.WinControls.UI.RadAutoCompleteBox();
+            this.btnCotizador = new System.Windows.Forms.ToolStripButton();
             this.panelScheduler.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radScheduler1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.schedulerBindingDataSource1)).BeginInit();
@@ -61,6 +63,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radSchedulerNavigator1)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.panelGeneral.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radAutoCompleteBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // salasTableAdapter1
@@ -160,7 +163,7 @@
             this.radScheduler1.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.radScheduler1.Culture = new System.Globalization.CultureInfo("es-MX");
             this.radScheduler1.DataSource = this.schedulerBindingDataSource1;
-            this.radScheduler1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.radScheduler1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.radScheduler1.HeaderFormat = "dddd dd MMMM yyyy";
             this.radScheduler1.Location = new System.Drawing.Point(0, 77);
             this.radScheduler1.Name = "radScheduler1";
@@ -173,9 +176,9 @@
             // 
             // 
             // 
-            this.radScheduler1.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 0, 500, 500);
+            this.radScheduler1.RootElement.ControlBounds = new System.Drawing.Rectangle(0, 77, 500, 500);
             this.radScheduler1.ShowAllDayAppointmentStatus = true;
-            this.radScheduler1.Size = new System.Drawing.Size(1039, 421);
+            this.radScheduler1.Size = new System.Drawing.Size(1039, 452);
             this.radScheduler1.TabIndex = 111;
             this.radScheduler1.Text = "radScheduler1";
             this.radScheduler1.AppointmentDropping += new System.EventHandler<Telerik.WinControls.UI.AppointmentMovingEventArgs>(this.radScheduler1_AppointmentDropping);
@@ -251,6 +254,7 @@
             // 
             this.toolStrip1.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnCotizador,
             this.btn_Salir,
             this.toolStripButton1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 6);
@@ -274,6 +278,7 @@
             // 
             // panelGeneral
             // 
+            this.panelGeneral.Controls.Add(this.radAutoCompleteBox1);
             this.panelGeneral.Controls.Add(this.label3);
             this.panelGeneral.Controls.Add(this.txt_unidad_negocio);
             this.panelGeneral.Controls.Add(this.label2);
@@ -286,6 +291,25 @@
             this.panelGeneral.Name = "panelGeneral";
             this.panelGeneral.Size = new System.Drawing.Size(1039, 95);
             this.panelGeneral.TabIndex = 909;
+            // 
+            // radAutoCompleteBox1
+            // 
+            this.radAutoCompleteBox1.Location = new System.Drawing.Point(585, 11);
+            this.radAutoCompleteBox1.Name = "radAutoCompleteBox1";
+            this.radAutoCompleteBox1.ShowRemoveButton = false;
+            this.radAutoCompleteBox1.Size = new System.Drawing.Size(164, 26);
+            this.radAutoCompleteBox1.TabIndex = 41;
+            // 
+            // btnCotizador
+            // 
+            this.btnCotizador.Image = ((System.Drawing.Image)(resources.GetObject("btnCotizador.Image")));
+            this.btnCotizador.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnCotizador.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnCotizador.Name = "btnCotizador";
+            this.btnCotizador.Size = new System.Drawing.Size(62, 41);
+            this.btnCotizador.Text = "Cotizador";
+            this.btnCotizador.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnCotizador.Click += new System.EventHandler(this.btnCotizador_Click);
             // 
             // frmViewAppointment
             // 
@@ -318,6 +342,7 @@
             this.toolStrip1.PerformLayout();
             this.panelGeneral.ResumeLayout(false);
             this.panelGeneral.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.radAutoCompleteBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -345,5 +370,7 @@
         private System.Windows.Forms.Panel panelBarraAmarilla;
         private schedulerDataDataSetTableAdapters.CITA1TableAdapter cita1TableAdapter1;
         private System.Windows.Forms.Panel panelGeneral;
+        private Telerik.WinControls.UI.RadAutoCompleteBox radAutoCompleteBox1;
+        private System.Windows.Forms.ToolStripButton btnCotizador;
     }
 }

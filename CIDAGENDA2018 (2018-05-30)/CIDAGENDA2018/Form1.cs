@@ -620,7 +620,7 @@ namespace CIDAGENDA2018
         private void btnCotizador_Click(object sender, EventArgs e)
         {
             frm_cotizador frm = new frm_cotizador();
-            frm.ShowDialog();
+            frm.Show();
         }
 
         private void radScheduler1_AppointmentFormatting_1(object sender, SchedulerAppointmentEventArgs e)
@@ -638,6 +638,7 @@ namespace CIDAGENDA2018
                 }
                 else if (e.Appointment.Description == "C")
                 {
+                    e.AppointmentElement.Visibility = ElementVisibility.Collapsed;
                     e.AppointmentElement.BorderColor = Color.Gold;
                     e.AppointmentElement.BorderBoxStyle = BorderBoxStyle.SingleBorder;
                     e.AppointmentElement.BorderWidth = 1;

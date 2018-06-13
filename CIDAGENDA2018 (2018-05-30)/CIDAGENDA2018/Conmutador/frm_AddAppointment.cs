@@ -85,6 +85,7 @@ namespace CIDAGENDA2018.Conmutador
                 paciente.CmpPrivate = "C";
                 paciente.FirstName = txt_nombre.Text;
                 paciente.FirstSurname = txt_apellido_paterno.Text;
+                paciente.SecondSurname = txt_apellido_materno.Text;
                 if (txt_edad.Text != "") { paciente.Age = int.Parse(txt_edad.Text); } else { paciente.Age = 0; }
                 paciente.Birthday = txt_fecha_naci.Value.Date;
                 paciente.Sex = txt_sexo.Text;
@@ -383,6 +384,7 @@ namespace CIDAGENDA2018.Conmutador
                     txt_apellido_paterno.Text = dt.Rows[0]["FirstSurname"].ToString();
                     txt_apellido_materno.Text = dt.Rows[0]["SecondSurname"].ToString();
                     txt_fecha_naci.Value = Convert.ToDateTime(dt.Rows[0]["Birthday"].ToString());
+                    txt_edad.Text = dt.Rows[0]["Age"].ToString();
                     txt_sexo.Text = dt.Rows[0]["Sex"].ToString();
                     txt_telefono.Text = dt.Rows[0]["Phone1"].ToString();
                     txt_celular.Text = dt.Rows[0]["Cellular"].ToString();
@@ -528,8 +530,7 @@ namespace CIDAGENDA2018.Conmutador
         {
             try
             {
-                if (txt_nombre.Text == "" || txt_apellido_paterno.Text == "" || txt_apellido_materno.Text == "" || txt_sexo.Text == ""
-                    || txt_telefono.Text == "" || txt_celular.Text == "" || txt_correo.Text == "")
+                if (txt_nombre.Text == "" || txt_apellido_paterno.Text == "" || txt_apellido_materno.Text == "" || txt_sexo.Text == "")
                 {
                     MessageBox.Show("Debe de capturar todos la información de los datos del paciente.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
@@ -633,8 +634,7 @@ namespace CIDAGENDA2018.Conmutador
         {
             try
             {
-                if (txt_nombre.Text == "" || txt_apellido_paterno.Text == "" || txt_apellido_materno.Text == "" || txt_sexo.Text == ""
-                    || txt_telefono.Text == "" || txt_celular.Text == "" || txt_correo.Text == "")
+                if (txt_nombre.Text == "" || txt_apellido_paterno.Text == "" || txt_apellido_materno.Text == "" || txt_sexo.Text == "")
                 {
                     MessageBox.Show("Debe de capturar todos la información de los datos del paciente.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
@@ -834,6 +834,12 @@ namespace CIDAGENDA2018.Conmutador
             {
                 MessageBox.Show(ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+        }
+
+        private void radScheduler1_AppointmentFormatting(object sender, SchedulerAppointmentEventArgs e)
+        {
+            if (e.Appointment.Description == "C")
+                e.AppointmentElement.Visibility = ElementVisibility.Collapsed;
         }
     }
 }

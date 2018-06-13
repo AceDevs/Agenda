@@ -39,6 +39,9 @@ namespace CIDAGENDA2018.Recepcion
                 txt_salas.DataSource = dt;
                 txt_salas.ValueMember = "RoomCode";
                 txt_salas.DisplayMember = "RoomName";
+                radAutoCompleteBox1.AutoCompleteDataSource = dt;
+                radAutoCompleteBox1.AutoCompleteValueMember = "RoomCode";
+                radAutoCompleteBox1.AutoCompleteDisplayMember = "RoomName";
 
                 dt = null;
 
@@ -420,6 +423,7 @@ namespace CIDAGENDA2018.Recepcion
                 }
                 else if (e.Appointment.Description == "C")
                 {
+                    e.AppointmentElement.Visibility = ElementVisibility.Collapsed;
                     e.AppointmentElement.BorderColor = Color.Gold;
                     e.AppointmentElement.BorderBoxStyle = BorderBoxStyle.SingleBorder;
                     e.AppointmentElement.BorderWidth = 1;
@@ -579,6 +583,12 @@ namespace CIDAGENDA2018.Recepcion
             {
                 MessageBox.Show(ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
+        }
+
+        private void btnCotizador_Click(object sender, EventArgs e)
+        {
+            frm_cotizador frm = new frm_cotizador();
+            frm.Show();
         }
     }
 }

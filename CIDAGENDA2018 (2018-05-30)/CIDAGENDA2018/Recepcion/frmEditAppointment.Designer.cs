@@ -28,14 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            Telerik.WinControls.UI.SchedulerDailyPrintStyle schedulerDailyPrintStyle2 = new Telerik.WinControls.UI.SchedulerDailyPrintStyle();
-            Telerik.WinControls.UI.AppointmentMappingInfo appointmentMappingInfo2 = new Telerik.WinControls.UI.AppointmentMappingInfo();
-            Telerik.WinControls.UI.ResourceMappingInfo resourceMappingInfo2 = new Telerik.WinControls.UI.ResourceMappingInfo();
+            Telerik.WinControls.UI.SchedulerDailyPrintStyle schedulerDailyPrintStyle1 = new Telerik.WinControls.UI.SchedulerDailyPrintStyle();
+            Telerik.WinControls.UI.AppointmentMappingInfo appointmentMappingInfo1 = new Telerik.WinControls.UI.AppointmentMappingInfo();
+            Telerik.WinControls.UI.ResourceMappingInfo resourceMappingInfo1 = new Telerik.WinControls.UI.ResourceMappingInfo();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEditAppointment));
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition5 = new Telerik.WinControls.UI.TableViewDefinition();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition6 = new Telerik.WinControls.UI.TableViewDefinition();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition7 = new Telerik.WinControls.UI.TableViewDefinition();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition8 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition3 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition4 = new Telerik.WinControls.UI.TableViewDefinition();
             this.salasTableAdapter1 = new CIDAGENDA2018.schedulerDataDataSetTableAdapters.SALASTableAdapter();
             this.citasTableAdapter1 = new CIDAGENDA2018.schedulerDataDataSetTableAdapters.CITASTableAdapter();
             this.radSchedulerNavigator1 = new Telerik.WinControls.UI.RadSchedulerNavigator();
@@ -45,6 +45,8 @@
             this.panelScheduler = new System.Windows.Forms.Panel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btn_Guardar = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.btnCancel = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.btn_Salir = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
@@ -111,8 +113,6 @@
             this.tabPage6 = new System.Windows.Forms.TabPage();
             this.radGridRequisitos = new Telerik.WinControls.UI.RadGridView();
             this.cita1TableAdapter1 = new CIDAGENDA2018.schedulerDataDataSetTableAdapters.CITA1TableAdapter();
-            this.btnCancel = new System.Windows.Forms.ToolStripButton();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             ((System.ComponentModel.ISupportInitialize)(this.radSchedulerNavigator1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radScheduler1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.schedulerBindingDataSource1)).BeginInit();
@@ -181,12 +181,12 @@
             this.radScheduler1.HeaderFormat = "dddd dd MMMM yyyy";
             this.radScheduler1.Location = new System.Drawing.Point(0, 77);
             this.radScheduler1.Name = "radScheduler1";
-            schedulerDailyPrintStyle2.AppointmentFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            schedulerDailyPrintStyle2.DateEndRange = new System.DateTime(2018, 4, 15, 0, 0, 0, 0);
-            schedulerDailyPrintStyle2.DateHeadingFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
-            schedulerDailyPrintStyle2.DateStartRange = new System.DateTime(2018, 4, 10, 0, 0, 0, 0);
-            schedulerDailyPrintStyle2.PageHeadingFont = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Bold);
-            this.radScheduler1.PrintStyle = schedulerDailyPrintStyle2;
+            schedulerDailyPrintStyle1.AppointmentFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            schedulerDailyPrintStyle1.DateEndRange = new System.DateTime(2018, 4, 15, 0, 0, 0, 0);
+            schedulerDailyPrintStyle1.DateHeadingFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            schedulerDailyPrintStyle1.DateStartRange = new System.DateTime(2018, 4, 10, 0, 0, 0, 0);
+            schedulerDailyPrintStyle1.PageHeadingFont = new System.Drawing.Font("Microsoft Sans Serif", 22F, System.Drawing.FontStyle.Bold);
+            this.radScheduler1.PrintStyle = schedulerDailyPrintStyle1;
             // 
             // 
             // 
@@ -196,6 +196,7 @@
             this.radScheduler1.TabIndex = 111;
             this.radScheduler1.Text = "radScheduler1";
             this.radScheduler1.ContextMenuOpening += new Telerik.WinControls.UI.SchedulerContextMenuOpeningEventHandler(this.radScheduler1_ContextMenuOpening);
+            this.radScheduler1.AppointmentFormatting += new System.EventHandler<Telerik.WinControls.UI.SchedulerAppointmentEventArgs>(this.radScheduler1_AppointmentFormatting);
             // 
             // schedulerBindingDataSource1
             // 
@@ -204,13 +205,13 @@
             // 
             this.schedulerBindingDataSource1.EventProvider.DataMember = "CITAS";
             this.schedulerBindingDataSource1.EventProvider.DataSource = this.schedulerDataDataSet;
-            this.schedulerBindingDataSource1.EventProvider.Mapping = appointmentMappingInfo2;
+            this.schedulerBindingDataSource1.EventProvider.Mapping = appointmentMappingInfo1;
             // 
             // 
             // 
             this.schedulerBindingDataSource1.ResourceProvider.DataMember = "SALAS";
             this.schedulerBindingDataSource1.ResourceProvider.DataSource = this.schedulerDataDataSet;
-            this.schedulerBindingDataSource1.ResourceProvider.Mapping = resourceMappingInfo2;
+            this.schedulerBindingDataSource1.ResourceProvider.Mapping = resourceMappingInfo1;
             // 
             // schedulerDataDataSet
             // 
@@ -254,6 +255,22 @@
             this.btn_Guardar.Text = "Guardar";
             this.btn_Guardar.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btn_Guardar.Click += new System.EventHandler(this.btn_Guardar_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 44);
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.Image")));
+            this.btnCancel.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnCancel.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(57, 41);
+            this.btnCancel.Text = "Cancelar";
+            this.btnCancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // toolStripSeparator1
             // 
@@ -377,7 +394,7 @@
             this.radGridEstudios.MasterTemplate.AllowDragToGroup = false;
             this.radGridEstudios.MasterTemplate.AllowEditRow = false;
             this.radGridEstudios.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            this.radGridEstudios.MasterTemplate.ViewDefinition = tableViewDefinition5;
+            this.radGridEstudios.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.radGridEstudios.Name = "radGridEstudios";
             // 
             // 
@@ -597,7 +614,7 @@
             this.radGridPrecios.MasterTemplate.AllowDragToGroup = false;
             this.radGridPrecios.MasterTemplate.AllowEditRow = false;
             this.radGridPrecios.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            this.radGridPrecios.MasterTemplate.ViewDefinition = tableViewDefinition6;
+            this.radGridPrecios.MasterTemplate.ViewDefinition = tableViewDefinition2;
             this.radGridPrecios.Name = "radGridPrecios";
             // 
             // 
@@ -948,7 +965,7 @@
             this.radGridRecursos.MasterTemplate.AllowDragToGroup = false;
             this.radGridRecursos.MasterTemplate.AllowEditRow = false;
             this.radGridRecursos.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            this.radGridRecursos.MasterTemplate.ViewDefinition = tableViewDefinition7;
+            this.radGridRecursos.MasterTemplate.ViewDefinition = tableViewDefinition3;
             this.radGridRecursos.Name = "radGridRecursos";
             // 
             // 
@@ -980,7 +997,7 @@
             this.radGridRequisitos.MasterTemplate.AllowAddNewRow = false;
             this.radGridRequisitos.MasterTemplate.AllowDragToGroup = false;
             this.radGridRequisitos.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            this.radGridRequisitos.MasterTemplate.ViewDefinition = tableViewDefinition8;
+            this.radGridRequisitos.MasterTemplate.ViewDefinition = tableViewDefinition4;
             this.radGridRequisitos.Name = "radGridRequisitos";
             // 
             // 
@@ -994,22 +1011,6 @@
             // cita1TableAdapter1
             // 
             this.cita1TableAdapter1.ClearBeforeFill = true;
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.Image")));
-            this.btnCancel.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.btnCancel.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(57, 41);
-            this.btnCancel.Text = "Cancelar";
-            this.btnCancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 44);
             // 
             // frmEditAppointment
             // 

@@ -420,6 +420,7 @@ namespace CIDAGENDA2018.Conmutador
                 }
                 else if (e.Appointment.Description == "C")
                 {
+                    e.AppointmentElement.Visibility = ElementVisibility.Collapsed;
                     e.AppointmentElement.BorderColor = Color.Gold;
                     e.AppointmentElement.BorderBoxStyle = BorderBoxStyle.SingleBorder;
                     e.AppointmentElement.BorderWidth = 1;
@@ -530,14 +531,14 @@ namespace CIDAGENDA2018.Conmutador
             {
                 if (e.Appointment.DataItem != null)
                 {
-                    //cs_reservar.Start = e.Appointment.Start;
-                    //cs_reservar.End = e.Appointment.End;
-                    //cs_reservar.ResourceId = e.Appointment.ResourceId.KeyValue.ToString();
-                    //cs_reservar.NewDocEntry = int.Parse(e.Appointment.UniqueId.KeyValue.ToString());
+                    cs_reservar.Start = e.Appointment.Start;
+                    cs_reservar.End = e.Appointment.End;
+                    cs_reservar.ResourceId = e.Appointment.ResourceId.KeyValue.ToString();
+                    cs_reservar.NewDocEntry = int.Parse(e.Appointment.UniqueId.KeyValue.ToString());
 
-                    //frm_AddAppointment frm = new frm_AddAppointment();
-                    //frm.ShowDialog();
-                    //frm = null;
+                    Recepcion.frmEditAppointment frm = new Recepcion.frmEditAppointment();
+                    frm.ShowDialog();
+                    frm = null;
                 }
                 else
                 {
@@ -578,7 +579,7 @@ namespace CIDAGENDA2018.Conmutador
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(ex.Message, Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 
@@ -586,6 +587,12 @@ namespace CIDAGENDA2018.Conmutador
         {
             this.Dispose();
             this.Close();
+        }
+
+        private void btnCotizador_Click(object sender, EventArgs e)
+        {
+            frm_cotizador frm = new frm_cotizador();
+            frm.Show();
         }
     }
 }

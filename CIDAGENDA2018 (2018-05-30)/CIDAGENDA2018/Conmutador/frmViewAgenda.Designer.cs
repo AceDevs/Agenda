@@ -51,6 +51,7 @@
             this.citasTableAdapter1 = new CIDAGENDA2018.schedulerDataDataSetTableAdapters.CITASTableAdapter();
             this.cita1TableAdapter1 = new CIDAGENDA2018.schedulerDataDataSetTableAdapters.CITA1TableAdapter();
             this.salasTableAdapter1 = new CIDAGENDA2018.schedulerDataDataSetTableAdapters.SALASTableAdapter();
+            this.btnCotizador = new System.Windows.Forms.ToolStripButton();
             this.panelScheduler.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radScheduler1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.schedulerBindingDataSource1)).BeginInit();
@@ -58,6 +59,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.schedulerBindingDataSource1.ResourceProvider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.schedulerDataDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radSchedulerNavigator1)).BeginInit();
+            this.radSchedulerNavigator1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.panelGeneral.SuspendLayout();
             this.SuspendLayout();
@@ -185,6 +187,7 @@
             // 
             this.toolStrip1.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnCotizador,
             this.btn_Salir,
             this.toolStripButton1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 6);
@@ -279,6 +282,17 @@
             // 
             this.salasTableAdapter1.ClearBeforeFill = true;
             // 
+            // btnCotizador
+            // 
+            this.btnCotizador.Image = ((System.Drawing.Image)(resources.GetObject("btnCotizador.Image")));
+            this.btnCotizador.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnCotizador.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnCotizador.Name = "btnCotizador";
+            this.btnCotizador.Size = new System.Drawing.Size(62, 41);
+            this.btnCotizador.Text = "Cotizador";
+            this.btnCotizador.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnCotizador.Click += new System.EventHandler(this.btnCotizador_Click);
+            // 
             // frmViewAgenda
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -307,6 +321,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.schedulerBindingDataSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.schedulerDataDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radSchedulerNavigator1)).EndInit();
+            this.radSchedulerNavigator1.ResumeLayout(false);
+            this.radSchedulerNavigator1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.panelGeneral.ResumeLayout(false);
@@ -337,5 +353,6 @@
         private System.Windows.Forms.ComboBox txt_salas;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox txt_unidad_negocio;
+        private System.Windows.Forms.ToolStripButton btnCotizador;
     }
 }

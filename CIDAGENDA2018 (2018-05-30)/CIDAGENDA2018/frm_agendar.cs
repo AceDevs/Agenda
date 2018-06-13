@@ -84,6 +84,7 @@ namespace CIDAGENDA2018
                 paciente.CardName = txt_nombre.Text + " " + txt_apellido_paterno.Text + " " + txt_apellido_materno.Text;
                 paciente.FirstName = txt_nombre.Text;
                 paciente.FirstSurname = txt_apellido_paterno.Text;
+                paciente.SecondSurname = txt_apellido_materno.Text;
                 if (txt_edad.Text != "") { paciente.Age = int.Parse(txt_edad.Text); } else { paciente.Age = 0; }
                 paciente.Birthday = txt_fecha_naci.Value.Date;
                 paciente.Sex = txt_sexo.Text;
@@ -426,6 +427,7 @@ namespace CIDAGENDA2018
                     txt_apellido_paterno.Text = dt.Rows[0]["FirstSurname"].ToString();
                     txt_apellido_materno.Text = dt.Rows[0]["SecondSurname"].ToString();
                     txt_fecha_naci.Value = Convert.ToDateTime(dt.Rows[0]["Birthday"].ToString());
+                    txt_edad.Text = dt.Rows[0]["FirstSurname"].ToString();
                     txt_sexo.Text = dt.Rows[0]["Sex"].ToString();
                     txt_telefono.Text = dt.Rows[0]["Phone1"].ToString();
                     txt_celular.Text = dt.Rows[0]["Cellular"].ToString();
