@@ -58,6 +58,7 @@
             this.radGridEstudios = new Telerik.WinControls.UI.RadGridView();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.txt_medico = new Telerik.WinControls.UI.RadAutoCompleteBox();
             this.txt_multicita = new System.Windows.Forms.TextBox();
             this.txt_edad = new System.Windows.Forms.TextBox();
             this.txt_cardtype = new System.Windows.Forms.TextBox();
@@ -76,6 +77,7 @@
             this.txt_instituciones = new System.Windows.Forms.ComboBox();
             this.txt_estudios = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.txt_sexo = new System.Windows.Forms.ComboBox();
@@ -125,6 +127,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radGridEstudios.MasterTemplate)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_medico)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridPrecios)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridPrecios.MasterTemplate)).BeginInit();
             this.tabPage5.SuspendLayout();
@@ -385,6 +388,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.txt_medico);
             this.tabPage1.Controls.Add(this.txt_multicita);
             this.tabPage1.Controls.Add(this.txt_edad);
             this.tabPage1.Controls.Add(this.txt_cardtype);
@@ -403,6 +407,7 @@
             this.tabPage1.Controls.Add(this.txt_instituciones);
             this.tabPage1.Controls.Add(this.txt_estudios);
             this.tabPage1.Controls.Add(this.label12);
+            this.tabPage1.Controls.Add(this.label13);
             this.tabPage1.Controls.Add(this.label11);
             this.tabPage1.Controls.Add(this.label1);
             this.tabPage1.Controls.Add(this.txt_sexo);
@@ -423,11 +428,19 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Datos Generales";
             this.tabPage1.UseVisualStyleBackColor = true;
+            this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
+            // 
+            // txt_medico
+            // 
+            this.txt_medico.Location = new System.Drawing.Point(590, 71);
+            this.txt_medico.Name = "txt_medico";
+            this.txt_medico.Size = new System.Drawing.Size(268, 21);
+            this.txt_medico.TabIndex = 119;
             // 
             // txt_multicita
             // 
             this.txt_multicita.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_multicita.Location = new System.Drawing.Point(590, 76);
+            this.txt_multicita.Location = new System.Drawing.Point(590, 93);
             this.txt_multicita.Name = "txt_multicita";
             this.txt_multicita.ReadOnly = true;
             this.txt_multicita.Size = new System.Drawing.Size(268, 20);
@@ -613,6 +626,16 @@
             this.label12.Size = new System.Drawing.Size(42, 13);
             this.label12.TabIndex = 110;
             this.label12.Text = "Estudio";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(529, 74);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(42, 13);
+            this.label13.TabIndex = 111;
+            this.label13.Text = "Médico";
             // 
             // label11
             // 
@@ -1060,6 +1083,7 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_medico)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridPrecios.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridPrecios)).EndInit();
             this.tabPage5.ResumeLayout(false);
@@ -1161,5 +1185,7 @@
         private System.Windows.Forms.Button btn_anestesiologos;
         private System.Windows.Forms.ComboBox txt_Anestesiologo;
         private System.Windows.Forms.Button btn_ambulancia;
+        private Telerik.WinControls.UI.RadAutoCompleteBox txt_medico;
+        private System.Windows.Forms.Label label13;
     }
 }

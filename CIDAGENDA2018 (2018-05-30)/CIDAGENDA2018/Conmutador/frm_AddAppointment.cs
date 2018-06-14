@@ -125,6 +125,10 @@ namespace CIDAGENDA2018.Conmutador
                 dt = null;
                 txt_salas.Enabled = false;
 
+                txt_medico.AutoCompleteDataSource = sapo.GET_MEDICO_DDL();
+                txt_medico.AutoCompleteValueMember = "DoctorCode";
+                txt_medico.AutoCompleteDisplayMember = "DoctorName";
+
                 txt_estudios.DataSource = sapo.GET_ESTUDIOS_DDL(cs_reservar.ResourceId);
                 txt_estudios.ValueMember = "ItemCode";
                 txt_estudios.DisplayMember = "ItemName";
@@ -705,7 +709,7 @@ namespace CIDAGENDA2018.Conmutador
                         cita.DependencyCode = "";
                         cita.DependencyName = "";
                         cita.DoctorCode = "";
-                        cita.DoctorName = "";
+                        cita.DoctorName = txt_medico.Items.Count > 0 ? txt_medico.Items[0].Text : "";
                         cita.VatSum = 0;
                         cita.DiscPrcnt = 0;
                         cita.DocCur = "MXP";
@@ -840,6 +844,10 @@ namespace CIDAGENDA2018.Conmutador
         {
             if (e.Appointment.Description == "C")
                 e.AppointmentElement.Visibility = ElementVisibility.Collapsed;
+        }
+
+        private void tabPage1_Click(object sender, EventArgs e)
+        {
         }
     }
 }

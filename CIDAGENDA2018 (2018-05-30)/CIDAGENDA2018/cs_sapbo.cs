@@ -180,6 +180,36 @@ namespace CIDAGENDA2018
             }
         }
 
+        public DataTable GET_MEDICO_DDL()
+        {
+            try
+            {
+                SqlConnection conn;
+                SqlCommand cmd;
+                DataTable dt = new DataTable();
+                SqlDataAdapter sda;
+
+                string query = "select '' as 'DoctorCode', '' as 'DoctorName' union all select Distinct DoctorCode,DoctorName from [cid].[CITAS]";
+
+                conn = new SqlConnection(_SQLClientConnection);
+                conn.Open();
+                cmd = new SqlCommand(query, conn);
+
+                sda = new SqlDataAdapter(cmd);
+                sda.Fill(dt);
+
+                cmd.Connection.Close();
+                conn.Close();
+
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                _message_error = ex.Message;
+                return null;
+            }
+        }
+
         // ===============================================================================================================
 
         public DataTable GET_Usuario(string userCode)
@@ -519,7 +549,7 @@ namespace CIDAGENDA2018
                 SqlDataAdapter sda;
 
                 string query = "select T0.DocEntry,T0.[DocDate],T0.[Start],T0.[End],T0.MultiCita,T0.InstitutionCode,T0.InstitutionName,T0.DocTotal,T0.Comments " +
-                                "   ,T1.RoomCode,T1.ItemCode,T1.Dscription,T1.LineNum,T1.[Start],T1.[End],T1.Price,T1.DiscPrcnt,T1.LineTotal " +
+                                "   ,T1.RoomCode,T1.ItemCode, T0.DoctorCode, T0.DoctorName,T1.Dscription,T1.LineNum,T1.[Start],T1.[End],T1.Price,T1.DiscPrcnt,T1.LineTotal " +
                                 "   ,T2.CardCode,T2.CardName,T2.CardType,T2.FirstName,T2.MiddleName,T2.FirstSurname,T2.SecondSurname,T2.Sex,T2.Birthday,T2.Age,T2.Phone1,T2.Cellular,T2.E_Mail " +
                                 "from[cid].[CITAS] T0 " +
                                 "   inner join[cid].[CITA1] T1 on T1.DocEntry=T0.DocEntry " +

@@ -100,11 +100,11 @@ namespace CIDAGENDA2018
                 SchedulerDayView dayView = this.radScheduler1.GetDayView();
                 dayView.DayCount = 1;
                 dayView.RangeFactor = ScaleRange.HalfHour;
-                dayView.RulerScaleSize = 15;
-                dayView.RulerStartScale = 6;
-                dayView.RulerEndScale = 22;
+                dayView.RulerScaleSize = 16;
+                dayView.RulerStartScale = 0;
+                dayView.RulerEndScale = 24;
 
-                dayView.WorkTime = new TimeInterval(new TimeSpan(6, 0, 0), new TimeSpan(22, 0, 0));
+                dayView.WorkTime = new TimeInterval(new TimeSpan(0, 0, 0), new TimeSpan(24, 0, 0));
                 dayView.WorkWeekStart = DayOfWeek.Monday;
                 dayView.WorkWeekEnd = DayOfWeek.Sunday;
                 dayView.GroupSeparatorWidth = 5;

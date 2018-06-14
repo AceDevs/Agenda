@@ -408,6 +408,7 @@ namespace CIDAGENDA2018.Recepcion
                         txt_celular.Text = dtCita.Rows[0]["Cellular"].ToString();
                         txt_correo.Text = dtCita.Rows[0]["E_Mail"].ToString();
                         //txt_Observaciones.Text = dtCita.Rows[0]["Comments"].ToString();
+                        txt_medico.Text = dtCita.Rows[0]["DoctorName"].ToString();
                         //if (dtCita.Rows[0]["MultiCita"].ToString() == "Y") { cbox_multicita.Checked = true; } else { cbox_multicita.Checked = false; }
                         //txt_doc_total.Text = Convert.ToDouble(dtCita.Rows[0]["DocTotal"].ToString()).ToString("C");
 
