@@ -515,7 +515,7 @@ namespace CIDAGENDA2018
             {
                 if (e.Appointment.Description == "N")
                 {
-                    citasTableAdapter1.Update(this.schedulerDataDataSet.CITAS);
+                    //citasTableAdapter1.Update(this.schedulerDataDataSet.CITAS);
                     cita1TableAdapter1.Update(this.schedulerDataDataSet.CITA1);
                 }
             }

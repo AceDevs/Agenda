@@ -162,6 +162,9 @@
     <Compile Include="Recepcion\frmViewAppointment.Designer.cs">
       <DependentUpon>frmViewAppointment.cs</DependentUpon>
     </Compile>
+    <Compile Include="schedulerDataDataSet.cs">
+      <DependentUpon>schedulerDataDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="schedulerDataDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

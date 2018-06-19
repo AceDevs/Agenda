@@ -129,13 +129,13 @@ namespace CIDAGENDA2018.Conmutador
                 txt_medico.AutoCompleteValueMember = "DoctorCode";
                 txt_medico.AutoCompleteDisplayMember = "DoctorName";
 
-                txt_estudios.DataSource = sapo.GET_ESTUDIOS_DDL(cs_reservar.ResourceId);
-                txt_estudios.ValueMember = "ItemCode";
-                txt_estudios.DisplayMember = "ItemName";
+                txt_estudios.AutoCompleteDataSource = sapo.GET_ESTUDIOS_DDL(cs_reservar.ResourceId);
+                txt_estudios.AutoCompleteValueMember = "ItemCode";
+                txt_estudios.AutoCompleteDisplayMember = "ItemName";
 
-                txt_instituciones.DataSource = sapo.GET_INSTITUCIONES_DDL();
-                txt_instituciones.ValueMember = "CardCode";
-                txt_instituciones.DisplayMember = "CardName";
+                txt_instituciones.AutoCompleteDataSource = sapo.GET_INSTITUCIONES_DDL();
+                txt_instituciones.AutoCompleteValueMember = "CardCode";
+                txt_instituciones.AutoCompleteDisplayMember = "CardName";
 
                 txt_Anestesiologo.DataSource = sapo.GET_ANESTESIOLOGOS_DDL();
                 txt_Anestesiologo.ValueMember = "Code";
@@ -164,6 +164,7 @@ namespace CIDAGENDA2018.Conmutador
                 dayView.RulerScaleSize = 15;
                 dayView.RulerStartScale = 6;
                 dayView.RulerEndScale = 22;
+
                 dayView.RulerFormatStrings = new RulerFormatStrings("hh", "tt", "", "");
 
                 dayView.WorkTime = new TimeInterval(new TimeSpan(6, 0, 0), new TimeSpan(22, 0, 0));
@@ -434,11 +435,17 @@ namespace CIDAGENDA2018.Conmutador
             try
             {
                 if (flag_FillSala == false) { return; }
-
+                if (txt_salas.Items.Count <= 0)
+                {
+                    txt_estudios.AutoCompleteDataSource = null;
+                    txt_estudios.Text = "";
+                    return;
+                }
                 cs_sapbo sapo = new cs_sapbo();
-                txt_estudios.DataSource = sapo.GET_ESTUDIOS_DDL((string)txt_salas.SelectedValue);
-                txt_estudios.ValueMember = "ItemCode";
-                txt_estudios.DisplayMember = "ItemName";
+
+                txt_estudios.AutoCompleteDataSource = sapo.GET_ESTUDIOS_DDL((string)txt_salas.SelectedValue);
+                txt_estudios.AutoCompleteValueMember = "ItemCode";
+                txt_estudios.AutoCompleteDisplayMember = "ItemName";
 
                 sapo = null;
             }
@@ -448,17 +455,22 @@ namespace CIDAGENDA2018.Conmutador
             }
         }
 
-        private void txt_estudios_SelectedIndexChanged(object sender, EventArgs e)
+        private void txt_estudios_SelectedIndexChanged(object sender, SelectionChangedEventArgs e)
         {
             try
             {
                 if (flag_FillEstudio == false) { return; }
+                if (txt_estudios.Items.Count <= 0)
+                {
+                    radGridPrecios.DataSource = null;
+                    return;
+                }
 
                 cs_sapbo sapo = new cs_sapbo();
-                radGridPrecios.DataSource = sapo.GET_PRECIOS((string)txt_estudios.SelectedValue, (string)txt_salas.SelectedValue);
+                radGridPrecios.DataSource = sapo.GET_PRECIOS((string)txt_estudios.Items[0].Value, (string)txt_salas.SelectedValue);
                 radGridPrecios.Refresh();
 
-                DataTable dt = sapo.GET_PREPARACION((string)txt_estudios.SelectedValue);
+                DataTable dt = sapo.GET_PREPARACION((string)txt_estudios.Items[0].Value);
                 listPreparacion.Clear();
                 if (dt != null)
                 {
@@ -466,8 +478,9 @@ namespace CIDAGENDA2018.Conmutador
                     {
                         listPreparacion.Items.Add(dt.Rows[i]["Preparacion"].ToString());
                     }
+                    listPreparacion.Refresh();
                 }
-                dt = sapo.GET_COMPLEMENTOS((string)txt_estudios.SelectedValue);
+                dt = sapo.GET_COMPLEMENTOS((string)txt_estudios.Items[0].Value);
                 listComplementos.Clear();
                 if (dt != null)
                 {
@@ -475,8 +488,9 @@ namespace CIDAGENDA2018.Conmutador
                     {
                         listComplementos.Items.Add(dt.Rows[i]["Complemento"].ToString());
                     }
+                    listComplementos.Refresh();
                 }
-                dt = sapo.GET_DIAGNOSTICO((string)txt_estudios.SelectedValue);
+                dt = sapo.GET_DIAGNOSTICO((string)txt_estudios.Items[0].Value);
                 listDiagnostico.Clear();
                 if (dt != null)
                 {
@@ -484,6 +498,7 @@ namespace CIDAGENDA2018.Conmutador
                     {
                         listDiagnostico.Items.Add(dt.Rows[i]["Diagnostico"].ToString());
                     }
+                    listDiagnostico.Refresh();
                 }
                 sapo = null;
             }
@@ -493,17 +508,28 @@ namespace CIDAGENDA2018.Conmutador
             }
         }
 
-        private void txt_instituciones_SelectedIndexChanged(object sender, EventArgs e)
+        private void txt_instituciones_SelectedIndexChanged(object sender, SelectionChangedEventArgs e)
         {
             try
             {
                 if (flag_FillInstitu == false) { return; }
+                if (txt_instituciones.Items.Count <= 0)
+                {
+                    if (txt_estudios.Items.Count <= 0)
+                    {
+                        radGridPrecios.DataSource = null;
+                        return;
+                    }
 
+                    cs_sapbo sapi = new cs_sapbo();
+                    radGridPrecios.DataSource = sapi.GET_PRECIOS((string)txt_estudios.Items[0].Value, (string)txt_salas.SelectedValue);
+                    radGridPrecios.Refresh();
+                }
                 cs_sapbo sapo = new cs_sapbo();
-                radGridPrecios.DataSource = sapo.GET_PRECIOS((string)txt_estudios.SelectedValue, (string)txt_salas.SelectedValue, (string)txt_instituciones.SelectedValue);
+                radGridPrecios.DataSource = sapo.GET_PRECIOS((string)txt_estudios.Items[0].Value, (string)txt_salas.SelectedValue, (string)txt_instituciones.Items[0].Value);
                 radGridPrecios.Refresh();
 
-                DataTable dt = sapo.GET_REQUISITOS((string)txt_instituciones.SelectedValue);
+                DataTable dt = sapo.GET_REQUISITOS((string)txt_instituciones.Items[0].Value);
                 if (dt != null)
                 {
                     for (int i = 0; i < dt.Rows.Count; i++)
@@ -546,7 +572,7 @@ namespace CIDAGENDA2018.Conmutador
                         this.InsertPaciente();
                     }
 
-                    DataTable dt = sapo.GET_REQUISITOS((string)txt_instituciones.SelectedValue);
+                    DataTable dt = sapo.GET_REQUISITOS(txt_instituciones.Items.Count > 0 ? (string)txt_instituciones.Items[0].Value : "");
                     if (dt != null)
                     {
                         for (int i = 0; i < dt.Rows.Count; i++)
@@ -677,8 +703,8 @@ namespace CIDAGENDA2018.Conmutador
                     cita.LineNum = sapo.GET_CITA1_LineNum(int.Parse(txt_DocEntry.Text));
                     cita.TargetType = 0;
                     cita.TrgetEntry = 0;
-                    cita.ItemCode = (string)txt_estudios.SelectedValue;
-                    cita.Dscription = txt_estudios.Text;
+                    cita.ItemCode = (string)txt_estudios.Items[0].Value;
+                    cita.Dscription = txt_estudios.Items[0].Text;
                     cita.Quantity = 1;
                     cita.Price = this.GetPrecio();
                     cita.RoomCode = (string)txt_salas.SelectedValue;
@@ -688,13 +714,16 @@ namespace CIDAGENDA2018.Conmutador
                     cita.PriceBefDi = 0;
                     cita.DocDate = txt_fecha.Value.Date;
                     cita.Start = Convert.ToDateTime(txt_start.Text);
-                    int _duracion = sapo.GET_ESTUDIO_Duration((string)txt_estudios.SelectedValue);
-                    cita.End = Convert.ToDateTime(txt_start.Text).AddMinutes(_duracion);
+                    //int _duracion = sapo.GET_ESTUDIO_Duration((string)txt_estudios.Items[0].Value);
+                    int _duracion = 30;
+                    cita.End = cita.Start.AddMinutes(_duracion);
                     cita.AppointmentID = int.Parse(txt_DocEntry.Text);
                     cita.ResourceID = (string)txt_salas.SelectedValue;
 
                     if (sapo.INSERT_CITA1(cita) == true)
                     {
+                        txt_start.Text = cita.End.ToString();
+                        txt_end.Text = cita.End.AddMinutes(30).ToString();
                         cita.DocNum = int.Parse(txt_DocEntry.Text);
                         cita.CANCELED = "N";
                         cita.DocStatus = "N";
@@ -704,7 +733,7 @@ namespace CIDAGENDA2018.Conmutador
                         cita.PatientCode = txt_id_paciente.Text;
                         cita.PatientName = txt_nombre.Text + " " + txt_apellido_paterno.Text + " " + txt_apellido_materno.Text;
                         cita.PatientType = txt_cardtype.Text;
-                        cita.InstitutionCode = (string)txt_instituciones.SelectedValue;
+                        cita.InstitutionCode = txt_instituciones.Items.Count > 0 ? (string)txt_instituciones.Items[0].Value : "";
                         cita.InstitutionName = txt_instituciones.Text;
                         cita.DependencyCode = "";
                         cita.DependencyName = "";
@@ -848,6 +877,34 @@ namespace CIDAGENDA2018.Conmutador
 
         private void tabPage1_Click(object sender, EventArgs e)
         {
+        }
+
+        private void txt_estudios_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+        }
+
+        private void UniqueSelection(object sender, TextChangingEventArgs e)
+        {
+            if (txt_medico.Items.Count >= 1)
+            {
+                e.Cancel = true;
+            }
+        }
+
+        private void txt_estudios_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (((RadAutoCompleteBox)sender).Items.Count >= 1 && e.KeyCode != Keys.Back)
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txt_estudios_TextChanging(object sender, TextChangingEventArgs e)
+        {
+            if (((RadAutoCompleteBox)sender).Items.Count >= 1 && e.NewValue.Length > e.OldValue.Replace(";", "").Length)
+            {
+                e.Cancel = true;
+            }
         }
     }
 }

@@ -88,13 +88,13 @@ namespace CIDAGENDA2018.Conmutador
 
                 SchedulerDayView dayView = this.radScheduler1.GetDayView();
                 dayView.DayCount = 1;
-                dayView.RangeFactor = ScaleRange.HalfHour;
-                dayView.RulerScaleSize = 15;
-                dayView.RulerStartScale = 6;
-                dayView.RulerEndScale = 22;
+                dayView.RangeFactor = ScaleRange.QuarterHour;
+                dayView.RulerScaleSize = 10;
+                dayView.RulerStartScale = 0;
+                dayView.RulerEndScale = 24;
                 dayView.RulerFormatStrings = new RulerFormatStrings("hh", "tt", "", "");
 
-                dayView.WorkTime = new TimeInterval(new TimeSpan(6, 0, 0), new TimeSpan(22, 0, 0));
+                dayView.WorkTime = new TimeInterval(new TimeSpan(0, 0, 0), new TimeSpan(24, 0, 0));
                 dayView.WorkWeekStart = DayOfWeek.Monday;
                 dayView.WorkWeekEnd = DayOfWeek.Sunday;
                 dayView.GroupSeparatorWidth = 5;
@@ -468,7 +468,7 @@ namespace CIDAGENDA2018.Conmutador
             {
                 if (e.Appointment.Description == "N")
                 {
-                    citasTableAdapter1.Update(this.schedulerDataDataSet.CITAS);
+                    //citasTableAdapter1.Update(this.schedulerDataDataSet.CITAS);
                     cita1TableAdapter1.Update(this.schedulerDataDataSet.CITA1);
                 }
             }
@@ -539,6 +539,9 @@ namespace CIDAGENDA2018.Conmutador
                     Recepcion.frmEditAppointment frm = new Recepcion.frmEditAppointment();
                     frm.ShowDialog();
                     frm = null;
+                    this.InitializeRadSchedulerDataBinding(); // primero carga los datos de la base de datos
+                    if (txt_salas.Text != "") this.InitializeRadSchedulerResource();
+                    else this.InitializeRadSchedulerResources();
                 }
                 else
                 {

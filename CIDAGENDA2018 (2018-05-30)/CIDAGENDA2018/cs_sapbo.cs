@@ -442,9 +442,9 @@ namespace CIDAGENDA2018
                 cmd.Parameters.AddWithValue("DocEntry", DocEntry);
 
                 reader = cmd.ExecuteReader();
-                if (reader.Read() == true)
+                while (reader.Read() == true)
                 {
-                    resul = reader["Dscription"].ToString();
+                    resul += reader["Dscription"].ToString() + "\n";
                 }
 
                 reader.Close();

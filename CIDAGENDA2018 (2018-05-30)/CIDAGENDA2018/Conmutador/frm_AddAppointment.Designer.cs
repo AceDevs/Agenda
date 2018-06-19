@@ -58,6 +58,8 @@
             this.radGridEstudios = new Telerik.WinControls.UI.RadGridView();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.txt_instituciones = new Telerik.WinControls.UI.RadAutoCompleteBox();
+            this.txt_estudios = new Telerik.WinControls.UI.RadAutoCompleteBox();
             this.txt_medico = new Telerik.WinControls.UI.RadAutoCompleteBox();
             this.txt_multicita = new System.Windows.Forms.TextBox();
             this.txt_edad = new System.Windows.Forms.TextBox();
@@ -72,14 +74,12 @@
             this.btn_AgregarEstudio = new System.Windows.Forms.Button();
             this.btn_BuscarPaciente = new System.Windows.Forms.Button();
             this.radGridPrecios = new Telerik.WinControls.UI.RadGridView();
-            this.txt_salas = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.txt_instituciones = new System.Windows.Forms.ComboBox();
-            this.txt_estudios = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.txt_salas = new System.Windows.Forms.ComboBox();
             this.txt_sexo = new System.Windows.Forms.ComboBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -127,6 +127,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.radGridEstudios.MasterTemplate)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_instituciones)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_estudios)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_medico)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridPrecios)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridPrecios.MasterTemplate)).BeginInit();
@@ -388,6 +390,8 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.txt_instituciones);
+            this.tabPage1.Controls.Add(this.txt_estudios);
             this.tabPage1.Controls.Add(this.txt_medico);
             this.tabPage1.Controls.Add(this.txt_multicita);
             this.tabPage1.Controls.Add(this.txt_edad);
@@ -402,14 +406,12 @@
             this.tabPage1.Controls.Add(this.btn_AgregarEstudio);
             this.tabPage1.Controls.Add(this.btn_BuscarPaciente);
             this.tabPage1.Controls.Add(this.radGridPrecios);
-            this.tabPage1.Controls.Add(this.txt_salas);
             this.tabPage1.Controls.Add(this.label2);
-            this.tabPage1.Controls.Add(this.txt_instituciones);
-            this.tabPage1.Controls.Add(this.txt_estudios);
             this.tabPage1.Controls.Add(this.label12);
             this.tabPage1.Controls.Add(this.label13);
             this.tabPage1.Controls.Add(this.label11);
             this.tabPage1.Controls.Add(this.label1);
+            this.tabPage1.Controls.Add(this.txt_salas);
             this.tabPage1.Controls.Add(this.txt_sexo);
             this.tabPage1.Controls.Add(this.label6);
             this.tabPage1.Controls.Add(this.label7);
@@ -430,12 +432,31 @@
             this.tabPage1.UseVisualStyleBackColor = true;
             this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
             // 
+            // txt_instituciones
+            // 
+            this.txt_instituciones.Location = new System.Drawing.Point(591, 49);
+            this.txt_instituciones.Name = "txt_instituciones";
+            this.txt_instituciones.Size = new System.Drawing.Size(267, 21);
+            this.txt_instituciones.TabIndex = 120;
+            this.txt_instituciones.SelectionChanged += new Telerik.WinControls.UI.SelectionChangedEventHandler(this.txt_instituciones_SelectedIndexChanged);
+            this.txt_instituciones.TextChanging += new Telerik.WinControls.TextChangingEventHandler(this.txt_estudios_TextChanging);
+            // 
+            // txt_estudios
+            // 
+            this.txt_estudios.Location = new System.Drawing.Point(591, 27);
+            this.txt_estudios.Name = "txt_estudios";
+            this.txt_estudios.Size = new System.Drawing.Size(267, 21);
+            this.txt_estudios.TabIndex = 120;
+            this.txt_estudios.SelectionChanged += new Telerik.WinControls.UI.SelectionChangedEventHandler(this.txt_estudios_SelectedIndexChanged);
+            this.txt_estudios.TextChanging += new Telerik.WinControls.TextChangingEventHandler(this.txt_estudios_TextChanging);
+            // 
             // txt_medico
             // 
             this.txt_medico.Location = new System.Drawing.Point(590, 71);
             this.txt_medico.Name = "txt_medico";
             this.txt_medico.Size = new System.Drawing.Size(268, 21);
             this.txt_medico.TabIndex = 119;
+            this.txt_medico.TextChanging += new Telerik.WinControls.TextChangingEventHandler(this.txt_estudios_TextChanging);
             // 
             // txt_multicita
             // 
@@ -571,18 +592,6 @@
             this.radGridPrecios.TabIndex = 14;
             this.radGridPrecios.Text = "radGridView2";
             // 
-            // txt_salas
-            // 
-            this.txt_salas.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.txt_salas.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.txt_salas.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_salas.FormattingEnabled = true;
-            this.txt_salas.Location = new System.Drawing.Point(590, 5);
-            this.txt_salas.Name = "txt_salas";
-            this.txt_salas.Size = new System.Drawing.Size(268, 21);
-            this.txt_salas.TabIndex = 11;
-            this.txt_salas.SelectedIndexChanged += new System.EventHandler(this.txt_salas_SelectedIndexChanged);
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -592,30 +601,6 @@
             this.label2.Size = new System.Drawing.Size(28, 13);
             this.label2.TabIndex = 112;
             this.label2.Text = "Sala";
-            // 
-            // txt_instituciones
-            // 
-            this.txt_instituciones.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.txt_instituciones.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.txt_instituciones.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_instituciones.FormattingEnabled = true;
-            this.txt_instituciones.Location = new System.Drawing.Point(590, 49);
-            this.txt_instituciones.Name = "txt_instituciones";
-            this.txt_instituciones.Size = new System.Drawing.Size(268, 21);
-            this.txt_instituciones.TabIndex = 13;
-            this.txt_instituciones.SelectedIndexChanged += new System.EventHandler(this.txt_instituciones_SelectedIndexChanged);
-            // 
-            // txt_estudios
-            // 
-            this.txt_estudios.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.txt_estudios.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.txt_estudios.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_estudios.FormattingEnabled = true;
-            this.txt_estudios.Location = new System.Drawing.Point(590, 27);
-            this.txt_estudios.Name = "txt_estudios";
-            this.txt_estudios.Size = new System.Drawing.Size(268, 21);
-            this.txt_estudios.TabIndex = 12;
-            this.txt_estudios.SelectedIndexChanged += new System.EventHandler(this.txt_estudios_SelectedIndexChanged);
             // 
             // label12
             // 
@@ -657,9 +642,21 @@
             this.label1.TabIndex = 106;
             this.label1.Text = "ID";
             // 
+            // txt_salas
+            // 
+            this.txt_salas.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.txt_salas.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.txt_salas.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_salas.FormattingEnabled = true;
+            this.txt_salas.Location = new System.Drawing.Point(591, 5);
+            this.txt_salas.Name = "txt_salas";
+            this.txt_salas.Size = new System.Drawing.Size(267, 21);
+            this.txt_salas.TabIndex = 6;
+            this.txt_salas.SelectedIndexChanged += new System.EventHandler(this.txt_salas_SelectedIndexChanged);
+            // 
             // txt_sexo
             // 
-            this.txt_sexo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txt_sexo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.txt_sexo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.txt_sexo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_sexo.FormattingEnabled = true;
@@ -1083,6 +1080,8 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_instituciones)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_estudios)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txt_medico)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridPrecios.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.radGridPrecios)).EndInit();
@@ -1135,10 +1134,7 @@
         private System.Windows.Forms.Button btn_AgregarEstudio;
         private System.Windows.Forms.Button btn_BuscarPaciente;
         private Telerik.WinControls.UI.RadGridView radGridPrecios;
-        private System.Windows.Forms.ComboBox txt_salas;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox txt_instituciones;
-        private System.Windows.Forms.ComboBox txt_estudios;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label1;
@@ -1187,5 +1183,8 @@
         private System.Windows.Forms.Button btn_ambulancia;
         private Telerik.WinControls.UI.RadAutoCompleteBox txt_medico;
         private System.Windows.Forms.Label label13;
+        private Telerik.WinControls.UI.RadAutoCompleteBox txt_instituciones;
+        private Telerik.WinControls.UI.RadAutoCompleteBox txt_estudios;
+        private System.Windows.Forms.ComboBox txt_salas;
     }
 }

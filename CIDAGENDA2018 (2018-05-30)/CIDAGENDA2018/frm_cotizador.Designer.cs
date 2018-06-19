@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frm_cotizador));
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition11 = new Telerik.WinControls.UI.TableViewDefinition();
-            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition12 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition1 = new Telerik.WinControls.UI.TableViewDefinition();
+            Telerik.WinControls.UI.TableViewDefinition tableViewDefinition2 = new Telerik.WinControls.UI.TableViewDefinition();
             this.panelBarraAmarilla = new System.Windows.Forms.Panel();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btn_Salir = new System.Windows.Forms.ToolStripButton();
@@ -39,6 +39,9 @@
             this.panelDayTop = new System.Windows.Forms.Panel();
             this.txt_doc_total = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txt_instituciones = new Telerik.WinControls.UI.RadAutoCompleteBox();
+            this.txt_estudios = new Telerik.WinControls.UI.RadAutoCompleteBox();
+            this.txt_salas = new Telerik.WinControls.UI.RadAutoCompleteBox();
             this.btnAdd = new System.Windows.Forms.Button();
             this.rgvPrecios = new Telerik.WinControls.UI.RadGridView();
             this.label2 = new System.Windows.Forms.Label();
@@ -46,20 +49,17 @@
             this.label11 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.rgvListado = new Telerik.WinControls.UI.RadGridView();
-            this.txt_salas = new Telerik.WinControls.UI.RadAutoCompleteBox();
-            this.txt_estudios = new Telerik.WinControls.UI.RadAutoCompleteBox();
-            this.txt_instituciones = new Telerik.WinControls.UI.RadAutoCompleteBox();
             this.toolStrip1.SuspendLayout();
             this.panelDayTop.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_instituciones)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_estudios)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_salas)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rgvPrecios)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rgvPrecios.MasterTemplate)).BeginInit();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.rgvListado)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.rgvListado.MasterTemplate)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txt_salas)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txt_estudios)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txt_instituciones)).BeginInit();
             this.SuspendLayout();
             // 
             // panelBarraAmarilla
@@ -152,8 +152,35 @@
             this.panel1.Size = new System.Drawing.Size(671, 130);
             this.panel1.TabIndex = 910;
             // 
+            // txt_instituciones
+            // 
+            this.txt_instituciones.Location = new System.Drawing.Point(70, 60);
+            this.txt_instituciones.Name = "txt_instituciones";
+            this.txt_instituciones.Size = new System.Drawing.Size(268, 26);
+            this.txt_instituciones.TabIndex = 121;
+            this.txt_instituciones.SelectionChanged += new Telerik.WinControls.UI.SelectionChangedEventHandler(this.txt_instituciones_SelectionChanged);
+            this.txt_instituciones.TextChanged += new System.EventHandler(this.txt_instituciones_TextChanged);
+            // 
+            // txt_estudios
+            // 
+            this.txt_estudios.Location = new System.Drawing.Point(70, 33);
+            this.txt_estudios.Name = "txt_estudios";
+            this.txt_estudios.Size = new System.Drawing.Size(268, 26);
+            this.txt_estudios.TabIndex = 121;
+            this.txt_estudios.SelectionChanged += new Telerik.WinControls.UI.SelectionChangedEventHandler(this.txt_estudios_SelectionChanged);
+            // 
+            // txt_salas
+            // 
+            this.txt_salas.Location = new System.Drawing.Point(70, 6);
+            this.txt_salas.MaxDropDownItemCount = 10;
+            this.txt_salas.Name = "txt_salas";
+            this.txt_salas.Size = new System.Drawing.Size(268, 26);
+            this.txt_salas.TabIndex = 121;
+            this.txt_salas.SelectionChanged += new Telerik.WinControls.UI.SelectionChangedEventHandler(this.txt_salas_SelectionChanged);
+            // 
             // btnAdd
             // 
+            this.btnAdd.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnAdd.Location = new System.Drawing.Point(220, 96);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(118, 28);
@@ -175,7 +202,7 @@
             this.rgvPrecios.MasterTemplate.AllowDragToGroup = false;
             this.rgvPrecios.MasterTemplate.AllowEditRow = false;
             this.rgvPrecios.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            this.rgvPrecios.MasterTemplate.ViewDefinition = tableViewDefinition11;
+            this.rgvPrecios.MasterTemplate.ViewDefinition = tableViewDefinition1;
             this.rgvPrecios.Name = "rgvPrecios";
             this.rgvPrecios.ReadOnly = true;
             this.rgvPrecios.ShowGroupPanel = false;
@@ -234,39 +261,13 @@
             this.rgvListado.MasterTemplate.AllowColumnReorder = false;
             this.rgvListado.MasterTemplate.AllowEditRow = false;
             this.rgvListado.MasterTemplate.AutoSizeColumnsMode = Telerik.WinControls.UI.GridViewAutoSizeColumnsMode.Fill;
-            this.rgvListado.MasterTemplate.ViewDefinition = tableViewDefinition12;
+            this.rgvListado.MasterTemplate.ViewDefinition = tableViewDefinition2;
             this.rgvListado.Name = "rgvListado";
             this.rgvListado.Padding = new System.Windows.Forms.Padding(5);
             this.rgvListado.ShowGroupPanel = false;
             this.rgvListado.Size = new System.Drawing.Size(671, 237);
             this.rgvListado.TabIndex = 0;
             this.rgvListado.Text = "radGridView1";
-            // 
-            // txt_salas
-            // 
-            this.txt_salas.Location = new System.Drawing.Point(70, 6);
-            this.txt_salas.MaxDropDownItemCount = 10;
-            this.txt_salas.Name = "txt_salas";
-            this.txt_salas.Size = new System.Drawing.Size(268, 26);
-            this.txt_salas.TabIndex = 121;
-            this.txt_salas.SelectionChanged += new Telerik.WinControls.UI.SelectionChangedEventHandler(this.txt_salas_SelectionChanged);
-            // 
-            // txt_estudios
-            // 
-            this.txt_estudios.Location = new System.Drawing.Point(70, 33);
-            this.txt_estudios.Name = "txt_estudios";
-            this.txt_estudios.Size = new System.Drawing.Size(268, 26);
-            this.txt_estudios.TabIndex = 121;
-            this.txt_estudios.SelectionChanged += new Telerik.WinControls.UI.SelectionChangedEventHandler(this.txt_estudios_SelectionChanged);
-            // 
-            // txt_instituciones
-            // 
-            this.txt_instituciones.Location = new System.Drawing.Point(70, 60);
-            this.txt_instituciones.Name = "txt_instituciones";
-            this.txt_instituciones.Size = new System.Drawing.Size(268, 26);
-            this.txt_instituciones.TabIndex = 121;
-            this.txt_instituciones.SelectionChanged += new Telerik.WinControls.UI.SelectionChangedEventHandler(this.txt_instituciones_SelectionChanged);
-            this.txt_instituciones.TextChanged += new System.EventHandler(this.txt_instituciones_TextChanged);
             // 
             // frm_cotizador
             // 
@@ -280,7 +281,9 @@
             this.Controls.Add(this.panelBarraAmarilla);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frm_cotizador";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Cotizador - Unidad Radiologica IRM, S. de R.L. de C.V.";
+            this.TopMost = true;
             this.Load += new System.EventHandler(this.frm_cotizador_Load);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
@@ -288,14 +291,14 @@
             this.panelDayTop.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_instituciones)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_estudios)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.txt_salas)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rgvPrecios.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rgvPrecios)).EndInit();
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.rgvListado.MasterTemplate)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.rgvListado)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txt_salas)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txt_estudios)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.txt_instituciones)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

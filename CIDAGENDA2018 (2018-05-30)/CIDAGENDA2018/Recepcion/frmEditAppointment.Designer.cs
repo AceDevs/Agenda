@@ -638,7 +638,8 @@
             // 
             // txt_instituciones
             // 
-            this.txt_instituciones.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txt_instituciones.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.txt_instituciones.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.txt_instituciones.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_instituciones.FormattingEnabled = true;
             this.txt_instituciones.Location = new System.Drawing.Point(590, 49);
@@ -648,7 +649,7 @@
             // 
             // txt_estudios
             // 
-            this.txt_estudios.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.txt_estudios.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.txt_estudios.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.txt_estudios.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txt_estudios.FormattingEnabled = true;

@@ -974,6 +974,8 @@ namespace CIDAGENDA2018 {
             
             private global::System.Data.DataColumn columnVisible;
             
+            private global::System.Data.DataColumn columnUniqueLine;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public CITASDataTable() {
@@ -1321,6 +1323,14 @@ namespace CIDAGENDA2018 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn UniqueLineColumn {
+                get {
+                    return this.columnUniqueLine;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1394,7 +1404,8 @@ namespace CIDAGENDA2018 {
                         int StatusID, 
                         int ParentID, 
                         string Email, 
-                        bool Visible) {
+                        bool Visible, 
+                        string UniqueLine) {
                 CITASRow rowCITASRow = ((CITASRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -1435,7 +1446,8 @@ namespace CIDAGENDA2018 {
                         StatusID,
                         ParentID,
                         Email,
-                        Visible};
+                        Visible,
+                        UniqueLine};
                 rowCITASRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowCITASRow);
                 return rowCITASRow;
@@ -1443,9 +1455,9 @@ namespace CIDAGENDA2018 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-            public CITASRow FindByDocEntry(int DocEntry) {
+            public CITASRow FindByUniqueLine(string UniqueLine) {
                 return ((CITASRow)(this.Rows.Find(new object[] {
-                            DocEntry})));
+                            UniqueLine})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1504,6 +1516,7 @@ namespace CIDAGENDA2018 {
                 this.columnParentID = base.Columns["ParentID"];
                 this.columnEmail = base.Columns["Email"];
                 this.columnVisible = base.Columns["Visible"];
+                this.columnUniqueLine = base.Columns["UniqueLine"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1587,14 +1600,15 @@ namespace CIDAGENDA2018 {
                 base.Columns.Add(this.columnEmail);
                 this.columnVisible = new global::System.Data.DataColumn("Visible", typeof(bool), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnVisible);
+                this.columnUniqueLine = new global::System.Data.DataColumn("UniqueLine", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnUniqueLine);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnDocEntry}, true));
+                                this.columnUniqueLine}, true));
                 this.columnDocEntry.AutoIncrement = true;
                 this.columnDocEntry.AutoIncrementSeed = -1;
                 this.columnDocEntry.AutoIncrementStep = -1;
                 this.columnDocEntry.AllowDBNull = false;
                 this.columnDocEntry.ReadOnly = true;
-                this.columnDocEntry.Unique = true;
                 this.columnCANCELED.MaxLength = 1;
                 this.columnDocStatus.MaxLength = 1;
                 this.columnNumAtCard.MaxLength = 30;
@@ -1612,13 +1626,15 @@ namespace CIDAGENDA2018 {
                 this.columnMultiCita.MaxLength = 1;
                 this.columnVersionNum.MaxLength = 15;
                 this.columnSummary.MaxLength = 255;
-                this.columnStart.AllowDBNull = false;
-                this.columnEnd.AllowDBNull = false;
                 this.columnRecurrenceRule.MaxLength = 255;
                 this.columnLocation.MaxLength = 255;
                 this.columnDescription.MaxLength = 255;
                 this.columnEmail.MaxLength = 255;
                 this.columnVisible.AllowDBNull = false;
+                this.columnUniqueLine.AllowDBNull = false;
+                this.columnUniqueLine.ReadOnly = true;
+                this.columnUniqueLine.Unique = true;
+                this.columnUniqueLine.MaxLength = 25;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3082,7 +3098,12 @@ namespace CIDAGENDA2018 {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public System.DateTime Start {
                 get {
-                    return ((global::System.DateTime)(this[this.tableCITAS.StartColumn]));
+                    try {
+                        return ((global::System.DateTime)(this[this.tableCITAS.StartColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Start\' de la tabla \'CITAS\' es DBNull.", e);
+                    }
                 }
                 set {
                     this[this.tableCITAS.StartColumn] = value;
@@ -3093,7 +3114,12 @@ namespace CIDAGENDA2018 {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public System.DateTime End {
                 get {
-                    return ((global::System.DateTime)(this[this.tableCITAS.EndColumn]));
+                    try {
+                        return ((global::System.DateTime)(this[this.tableCITAS.EndColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'End\' de la tabla \'CITAS\' es DBNull.", e);
+                    }
                 }
                 set {
                     this[this.tableCITAS.EndColumn] = value;
@@ -3236,6 +3262,17 @@ namespace CIDAGENDA2018 {
                 }
                 set {
                     this[this.tableCITAS.VisibleColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public string UniqueLine {
+                get {
+                    return ((string)(this[this.tableCITAS.UniqueLineColumn]));
+                }
+                set {
+                    this[this.tableCITAS.UniqueLineColumn] = value;
                 }
             }
             
@@ -3561,6 +3598,30 @@ namespace CIDAGENDA2018 {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public void SetSummaryNull() {
                 this[this.tableCITAS.SummaryColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsStartNull() {
+                return this.IsNull(this.tableCITAS.StartColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetStartNull() {
+                this[this.tableCITAS.StartColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public bool IsEndNull() {
+                return this.IsNull(this.tableCITAS.EndColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public void SetEndNull() {
+                this[this.tableCITAS.EndColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5185,305 +5246,8 @@ namespace CIDAGENDA2018.schedulerDataDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("ParentID", "ParentID");
             tableMapping.ColumnMappings.Add("Email", "Email");
             tableMapping.ColumnMappings.Add("Visible", "Visible");
+            tableMapping.ColumnMappings.Add("UniqueLine", "UniqueLine");
             this._adapter.TableMappings.Add(tableMapping);
-            this._adapter.DeleteCommand = new global::System.Data.OleDb.OleDbCommand();
-            this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [SateliteCID].[cid].[CITAS] WHERE (([DocEntry] = ?) AND ((? = 1 AND [" +
-                "DocNum] IS NULL) OR ([DocNum] = ?)) AND ((? = 1 AND [CANCELED] IS NULL) OR ([CAN" +
-                "CELED] = ?)) AND ((? = 1 AND [DocStatus] IS NULL) OR ([DocStatus] = ?)) AND ((? " +
-                "= 1 AND [DocDate] IS NULL) OR ([DocDate] = ?)) AND ((? = 1 AND [NumAtCard] IS NU" +
-                "LL) OR ([NumAtCard] = ?)) AND ((? = 1 AND [PatientCode] IS NULL) OR ([PatientCod" +
-                "e] = ?)) AND ((? = 1 AND [PatientName] IS NULL) OR ([PatientName] = ?)) AND ((? " +
-                "= 1 AND [PatientType] IS NULL) OR ([PatientType] = ?)) AND ((? = 1 AND [Institut" +
-                "ionCode] IS NULL) OR ([InstitutionCode] = ?)) AND ((? = 1 AND [InstitutionName] " +
-                "IS NULL) OR ([InstitutionName] = ?)) AND ((? = 1 AND [DependencyCode] IS NULL) O" +
-                "R ([DependencyCode] = ?)) AND ((? = 1 AND [DependencyName] IS NULL) OR ([Depende" +
-                "ncyName] = ?)) AND ((? = 1 AND [DoctorCode] IS NULL) OR ([DoctorCode] = ?)) AND " +
-                "((? = 1 AND [DoctorName] IS NULL) OR ([DoctorName] = ?)) AND ((? = 1 AND [VatSum" +
-                "] IS NULL) OR ([VatSum] = ?)) AND ((? = 1 AND [DiscPrcnt] IS NULL) OR ([DiscPrcn" +
-                "t] = ?)) AND ((? = 1 AND [DocCur] IS NULL) OR ([DocCur] = ?)) AND ((? = 1 AND [D" +
-                "ocTotal] IS NULL) OR ([DocTotal] = ?)) AND ((? = 1 AND [PaidToDate] IS NULL) OR " +
-                "([PaidToDate] = ?)) AND ((? = 1 AND [Comments] IS NULL) OR ([Comments] = ?)) AND" +
-                " ((? = 1 AND [MultiCita] IS NULL) OR ([MultiCita] = ?)) AND ((? = 1 AND [Series]" +
-                " IS NULL) OR ([Series] = ?)) AND ((? = 1 AND [CreateDate] IS NULL) OR ([CreateDa" +
-                "te] = ?)) AND ((? = 1 AND [UpdateDate] IS NULL) OR ([UpdateDate] = ?)) AND ((? =" +
-                " 1 AND [UserSign] IS NULL) OR ([UserSign] = ?)) AND ((? = 1 AND [VersionNum] IS " +
-                "NULL) OR ([VersionNum] = ?)) AND ((? = 1 AND [Summary] IS NULL) OR ([Summary] = " +
-                "?)) AND ([Start] = ?) AND ([End] = ?) AND ((? = 1 AND [RecurrenceRule] IS NULL) " +
-                "OR ([RecurrenceRule] = ?)) AND ((? = 1 AND [MasterEventID] IS NULL) OR ([MasterE" +
-                "ventID] = ?)) AND ((? = 1 AND [Location] IS NULL) OR ([Location] = ?)) AND ((? =" +
-                " 1 AND [Description] IS NULL) OR ([Description] = ?)) AND ((? = 1 AND [Backgroun" +
-                "dID] IS NULL) OR ([BackgroundID] = ?)) AND ((? = 1 AND [StatusID] IS NULL) OR ([" +
-                "StatusID] = ?)) AND ((? = 1 AND [ParentID] IS NULL) OR ([ParentID] = ?)) AND ((?" +
-                " = 1 AND [Email] IS NULL) OR ([Email] = ?)) AND ([Visible] = ?))";
-            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_DocEntry", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DocEntry", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_DocNum", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DocNum", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_DocNum", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DocNum", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_CANCELED", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "CANCELED", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_CANCELED", global::System.Data.OleDb.OleDbType.Char, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "CANCELED", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_DocStatus", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DocStatus", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_DocStatus", global::System.Data.OleDb.OleDbType.Char, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DocStatus", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_DocDate", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DocDate", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_DocDate", global::System.Data.OleDb.OleDbType.DBTimeStamp, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DocDate", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_NumAtCard", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "NumAtCard", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_NumAtCard", global::System.Data.OleDb.OleDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "NumAtCard", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_PatientCode", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "PatientCode", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_PatientCode", global::System.Data.OleDb.OleDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "PatientCode", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_PatientName", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "PatientName", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_PatientName", global::System.Data.OleDb.OleDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "PatientName", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_PatientType", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "PatientType", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_PatientType", global::System.Data.OleDb.OleDbType.Char, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "PatientType", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_InstitutionCode", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "InstitutionCode", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_InstitutionCode", global::System.Data.OleDb.OleDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "InstitutionCode", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_InstitutionName", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "InstitutionName", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_InstitutionName", global::System.Data.OleDb.OleDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "InstitutionName", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_DependencyCode", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DependencyCode", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_DependencyCode", global::System.Data.OleDb.OleDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DependencyCode", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_DependencyName", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DependencyName", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_DependencyName", global::System.Data.OleDb.OleDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DependencyName", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_DoctorCode", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DoctorCode", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_DoctorCode", global::System.Data.OleDb.OleDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DoctorCode", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_DoctorName", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DoctorName", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_DoctorName", global::System.Data.OleDb.OleDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DoctorName", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_VatSum", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "VatSum", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_VatSum", global::System.Data.OleDb.OleDbType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(19)), ((byte)(6)), "VatSum", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_DiscPrcnt", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DiscPrcnt", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_DiscPrcnt", global::System.Data.OleDb.OleDbType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(19)), ((byte)(6)), "DiscPrcnt", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_DocCur", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DocCur", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_DocCur", global::System.Data.OleDb.OleDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DocCur", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_DocTotal", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DocTotal", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_DocTotal", global::System.Data.OleDb.OleDbType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(19)), ((byte)(6)), "DocTotal", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_PaidToDate", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "PaidToDate", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_PaidToDate", global::System.Data.OleDb.OleDbType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(19)), ((byte)(6)), "PaidToDate", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Comments", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Comments", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Comments", global::System.Data.OleDb.OleDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Comments", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_MultiCita", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "MultiCita", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_MultiCita", global::System.Data.OleDb.OleDbType.Char, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "MultiCita", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Series", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Series", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Series", global::System.Data.OleDb.OleDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Series", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_CreateDate", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "CreateDate", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_CreateDate", global::System.Data.OleDb.OleDbType.DBTimeStamp, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "CreateDate", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_UpdateDate", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "UpdateDate", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_UpdateDate", global::System.Data.OleDb.OleDbType.DBTimeStamp, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "UpdateDate", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_UserSign", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "UserSign", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_UserSign", global::System.Data.OleDb.OleDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "UserSign", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_VersionNum", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "VersionNum", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_VersionNum", global::System.Data.OleDb.OleDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "VersionNum", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Summary", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Summary", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Summary", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Summary", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Start", global::System.Data.OleDb.OleDbType.DBTimeStamp, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Start", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_End", global::System.Data.OleDb.OleDbType.DBTimeStamp, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "End", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_RecurrenceRule", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "RecurrenceRule", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_RecurrenceRule", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "RecurrenceRule", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_MasterEventID", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "MasterEventID", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_MasterEventID", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "MasterEventID", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Location", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Location", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Location", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Location", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Description", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Description", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Description", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Description", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_BackgroundID", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "BackgroundID", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_BackgroundID", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "BackgroundID", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_StatusID", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "StatusID", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_StatusID", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "StatusID", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_ParentID", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ParentID", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_ParentID", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ParentID", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Email", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Email", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Email", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Email", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Visible", global::System.Data.OleDb.OleDbType.Boolean, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Visible", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.InsertCommand = new global::System.Data.OleDb.OleDbCommand();
-            this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [SateliteCID].[cid].[CITAS] ([DocNum], [CANCELED], [DocStatus], [DocDate], [NumAtCard], [PatientCode], [PatientName], [PatientType], [InstitutionCode], [InstitutionName], [DependencyCode], [DependencyName], [DoctorCode], [DoctorName], [VatSum], [DiscPrcnt], [DocCur], [DocTotal], [PaidToDate], [Comments], [MultiCita], [Series], [CreateDate], [UpdateDate], [UserSign], [VersionNum], [Summary], [Start], [End], [RecurrenceRule], [MasterEventID], [Location], [Description], [BackgroundID], [StatusID], [ParentID], [Email], [Visible]) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("DocNum", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DocNum", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("CANCELED", global::System.Data.OleDb.OleDbType.Char, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "CANCELED", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("DocStatus", global::System.Data.OleDb.OleDbType.Char, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DocStatus", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("DocDate", global::System.Data.OleDb.OleDbType.DBTimeStamp, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DocDate", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("NumAtCard", global::System.Data.OleDb.OleDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "NumAtCard", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("PatientCode", global::System.Data.OleDb.OleDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "PatientCode", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("PatientName", global::System.Data.OleDb.OleDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "PatientName", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("PatientType", global::System.Data.OleDb.OleDbType.Char, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "PatientType", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("InstitutionCode", global::System.Data.OleDb.OleDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "InstitutionCode", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("InstitutionName", global::System.Data.OleDb.OleDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "InstitutionName", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("DependencyCode", global::System.Data.OleDb.OleDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DependencyCode", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("DependencyName", global::System.Data.OleDb.OleDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DependencyName", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("DoctorCode", global::System.Data.OleDb.OleDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DoctorCode", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("DoctorName", global::System.Data.OleDb.OleDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DoctorName", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("VatSum", global::System.Data.OleDb.OleDbType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(19)), ((byte)(6)), "VatSum", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("DiscPrcnt", global::System.Data.OleDb.OleDbType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(19)), ((byte)(6)), "DiscPrcnt", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("DocCur", global::System.Data.OleDb.OleDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DocCur", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("DocTotal", global::System.Data.OleDb.OleDbType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(19)), ((byte)(6)), "DocTotal", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("PaidToDate", global::System.Data.OleDb.OleDbType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(19)), ((byte)(6)), "PaidToDate", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Comments", global::System.Data.OleDb.OleDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Comments", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("MultiCita", global::System.Data.OleDb.OleDbType.Char, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "MultiCita", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Series", global::System.Data.OleDb.OleDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Series", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("CreateDate", global::System.Data.OleDb.OleDbType.DBTimeStamp, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "CreateDate", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("UpdateDate", global::System.Data.OleDb.OleDbType.DBTimeStamp, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "UpdateDate", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("UserSign", global::System.Data.OleDb.OleDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "UserSign", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("VersionNum", global::System.Data.OleDb.OleDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "VersionNum", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Summary", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Summary", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Start", global::System.Data.OleDb.OleDbType.DBTimeStamp, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Start", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("End", global::System.Data.OleDb.OleDbType.DBTimeStamp, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "End", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("RecurrenceRule", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "RecurrenceRule", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("MasterEventID", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "MasterEventID", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Location", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Location", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Description", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Description", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("BackgroundID", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "BackgroundID", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("StatusID", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "StatusID", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("ParentID", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ParentID", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Email", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Email", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Visible", global::System.Data.OleDb.OleDbType.Boolean, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Visible", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand = new global::System.Data.OleDb.OleDbCommand();
-            this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = "UPDATE [SateliteCID].[cid].[CITAS] SET [DocNum] = ?, [CANCELED] = ?, [DocStatus] " +
-                "= ?, [DocDate] = ?, [NumAtCard] = ?, [PatientCode] = ?, [PatientName] = ?, [Pati" +
-                "entType] = ?, [InstitutionCode] = ?, [InstitutionName] = ?, [DependencyCode] = ?" +
-                ", [DependencyName] = ?, [DoctorCode] = ?, [DoctorName] = ?, [VatSum] = ?, [DiscP" +
-                "rcnt] = ?, [DocCur] = ?, [DocTotal] = ?, [PaidToDate] = ?, [Comments] = ?, [Mult" +
-                "iCita] = ?, [Series] = ?, [CreateDate] = ?, [UpdateDate] = ?, [UserSign] = ?, [V" +
-                "ersionNum] = ?, [Summary] = ?, [Start] = ?, [End] = ?, [RecurrenceRule] = ?, [Ma" +
-                "sterEventID] = ?, [Location] = ?, [Description] = ?, [BackgroundID] = ?, [Status" +
-                "ID] = ?, [ParentID] = ?, [Email] = ?, [Visible] = ? WHERE (([DocEntry] = ?) AND " +
-                "((? = 1 AND [DocNum] IS NULL) OR ([DocNum] = ?)) AND ((? = 1 AND [CANCELED] IS N" +
-                "ULL) OR ([CANCELED] = ?)) AND ((? = 1 AND [DocStatus] IS NULL) OR ([DocStatus] =" +
-                " ?)) AND ((? = 1 AND [DocDate] IS NULL) OR ([DocDate] = ?)) AND ((? = 1 AND [Num" +
-                "AtCard] IS NULL) OR ([NumAtCard] = ?)) AND ((? = 1 AND [PatientCode] IS NULL) OR" +
-                " ([PatientCode] = ?)) AND ((? = 1 AND [PatientName] IS NULL) OR ([PatientName] =" +
-                " ?)) AND ((? = 1 AND [PatientType] IS NULL) OR ([PatientType] = ?)) AND ((? = 1 " +
-                "AND [InstitutionCode] IS NULL) OR ([InstitutionCode] = ?)) AND ((? = 1 AND [Inst" +
-                "itutionName] IS NULL) OR ([InstitutionName] = ?)) AND ((? = 1 AND [DependencyCod" +
-                "e] IS NULL) OR ([DependencyCode] = ?)) AND ((? = 1 AND [DependencyName] IS NULL)" +
-                " OR ([DependencyName] = ?)) AND ((? = 1 AND [DoctorCode] IS NULL) OR ([DoctorCod" +
-                "e] = ?)) AND ((? = 1 AND [DoctorName] IS NULL) OR ([DoctorName] = ?)) AND ((? = " +
-                "1 AND [VatSum] IS NULL) OR ([VatSum] = ?)) AND ((? = 1 AND [DiscPrcnt] IS NULL) " +
-                "OR ([DiscPrcnt] = ?)) AND ((? = 1 AND [DocCur] IS NULL) OR ([DocCur] = ?)) AND (" +
-                "(? = 1 AND [DocTotal] IS NULL) OR ([DocTotal] = ?)) AND ((? = 1 AND [PaidToDate]" +
-                " IS NULL) OR ([PaidToDate] = ?)) AND ((? = 1 AND [Comments] IS NULL) OR ([Commen" +
-                "ts] = ?)) AND ((? = 1 AND [MultiCita] IS NULL) OR ([MultiCita] = ?)) AND ((? = 1" +
-                " AND [Series] IS NULL) OR ([Series] = ?)) AND ((? = 1 AND [CreateDate] IS NULL) " +
-                "OR ([CreateDate] = ?)) AND ((? = 1 AND [UpdateDate] IS NULL) OR ([UpdateDate] = " +
-                "?)) AND ((? = 1 AND [UserSign] IS NULL) OR ([UserSign] = ?)) AND ((? = 1 AND [Ve" +
-                "rsionNum] IS NULL) OR ([VersionNum] = ?)) AND ((? = 1 AND [Summary] IS NULL) OR " +
-                "([Summary] = ?)) AND ([Start] = ?) AND ([End] = ?) AND ((? = 1 AND [RecurrenceRu" +
-                "le] IS NULL) OR ([RecurrenceRule] = ?)) AND ((? = 1 AND [MasterEventID] IS NULL)" +
-                " OR ([MasterEventID] = ?)) AND ((? = 1 AND [Location] IS NULL) OR ([Location] = " +
-                "?)) AND ((? = 1 AND [Description] IS NULL) OR ([Description] = ?)) AND ((? = 1 A" +
-                "ND [BackgroundID] IS NULL) OR ([BackgroundID] = ?)) AND ((? = 1 AND [StatusID] I" +
-                "S NULL) OR ([StatusID] = ?)) AND ((? = 1 AND [ParentID] IS NULL) OR ([ParentID] " +
-                "= ?)) AND ((? = 1 AND [Email] IS NULL) OR ([Email] = ?)) AND ([Visible] = ?))";
-            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("DocNum", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DocNum", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("CANCELED", global::System.Data.OleDb.OleDbType.Char, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "CANCELED", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("DocStatus", global::System.Data.OleDb.OleDbType.Char, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DocStatus", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("DocDate", global::System.Data.OleDb.OleDbType.DBTimeStamp, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DocDate", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("NumAtCard", global::System.Data.OleDb.OleDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "NumAtCard", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("PatientCode", global::System.Data.OleDb.OleDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "PatientCode", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("PatientName", global::System.Data.OleDb.OleDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "PatientName", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("PatientType", global::System.Data.OleDb.OleDbType.Char, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "PatientType", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("InstitutionCode", global::System.Data.OleDb.OleDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "InstitutionCode", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("InstitutionName", global::System.Data.OleDb.OleDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "InstitutionName", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("DependencyCode", global::System.Data.OleDb.OleDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DependencyCode", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("DependencyName", global::System.Data.OleDb.OleDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DependencyName", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("DoctorCode", global::System.Data.OleDb.OleDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DoctorCode", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("DoctorName", global::System.Data.OleDb.OleDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DoctorName", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("VatSum", global::System.Data.OleDb.OleDbType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(19)), ((byte)(6)), "VatSum", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("DiscPrcnt", global::System.Data.OleDb.OleDbType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(19)), ((byte)(6)), "DiscPrcnt", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("DocCur", global::System.Data.OleDb.OleDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DocCur", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("DocTotal", global::System.Data.OleDb.OleDbType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(19)), ((byte)(6)), "DocTotal", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("PaidToDate", global::System.Data.OleDb.OleDbType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(19)), ((byte)(6)), "PaidToDate", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Comments", global::System.Data.OleDb.OleDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Comments", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("MultiCita", global::System.Data.OleDb.OleDbType.Char, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "MultiCita", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Series", global::System.Data.OleDb.OleDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Series", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("CreateDate", global::System.Data.OleDb.OleDbType.DBTimeStamp, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "CreateDate", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("UpdateDate", global::System.Data.OleDb.OleDbType.DBTimeStamp, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "UpdateDate", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("UserSign", global::System.Data.OleDb.OleDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "UserSign", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("VersionNum", global::System.Data.OleDb.OleDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "VersionNum", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Summary", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Summary", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Start", global::System.Data.OleDb.OleDbType.DBTimeStamp, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Start", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("End", global::System.Data.OleDb.OleDbType.DBTimeStamp, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "End", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("RecurrenceRule", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "RecurrenceRule", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("MasterEventID", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "MasterEventID", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Location", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Location", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Description", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Description", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("BackgroundID", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "BackgroundID", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("StatusID", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "StatusID", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("ParentID", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ParentID", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Email", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Email", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Visible", global::System.Data.OleDb.OleDbType.Boolean, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Visible", global::System.Data.DataRowVersion.Current, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_DocEntry", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DocEntry", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_DocNum", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DocNum", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_DocNum", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DocNum", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_CANCELED", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "CANCELED", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_CANCELED", global::System.Data.OleDb.OleDbType.Char, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "CANCELED", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_DocStatus", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DocStatus", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_DocStatus", global::System.Data.OleDb.OleDbType.Char, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DocStatus", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_DocDate", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DocDate", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_DocDate", global::System.Data.OleDb.OleDbType.DBTimeStamp, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DocDate", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_NumAtCard", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "NumAtCard", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_NumAtCard", global::System.Data.OleDb.OleDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "NumAtCard", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_PatientCode", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "PatientCode", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_PatientCode", global::System.Data.OleDb.OleDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "PatientCode", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_PatientName", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "PatientName", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_PatientName", global::System.Data.OleDb.OleDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "PatientName", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_PatientType", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "PatientType", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_PatientType", global::System.Data.OleDb.OleDbType.Char, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "PatientType", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_InstitutionCode", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "InstitutionCode", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_InstitutionCode", global::System.Data.OleDb.OleDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "InstitutionCode", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_InstitutionName", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "InstitutionName", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_InstitutionName", global::System.Data.OleDb.OleDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "InstitutionName", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_DependencyCode", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DependencyCode", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_DependencyCode", global::System.Data.OleDb.OleDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DependencyCode", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_DependencyName", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DependencyName", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_DependencyName", global::System.Data.OleDb.OleDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DependencyName", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_DoctorCode", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DoctorCode", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_DoctorCode", global::System.Data.OleDb.OleDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DoctorCode", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_DoctorName", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DoctorName", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_DoctorName", global::System.Data.OleDb.OleDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DoctorName", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_VatSum", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "VatSum", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_VatSum", global::System.Data.OleDb.OleDbType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(19)), ((byte)(6)), "VatSum", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_DiscPrcnt", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DiscPrcnt", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_DiscPrcnt", global::System.Data.OleDb.OleDbType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(19)), ((byte)(6)), "DiscPrcnt", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_DocCur", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DocCur", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_DocCur", global::System.Data.OleDb.OleDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DocCur", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_DocTotal", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "DocTotal", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_DocTotal", global::System.Data.OleDb.OleDbType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(19)), ((byte)(6)), "DocTotal", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_PaidToDate", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "PaidToDate", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_PaidToDate", global::System.Data.OleDb.OleDbType.Numeric, 0, global::System.Data.ParameterDirection.Input, ((byte)(19)), ((byte)(6)), "PaidToDate", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Comments", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Comments", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Comments", global::System.Data.OleDb.OleDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Comments", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_MultiCita", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "MultiCita", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_MultiCita", global::System.Data.OleDb.OleDbType.Char, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "MultiCita", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Series", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Series", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Series", global::System.Data.OleDb.OleDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Series", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_CreateDate", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "CreateDate", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_CreateDate", global::System.Data.OleDb.OleDbType.DBTimeStamp, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "CreateDate", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_UpdateDate", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "UpdateDate", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_UpdateDate", global::System.Data.OleDb.OleDbType.DBTimeStamp, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "UpdateDate", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_UserSign", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "UserSign", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_UserSign", global::System.Data.OleDb.OleDbType.SmallInt, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "UserSign", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_VersionNum", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "VersionNum", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_VersionNum", global::System.Data.OleDb.OleDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "VersionNum", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Summary", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Summary", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Summary", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Summary", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Start", global::System.Data.OleDb.OleDbType.DBTimeStamp, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Start", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_End", global::System.Data.OleDb.OleDbType.DBTimeStamp, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "End", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_RecurrenceRule", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "RecurrenceRule", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_RecurrenceRule", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "RecurrenceRule", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_MasterEventID", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "MasterEventID", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_MasterEventID", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "MasterEventID", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Location", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Location", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Location", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Location", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Description", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Description", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Description", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Description", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_BackgroundID", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "BackgroundID", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_BackgroundID", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "BackgroundID", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_StatusID", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "StatusID", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_StatusID", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "StatusID", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_ParentID", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ParentID", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_ParentID", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "ParentID", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("IsNull_Email", global::System.Data.OleDb.OleDbType.Integer, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Email", global::System.Data.DataRowVersion.Original, true, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Email", global::System.Data.OleDb.OleDbType.VarWChar, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Email", global::System.Data.DataRowVersion.Original, false, null));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.OleDb.OleDbParameter("Original_Visible", global::System.Data.OleDb.OleDbType.Boolean, 0, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "Visible", global::System.Data.DataRowVersion.Original, false, null));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -5499,7 +5263,49 @@ namespace CIDAGENDA2018.schedulerDataDataSetTableAdapters {
             this._commandCollection = new global::System.Data.OleDb.OleDbCommand[1];
             this._commandCollection[0] = new global::System.Data.OleDb.OleDbCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = @"SELECT ""DocEntry"", ""DocNum"", ""CANCELED"", ""DocStatus"", ""DocDate"", ""NumAtCard"", ""PatientCode"", ""PatientName"", ""PatientType"", ""InstitutionCode"", ""InstitutionName"", ""DependencyCode"", ""DependencyName"", ""DoctorCode"", ""DoctorName"", ""VatSum"", ""DiscPrcnt"", ""DocCur"", ""DocTotal"", ""PaidToDate"", ""Comments"", ""MultiCita"", ""Series"", ""CreateDate"", ""UpdateDate"", ""UserSign"", ""VersionNum"", ""Summary"", ""Start"", ""End"", ""RecurrenceRule"", ""MasterEventID"", ""Location"", ""Description"", ""BackgroundID"", ""StatusID"", ""ParentID"", ""Email"", ""Visible"" FROM ""cid"".""CITAS""";
+            this._commandCollection[0].CommandText = @"SELECT 
+Concat( T0.DocEntry, '-', T1.LineNum) As UniqueLine,
+T0.""DocEntry"", 
+""DocNum"", 
+""CANCELED"", 
+""DocStatus"", 
+T0.""DocDate"", 
+""NumAtCard"",
+""PatientCode"", 
+""PatientName"", 
+""PatientType"", 
+""InstitutionCode"", 
+""InstitutionName"", 
+""DependencyCode"", 
+""DependencyName"", 
+""DoctorCode"", 
+""DoctorName"", 
+""VatSum"", 
+T0.""DiscPrcnt"", 
+""DocCur"", 
+""DocTotal"", 
+""PaidToDate"", 
+""Comments"", 
+""MultiCita"", 
+""Series"", 
+""CreateDate"", 
+""UpdateDate"", 
+""UserSign"", 
+""VersionNum"", 
+""Summary"", 
+T1.""Start"", 
+T1.""End"", 
+""RecurrenceRule"", 
+""MasterEventID"", 
+""Location"", 
+""Description"", 
+""BackgroundID"", 
+""StatusID"", 
+""ParentID"", 
+""Email"", 
+""Visible"" 
+FROM ""cid"".""CITAS"" T0
+Inner Join cid.CITA1 T1 On T0.DocEntry = t1.DocEntry";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -5525,1246 +5331,6 @@ namespace CIDAGENDA2018.schedulerDataDataSetTableAdapters {
             schedulerDataDataSet.CITASDataTable dataTable = new schedulerDataDataSet.CITASDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(schedulerDataDataSet.CITASDataTable dataTable) {
-            return this.Adapter.Update(dataTable);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(schedulerDataDataSet dataSet) {
-            return this.Adapter.Update(dataSet, "CITAS");
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow dataRow) {
-            return this.Adapter.Update(new global::System.Data.DataRow[] {
-                        dataRow});
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow[] dataRows) {
-            return this.Adapter.Update(dataRows);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(
-                    int Original_DocEntry, 
-                    global::System.Nullable<int> Original_DocNum, 
-                    string Original_CANCELED, 
-                    string Original_DocStatus, 
-                    global::System.Nullable<global::System.DateTime> Original_DocDate, 
-                    string Original_NumAtCard, 
-                    string Original_PatientCode, 
-                    string Original_PatientName, 
-                    string Original_PatientType, 
-                    string Original_InstitutionCode, 
-                    string Original_InstitutionName, 
-                    string Original_DependencyCode, 
-                    string Original_DependencyName, 
-                    string Original_DoctorCode, 
-                    string Original_DoctorName, 
-                    global::System.Nullable<decimal> Original_VatSum, 
-                    global::System.Nullable<decimal> Original_DiscPrcnt, 
-                    string Original_DocCur, 
-                    global::System.Nullable<decimal> Original_DocTotal, 
-                    global::System.Nullable<decimal> Original_PaidToDate, 
-                    string Original_Comments, 
-                    string Original_MultiCita, 
-                    global::System.Nullable<short> Original_Series, 
-                    global::System.Nullable<global::System.DateTime> Original_CreateDate, 
-                    global::System.Nullable<global::System.DateTime> Original_UpdateDate, 
-                    global::System.Nullable<short> Original_UserSign, 
-                    string Original_VersionNum, 
-                    string Original_Summary, 
-                    System.DateTime Original_Start, 
-                    System.DateTime Original_End, 
-                    string Original_RecurrenceRule, 
-                    global::System.Nullable<int> Original_MasterEventID, 
-                    string Original_Location, 
-                    string Original_Description, 
-                    global::System.Nullable<int> Original_BackgroundID, 
-                    global::System.Nullable<int> Original_StatusID, 
-                    global::System.Nullable<int> Original_ParentID, 
-                    string Original_Email, 
-                    bool Original_Visible) {
-            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_DocEntry));
-            if ((Original_DocNum.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[2].Value = ((int)(Original_DocNum.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
-            if ((Original_CANCELED == null)) {
-                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[4].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[4].Value = ((string)(Original_CANCELED));
-            }
-            if ((Original_DocStatus == null)) {
-                this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[6].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[5].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[6].Value = ((string)(Original_DocStatus));
-            }
-            if ((Original_DocDate.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[8].Value = ((System.DateTime)(Original_DocDate.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[7].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[8].Value = global::System.DBNull.Value;
-            }
-            if ((Original_NumAtCard == null)) {
-                this.Adapter.DeleteCommand.Parameters[9].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[10].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[9].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[10].Value = ((string)(Original_NumAtCard));
-            }
-            if ((Original_PatientCode == null)) {
-                this.Adapter.DeleteCommand.Parameters[11].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[12].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[11].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[12].Value = ((string)(Original_PatientCode));
-            }
-            if ((Original_PatientName == null)) {
-                this.Adapter.DeleteCommand.Parameters[13].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[14].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[13].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[14].Value = ((string)(Original_PatientName));
-            }
-            if ((Original_PatientType == null)) {
-                this.Adapter.DeleteCommand.Parameters[15].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[16].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[15].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[16].Value = ((string)(Original_PatientType));
-            }
-            if ((Original_InstitutionCode == null)) {
-                this.Adapter.DeleteCommand.Parameters[17].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[18].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[17].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[18].Value = ((string)(Original_InstitutionCode));
-            }
-            if ((Original_InstitutionName == null)) {
-                this.Adapter.DeleteCommand.Parameters[19].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[20].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[19].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[20].Value = ((string)(Original_InstitutionName));
-            }
-            if ((Original_DependencyCode == null)) {
-                this.Adapter.DeleteCommand.Parameters[21].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[22].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[21].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[22].Value = ((string)(Original_DependencyCode));
-            }
-            if ((Original_DependencyName == null)) {
-                this.Adapter.DeleteCommand.Parameters[23].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[24].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[23].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[24].Value = ((string)(Original_DependencyName));
-            }
-            if ((Original_DoctorCode == null)) {
-                this.Adapter.DeleteCommand.Parameters[25].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[26].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[25].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[26].Value = ((string)(Original_DoctorCode));
-            }
-            if ((Original_DoctorName == null)) {
-                this.Adapter.DeleteCommand.Parameters[27].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[28].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[27].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[28].Value = ((string)(Original_DoctorName));
-            }
-            if ((Original_VatSum.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[29].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[30].Value = ((decimal)(Original_VatSum.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[29].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[30].Value = global::System.DBNull.Value;
-            }
-            if ((Original_DiscPrcnt.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[31].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[32].Value = ((decimal)(Original_DiscPrcnt.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[31].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[32].Value = global::System.DBNull.Value;
-            }
-            if ((Original_DocCur == null)) {
-                this.Adapter.DeleteCommand.Parameters[33].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[34].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[33].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[34].Value = ((string)(Original_DocCur));
-            }
-            if ((Original_DocTotal.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[35].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[36].Value = ((decimal)(Original_DocTotal.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[35].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[36].Value = global::System.DBNull.Value;
-            }
-            if ((Original_PaidToDate.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[37].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[38].Value = ((decimal)(Original_PaidToDate.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[37].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[38].Value = global::System.DBNull.Value;
-            }
-            if ((Original_Comments == null)) {
-                this.Adapter.DeleteCommand.Parameters[39].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[40].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[39].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[40].Value = ((string)(Original_Comments));
-            }
-            if ((Original_MultiCita == null)) {
-                this.Adapter.DeleteCommand.Parameters[41].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[42].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[41].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[42].Value = ((string)(Original_MultiCita));
-            }
-            if ((Original_Series.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[43].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[44].Value = ((short)(Original_Series.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[43].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[44].Value = global::System.DBNull.Value;
-            }
-            if ((Original_CreateDate.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[45].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[46].Value = ((System.DateTime)(Original_CreateDate.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[45].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[46].Value = global::System.DBNull.Value;
-            }
-            if ((Original_UpdateDate.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[47].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[48].Value = ((System.DateTime)(Original_UpdateDate.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[47].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[48].Value = global::System.DBNull.Value;
-            }
-            if ((Original_UserSign.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[49].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[50].Value = ((short)(Original_UserSign.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[49].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[50].Value = global::System.DBNull.Value;
-            }
-            if ((Original_VersionNum == null)) {
-                this.Adapter.DeleteCommand.Parameters[51].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[52].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[51].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[52].Value = ((string)(Original_VersionNum));
-            }
-            if ((Original_Summary == null)) {
-                this.Adapter.DeleteCommand.Parameters[53].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[54].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[53].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[54].Value = ((string)(Original_Summary));
-            }
-            this.Adapter.DeleteCommand.Parameters[55].Value = ((System.DateTime)(Original_Start));
-            this.Adapter.DeleteCommand.Parameters[56].Value = ((System.DateTime)(Original_End));
-            if ((Original_RecurrenceRule == null)) {
-                this.Adapter.DeleteCommand.Parameters[57].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[58].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[57].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[58].Value = ((string)(Original_RecurrenceRule));
-            }
-            if ((Original_MasterEventID.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[59].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[60].Value = ((int)(Original_MasterEventID.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[59].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[60].Value = global::System.DBNull.Value;
-            }
-            if ((Original_Location == null)) {
-                this.Adapter.DeleteCommand.Parameters[61].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[62].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[61].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[62].Value = ((string)(Original_Location));
-            }
-            if ((Original_Description == null)) {
-                this.Adapter.DeleteCommand.Parameters[63].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[64].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[63].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[64].Value = ((string)(Original_Description));
-            }
-            if ((Original_BackgroundID.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[65].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[66].Value = ((int)(Original_BackgroundID.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[65].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[66].Value = global::System.DBNull.Value;
-            }
-            if ((Original_StatusID.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[67].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[68].Value = ((int)(Original_StatusID.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[67].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[68].Value = global::System.DBNull.Value;
-            }
-            if ((Original_ParentID.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[69].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[70].Value = ((int)(Original_ParentID.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[69].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[70].Value = global::System.DBNull.Value;
-            }
-            if ((Original_Email == null)) {
-                this.Adapter.DeleteCommand.Parameters[71].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[72].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[71].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[72].Value = ((string)(Original_Email));
-            }
-            this.Adapter.DeleteCommand.Parameters[73].Value = ((bool)(Original_Visible));
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
-            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.DeleteCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.DeleteCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(
-                    global::System.Nullable<int> DocNum, 
-                    string CANCELED, 
-                    string DocStatus, 
-                    global::System.Nullable<global::System.DateTime> DocDate, 
-                    string NumAtCard, 
-                    string PatientCode, 
-                    string PatientName, 
-                    string PatientType, 
-                    string InstitutionCode, 
-                    string InstitutionName, 
-                    string DependencyCode, 
-                    string DependencyName, 
-                    string DoctorCode, 
-                    string DoctorName, 
-                    global::System.Nullable<decimal> VatSum, 
-                    global::System.Nullable<decimal> DiscPrcnt, 
-                    string DocCur, 
-                    global::System.Nullable<decimal> DocTotal, 
-                    global::System.Nullable<decimal> PaidToDate, 
-                    string Comments, 
-                    string MultiCita, 
-                    global::System.Nullable<short> Series, 
-                    global::System.Nullable<global::System.DateTime> CreateDate, 
-                    global::System.Nullable<global::System.DateTime> UpdateDate, 
-                    global::System.Nullable<short> UserSign, 
-                    string VersionNum, 
-                    string Summary, 
-                    System.DateTime Start, 
-                    System.DateTime End, 
-                    string RecurrenceRule, 
-                    global::System.Nullable<int> MasterEventID, 
-                    string Location, 
-                    string Description, 
-                    global::System.Nullable<int> BackgroundID, 
-                    global::System.Nullable<int> StatusID, 
-                    global::System.Nullable<int> ParentID, 
-                    string Email, 
-                    bool Visible) {
-            if ((DocNum.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[0].Value = ((int)(DocNum.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
-            }
-            if ((CANCELED == null)) {
-                this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(CANCELED));
-            }
-            if ((DocStatus == null)) {
-                this.Adapter.InsertCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(DocStatus));
-            }
-            if ((DocDate.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[3].Value = ((System.DateTime)(DocDate.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
-            }
-            if ((NumAtCard == null)) {
-                this.Adapter.InsertCommand.Parameters[4].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[4].Value = ((string)(NumAtCard));
-            }
-            if ((PatientCode == null)) {
-                this.Adapter.InsertCommand.Parameters[5].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[5].Value = ((string)(PatientCode));
-            }
-            if ((PatientName == null)) {
-                this.Adapter.InsertCommand.Parameters[6].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[6].Value = ((string)(PatientName));
-            }
-            if ((PatientType == null)) {
-                this.Adapter.InsertCommand.Parameters[7].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[7].Value = ((string)(PatientType));
-            }
-            if ((InstitutionCode == null)) {
-                this.Adapter.InsertCommand.Parameters[8].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[8].Value = ((string)(InstitutionCode));
-            }
-            if ((InstitutionName == null)) {
-                this.Adapter.InsertCommand.Parameters[9].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[9].Value = ((string)(InstitutionName));
-            }
-            if ((DependencyCode == null)) {
-                this.Adapter.InsertCommand.Parameters[10].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[10].Value = ((string)(DependencyCode));
-            }
-            if ((DependencyName == null)) {
-                this.Adapter.InsertCommand.Parameters[11].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[11].Value = ((string)(DependencyName));
-            }
-            if ((DoctorCode == null)) {
-                this.Adapter.InsertCommand.Parameters[12].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[12].Value = ((string)(DoctorCode));
-            }
-            if ((DoctorName == null)) {
-                this.Adapter.InsertCommand.Parameters[13].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[13].Value = ((string)(DoctorName));
-            }
-            if ((VatSum.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[14].Value = ((decimal)(VatSum.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[14].Value = global::System.DBNull.Value;
-            }
-            if ((DiscPrcnt.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[15].Value = ((decimal)(DiscPrcnt.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[15].Value = global::System.DBNull.Value;
-            }
-            if ((DocCur == null)) {
-                this.Adapter.InsertCommand.Parameters[16].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[16].Value = ((string)(DocCur));
-            }
-            if ((DocTotal.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[17].Value = ((decimal)(DocTotal.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[17].Value = global::System.DBNull.Value;
-            }
-            if ((PaidToDate.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[18].Value = ((decimal)(PaidToDate.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[18].Value = global::System.DBNull.Value;
-            }
-            if ((Comments == null)) {
-                this.Adapter.InsertCommand.Parameters[19].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[19].Value = ((string)(Comments));
-            }
-            if ((MultiCita == null)) {
-                this.Adapter.InsertCommand.Parameters[20].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[20].Value = ((string)(MultiCita));
-            }
-            if ((Series.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[21].Value = ((short)(Series.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[21].Value = global::System.DBNull.Value;
-            }
-            if ((CreateDate.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[22].Value = ((System.DateTime)(CreateDate.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[22].Value = global::System.DBNull.Value;
-            }
-            if ((UpdateDate.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[23].Value = ((System.DateTime)(UpdateDate.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[23].Value = global::System.DBNull.Value;
-            }
-            if ((UserSign.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[24].Value = ((short)(UserSign.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[24].Value = global::System.DBNull.Value;
-            }
-            if ((VersionNum == null)) {
-                this.Adapter.InsertCommand.Parameters[25].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[25].Value = ((string)(VersionNum));
-            }
-            if ((Summary == null)) {
-                this.Adapter.InsertCommand.Parameters[26].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[26].Value = ((string)(Summary));
-            }
-            this.Adapter.InsertCommand.Parameters[27].Value = ((System.DateTime)(Start));
-            this.Adapter.InsertCommand.Parameters[28].Value = ((System.DateTime)(End));
-            if ((RecurrenceRule == null)) {
-                this.Adapter.InsertCommand.Parameters[29].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[29].Value = ((string)(RecurrenceRule));
-            }
-            if ((MasterEventID.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[30].Value = ((int)(MasterEventID.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[30].Value = global::System.DBNull.Value;
-            }
-            if ((Location == null)) {
-                this.Adapter.InsertCommand.Parameters[31].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[31].Value = ((string)(Location));
-            }
-            if ((Description == null)) {
-                this.Adapter.InsertCommand.Parameters[32].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[32].Value = ((string)(Description));
-            }
-            if ((BackgroundID.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[33].Value = ((int)(BackgroundID.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[33].Value = global::System.DBNull.Value;
-            }
-            if ((StatusID.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[34].Value = ((int)(StatusID.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[34].Value = global::System.DBNull.Value;
-            }
-            if ((ParentID.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[35].Value = ((int)(ParentID.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[35].Value = global::System.DBNull.Value;
-            }
-            if ((Email == null)) {
-                this.Adapter.InsertCommand.Parameters[36].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[36].Value = ((string)(Email));
-            }
-            this.Adapter.InsertCommand.Parameters[37].Value = ((bool)(Visible));
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
-            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.InsertCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.InsertCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(
-                    global::System.Nullable<int> DocNum, 
-                    string CANCELED, 
-                    string DocStatus, 
-                    global::System.Nullable<global::System.DateTime> DocDate, 
-                    string NumAtCard, 
-                    string PatientCode, 
-                    string PatientName, 
-                    string PatientType, 
-                    string InstitutionCode, 
-                    string InstitutionName, 
-                    string DependencyCode, 
-                    string DependencyName, 
-                    string DoctorCode, 
-                    string DoctorName, 
-                    global::System.Nullable<decimal> VatSum, 
-                    global::System.Nullable<decimal> DiscPrcnt, 
-                    string DocCur, 
-                    global::System.Nullable<decimal> DocTotal, 
-                    global::System.Nullable<decimal> PaidToDate, 
-                    string Comments, 
-                    string MultiCita, 
-                    global::System.Nullable<short> Series, 
-                    global::System.Nullable<global::System.DateTime> CreateDate, 
-                    global::System.Nullable<global::System.DateTime> UpdateDate, 
-                    global::System.Nullable<short> UserSign, 
-                    string VersionNum, 
-                    string Summary, 
-                    System.DateTime Start, 
-                    System.DateTime End, 
-                    string RecurrenceRule, 
-                    global::System.Nullable<int> MasterEventID, 
-                    string Location, 
-                    string Description, 
-                    global::System.Nullable<int> BackgroundID, 
-                    global::System.Nullable<int> StatusID, 
-                    global::System.Nullable<int> ParentID, 
-                    string Email, 
-                    bool Visible, 
-                    int Original_DocEntry, 
-                    global::System.Nullable<int> Original_DocNum, 
-                    string Original_CANCELED, 
-                    string Original_DocStatus, 
-                    global::System.Nullable<global::System.DateTime> Original_DocDate, 
-                    string Original_NumAtCard, 
-                    string Original_PatientCode, 
-                    string Original_PatientName, 
-                    string Original_PatientType, 
-                    string Original_InstitutionCode, 
-                    string Original_InstitutionName, 
-                    string Original_DependencyCode, 
-                    string Original_DependencyName, 
-                    string Original_DoctorCode, 
-                    string Original_DoctorName, 
-                    global::System.Nullable<decimal> Original_VatSum, 
-                    global::System.Nullable<decimal> Original_DiscPrcnt, 
-                    string Original_DocCur, 
-                    global::System.Nullable<decimal> Original_DocTotal, 
-                    global::System.Nullable<decimal> Original_PaidToDate, 
-                    string Original_Comments, 
-                    string Original_MultiCita, 
-                    global::System.Nullable<short> Original_Series, 
-                    global::System.Nullable<global::System.DateTime> Original_CreateDate, 
-                    global::System.Nullable<global::System.DateTime> Original_UpdateDate, 
-                    global::System.Nullable<short> Original_UserSign, 
-                    string Original_VersionNum, 
-                    string Original_Summary, 
-                    System.DateTime Original_Start, 
-                    System.DateTime Original_End, 
-                    string Original_RecurrenceRule, 
-                    global::System.Nullable<int> Original_MasterEventID, 
-                    string Original_Location, 
-                    string Original_Description, 
-                    global::System.Nullable<int> Original_BackgroundID, 
-                    global::System.Nullable<int> Original_StatusID, 
-                    global::System.Nullable<int> Original_ParentID, 
-                    string Original_Email, 
-                    bool Original_Visible) {
-            if ((DocNum.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(DocNum.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[0].Value = global::System.DBNull.Value;
-            }
-            if ((CANCELED == null)) {
-                this.Adapter.UpdateCommand.Parameters[1].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(CANCELED));
-            }
-            if ((DocStatus == null)) {
-                this.Adapter.UpdateCommand.Parameters[2].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(DocStatus));
-            }
-            if ((DocDate.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[3].Value = ((System.DateTime)(DocDate.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[3].Value = global::System.DBNull.Value;
-            }
-            if ((NumAtCard == null)) {
-                this.Adapter.UpdateCommand.Parameters[4].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(NumAtCard));
-            }
-            if ((PatientCode == null)) {
-                this.Adapter.UpdateCommand.Parameters[5].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((string)(PatientCode));
-            }
-            if ((PatientName == null)) {
-                this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(PatientName));
-            }
-            if ((PatientType == null)) {
-                this.Adapter.UpdateCommand.Parameters[7].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(PatientType));
-            }
-            if ((InstitutionCode == null)) {
-                this.Adapter.UpdateCommand.Parameters[8].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(InstitutionCode));
-            }
-            if ((InstitutionName == null)) {
-                this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(InstitutionName));
-            }
-            if ((DependencyCode == null)) {
-                this.Adapter.UpdateCommand.Parameters[10].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(DependencyCode));
-            }
-            if ((DependencyName == null)) {
-                this.Adapter.UpdateCommand.Parameters[11].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(DependencyName));
-            }
-            if ((DoctorCode == null)) {
-                this.Adapter.UpdateCommand.Parameters[12].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[12].Value = ((string)(DoctorCode));
-            }
-            if ((DoctorName == null)) {
-                this.Adapter.UpdateCommand.Parameters[13].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[13].Value = ((string)(DoctorName));
-            }
-            if ((VatSum.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[14].Value = ((decimal)(VatSum.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[14].Value = global::System.DBNull.Value;
-            }
-            if ((DiscPrcnt.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[15].Value = ((decimal)(DiscPrcnt.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[15].Value = global::System.DBNull.Value;
-            }
-            if ((DocCur == null)) {
-                this.Adapter.UpdateCommand.Parameters[16].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[16].Value = ((string)(DocCur));
-            }
-            if ((DocTotal.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[17].Value = ((decimal)(DocTotal.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[17].Value = global::System.DBNull.Value;
-            }
-            if ((PaidToDate.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[18].Value = ((decimal)(PaidToDate.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[18].Value = global::System.DBNull.Value;
-            }
-            if ((Comments == null)) {
-                this.Adapter.UpdateCommand.Parameters[19].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[19].Value = ((string)(Comments));
-            }
-            if ((MultiCita == null)) {
-                this.Adapter.UpdateCommand.Parameters[20].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[20].Value = ((string)(MultiCita));
-            }
-            if ((Series.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[21].Value = ((short)(Series.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[21].Value = global::System.DBNull.Value;
-            }
-            if ((CreateDate.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[22].Value = ((System.DateTime)(CreateDate.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[22].Value = global::System.DBNull.Value;
-            }
-            if ((UpdateDate.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[23].Value = ((System.DateTime)(UpdateDate.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[23].Value = global::System.DBNull.Value;
-            }
-            if ((UserSign.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[24].Value = ((short)(UserSign.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[24].Value = global::System.DBNull.Value;
-            }
-            if ((VersionNum == null)) {
-                this.Adapter.UpdateCommand.Parameters[25].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[25].Value = ((string)(VersionNum));
-            }
-            if ((Summary == null)) {
-                this.Adapter.UpdateCommand.Parameters[26].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[26].Value = ((string)(Summary));
-            }
-            this.Adapter.UpdateCommand.Parameters[27].Value = ((System.DateTime)(Start));
-            this.Adapter.UpdateCommand.Parameters[28].Value = ((System.DateTime)(End));
-            if ((RecurrenceRule == null)) {
-                this.Adapter.UpdateCommand.Parameters[29].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[29].Value = ((string)(RecurrenceRule));
-            }
-            if ((MasterEventID.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[30].Value = ((int)(MasterEventID.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[30].Value = global::System.DBNull.Value;
-            }
-            if ((Location == null)) {
-                this.Adapter.UpdateCommand.Parameters[31].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[31].Value = ((string)(Location));
-            }
-            if ((Description == null)) {
-                this.Adapter.UpdateCommand.Parameters[32].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[32].Value = ((string)(Description));
-            }
-            if ((BackgroundID.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[33].Value = ((int)(BackgroundID.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[33].Value = global::System.DBNull.Value;
-            }
-            if ((StatusID.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[34].Value = ((int)(StatusID.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[34].Value = global::System.DBNull.Value;
-            }
-            if ((ParentID.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[35].Value = ((int)(ParentID.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[35].Value = global::System.DBNull.Value;
-            }
-            if ((Email == null)) {
-                this.Adapter.UpdateCommand.Parameters[36].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[36].Value = ((string)(Email));
-            }
-            this.Adapter.UpdateCommand.Parameters[37].Value = ((bool)(Visible));
-            this.Adapter.UpdateCommand.Parameters[38].Value = ((int)(Original_DocEntry));
-            if ((Original_DocNum.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[39].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[40].Value = ((int)(Original_DocNum.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[39].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[40].Value = global::System.DBNull.Value;
-            }
-            if ((Original_CANCELED == null)) {
-                this.Adapter.UpdateCommand.Parameters[41].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[42].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[41].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[42].Value = ((string)(Original_CANCELED));
-            }
-            if ((Original_DocStatus == null)) {
-                this.Adapter.UpdateCommand.Parameters[43].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[44].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[43].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[44].Value = ((string)(Original_DocStatus));
-            }
-            if ((Original_DocDate.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[45].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[46].Value = ((System.DateTime)(Original_DocDate.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[45].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[46].Value = global::System.DBNull.Value;
-            }
-            if ((Original_NumAtCard == null)) {
-                this.Adapter.UpdateCommand.Parameters[47].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[48].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[47].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[48].Value = ((string)(Original_NumAtCard));
-            }
-            if ((Original_PatientCode == null)) {
-                this.Adapter.UpdateCommand.Parameters[49].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[50].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[49].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[50].Value = ((string)(Original_PatientCode));
-            }
-            if ((Original_PatientName == null)) {
-                this.Adapter.UpdateCommand.Parameters[51].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[52].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[51].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[52].Value = ((string)(Original_PatientName));
-            }
-            if ((Original_PatientType == null)) {
-                this.Adapter.UpdateCommand.Parameters[53].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[54].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[53].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[54].Value = ((string)(Original_PatientType));
-            }
-            if ((Original_InstitutionCode == null)) {
-                this.Adapter.UpdateCommand.Parameters[55].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[56].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[55].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[56].Value = ((string)(Original_InstitutionCode));
-            }
-            if ((Original_InstitutionName == null)) {
-                this.Adapter.UpdateCommand.Parameters[57].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[58].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[57].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[58].Value = ((string)(Original_InstitutionName));
-            }
-            if ((Original_DependencyCode == null)) {
-                this.Adapter.UpdateCommand.Parameters[59].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[60].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[59].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[60].Value = ((string)(Original_DependencyCode));
-            }
-            if ((Original_DependencyName == null)) {
-                this.Adapter.UpdateCommand.Parameters[61].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[62].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[61].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[62].Value = ((string)(Original_DependencyName));
-            }
-            if ((Original_DoctorCode == null)) {
-                this.Adapter.UpdateCommand.Parameters[63].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[64].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[63].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[64].Value = ((string)(Original_DoctorCode));
-            }
-            if ((Original_DoctorName == null)) {
-                this.Adapter.UpdateCommand.Parameters[65].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[66].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[65].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[66].Value = ((string)(Original_DoctorName));
-            }
-            if ((Original_VatSum.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[67].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[68].Value = ((decimal)(Original_VatSum.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[67].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[68].Value = global::System.DBNull.Value;
-            }
-            if ((Original_DiscPrcnt.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[69].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[70].Value = ((decimal)(Original_DiscPrcnt.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[69].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[70].Value = global::System.DBNull.Value;
-            }
-            if ((Original_DocCur == null)) {
-                this.Adapter.UpdateCommand.Parameters[71].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[72].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[71].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[72].Value = ((string)(Original_DocCur));
-            }
-            if ((Original_DocTotal.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[73].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[74].Value = ((decimal)(Original_DocTotal.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[73].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[74].Value = global::System.DBNull.Value;
-            }
-            if ((Original_PaidToDate.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[75].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[76].Value = ((decimal)(Original_PaidToDate.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[75].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[76].Value = global::System.DBNull.Value;
-            }
-            if ((Original_Comments == null)) {
-                this.Adapter.UpdateCommand.Parameters[77].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[78].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[77].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[78].Value = ((string)(Original_Comments));
-            }
-            if ((Original_MultiCita == null)) {
-                this.Adapter.UpdateCommand.Parameters[79].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[80].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[79].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[80].Value = ((string)(Original_MultiCita));
-            }
-            if ((Original_Series.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[81].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[82].Value = ((short)(Original_Series.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[81].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[82].Value = global::System.DBNull.Value;
-            }
-            if ((Original_CreateDate.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[83].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[84].Value = ((System.DateTime)(Original_CreateDate.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[83].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[84].Value = global::System.DBNull.Value;
-            }
-            if ((Original_UpdateDate.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[85].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[86].Value = ((System.DateTime)(Original_UpdateDate.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[85].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[86].Value = global::System.DBNull.Value;
-            }
-            if ((Original_UserSign.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[87].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[88].Value = ((short)(Original_UserSign.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[87].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[88].Value = global::System.DBNull.Value;
-            }
-            if ((Original_VersionNum == null)) {
-                this.Adapter.UpdateCommand.Parameters[89].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[90].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[89].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[90].Value = ((string)(Original_VersionNum));
-            }
-            if ((Original_Summary == null)) {
-                this.Adapter.UpdateCommand.Parameters[91].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[92].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[91].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[92].Value = ((string)(Original_Summary));
-            }
-            this.Adapter.UpdateCommand.Parameters[93].Value = ((System.DateTime)(Original_Start));
-            this.Adapter.UpdateCommand.Parameters[94].Value = ((System.DateTime)(Original_End));
-            if ((Original_RecurrenceRule == null)) {
-                this.Adapter.UpdateCommand.Parameters[95].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[96].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[95].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[96].Value = ((string)(Original_RecurrenceRule));
-            }
-            if ((Original_MasterEventID.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[97].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[98].Value = ((int)(Original_MasterEventID.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[97].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[98].Value = global::System.DBNull.Value;
-            }
-            if ((Original_Location == null)) {
-                this.Adapter.UpdateCommand.Parameters[99].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[100].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[99].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[100].Value = ((string)(Original_Location));
-            }
-            if ((Original_Description == null)) {
-                this.Adapter.UpdateCommand.Parameters[101].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[102].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[101].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[102].Value = ((string)(Original_Description));
-            }
-            if ((Original_BackgroundID.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[103].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[104].Value = ((int)(Original_BackgroundID.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[103].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[104].Value = global::System.DBNull.Value;
-            }
-            if ((Original_StatusID.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[105].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[106].Value = ((int)(Original_StatusID.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[105].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[106].Value = global::System.DBNull.Value;
-            }
-            if ((Original_ParentID.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[107].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[108].Value = ((int)(Original_ParentID.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[107].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[108].Value = global::System.DBNull.Value;
-            }
-            if ((Original_Email == null)) {
-                this.Adapter.UpdateCommand.Parameters[109].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[110].Value = global::System.DBNull.Value;
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[109].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[110].Value = ((string)(Original_Email));
-            }
-            this.Adapter.UpdateCommand.Parameters[111].Value = ((bool)(Original_Visible));
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
-            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.UpdateCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.UpdateCommand.Connection.Close();
-                }
-            }
         }
     }
     
@@ -7486,8 +6052,6 @@ namespace CIDAGENDA2018.schedulerDataDataSetTableAdapters {
         
         private CITA1TableAdapter _cITA1TableAdapter;
         
-        private CITASTableAdapter _cITASTableAdapter;
-        
         private SALASTableAdapter _sALASTableAdapter;
         
         private bool _backupDataSetBeforeUpdate;
@@ -7516,20 +6080,6 @@ namespace CIDAGENDA2018.schedulerDataDataSetTableAdapters {
             }
             set {
                 this._cITA1TableAdapter = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
-        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
-            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
-            "a", "System.Drawing.Design.UITypeEditor")]
-        public CITASTableAdapter CITASTableAdapter {
-            get {
-                return this._cITASTableAdapter;
-            }
-            set {
-                this._cITASTableAdapter = value;
             }
         }
         
@@ -7570,10 +6120,6 @@ namespace CIDAGENDA2018.schedulerDataDataSetTableAdapters {
                             && (this._cITA1TableAdapter.Connection != null))) {
                     return this._cITA1TableAdapter.Connection;
                 }
-                if (((this._cITASTableAdapter != null) 
-                            && (this._cITASTableAdapter.Connection != null))) {
-                    return this._cITASTableAdapter.Connection;
-                }
                 if (((this._sALASTableAdapter != null) 
                             && (this._sALASTableAdapter.Connection != null))) {
                     return this._sALASTableAdapter.Connection;
@@ -7594,9 +6140,6 @@ namespace CIDAGENDA2018.schedulerDataDataSetTableAdapters {
                 if ((this._cITA1TableAdapter != null)) {
                     count = (count + 1);
                 }
-                if ((this._cITASTableAdapter != null)) {
-                    count = (count + 1);
-                }
                 if ((this._sALASTableAdapter != null)) {
                     count = (count + 1);
                 }
@@ -7611,15 +6154,6 @@ namespace CIDAGENDA2018.schedulerDataDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private int UpdateUpdatedRows(schedulerDataDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
-            if ((this._cITASTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.CITAS.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._cITASTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
             if ((this._sALASTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.SALAS.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
@@ -7648,14 +6182,6 @@ namespace CIDAGENDA2018.schedulerDataDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
         private int UpdateInsertedRows(schedulerDataDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
-            if ((this._cITASTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.CITAS.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._cITASTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
             if ((this._sALASTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.SALAS.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
@@ -7695,14 +6221,6 @@ namespace CIDAGENDA2018.schedulerDataDataSetTableAdapters {
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._sALASTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
-            if ((this._cITASTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.CITAS.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._cITASTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -7750,11 +6268,6 @@ namespace CIDAGENDA2018.schedulerDataDataSetTableAdapters {
                 throw new global::System.ArgumentException("Todos los TableAdapters administrados por un TableAdapterManager deben usar la mi" +
                         "sma cadena de conexión.");
             }
-            if (((this._cITASTableAdapter != null) 
-                        && (this.MatchTableAdapterConnection(this._cITASTableAdapter.Connection) == false))) {
-                throw new global::System.ArgumentException("Todos los TableAdapters administrados por un TableAdapterManager deben usar la mi" +
-                        "sma cadena de conexión.");
-            }
             if (((this._sALASTableAdapter != null) 
                         && (this.MatchTableAdapterConnection(this._sALASTableAdapter.Connection) == false))) {
                 throw new global::System.ArgumentException("Todos los TableAdapters administrados por un TableAdapterManager deben usar la mi" +
@@ -7799,15 +6312,6 @@ namespace CIDAGENDA2018.schedulerDataDataSetTableAdapters {
                     if (this._cITA1TableAdapter.Adapter.AcceptChangesDuringUpdate) {
                         this._cITA1TableAdapter.Adapter.AcceptChangesDuringUpdate = false;
                         adaptersWithAcceptChangesDuringUpdate.Add(this._cITA1TableAdapter.Adapter);
-                    }
-                }
-                if ((this._cITASTableAdapter != null)) {
-                    revertConnections.Add(this._cITASTableAdapter, this._cITASTableAdapter.Connection);
-                    this._cITASTableAdapter.Connection = ((global::System.Data.OleDb.OleDbConnection)(workConnection));
-                    this._cITASTableAdapter.Transaction = ((global::System.Data.OleDb.OleDbTransaction)(workTransaction));
-                    if (this._cITASTableAdapter.Adapter.AcceptChangesDuringUpdate) {
-                        this._cITASTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
-                        adaptersWithAcceptChangesDuringUpdate.Add(this._cITASTableAdapter.Adapter);
                     }
                 }
                 if ((this._sALASTableAdapter != null)) {
@@ -7880,10 +6384,6 @@ namespace CIDAGENDA2018.schedulerDataDataSetTableAdapters {
                 if ((this._cITA1TableAdapter != null)) {
                     this._cITA1TableAdapter.Connection = ((global::System.Data.OleDb.OleDbConnection)(revertConnections[this._cITA1TableAdapter]));
                     this._cITA1TableAdapter.Transaction = null;
-                }
-                if ((this._cITASTableAdapter != null)) {
-                    this._cITASTableAdapter.Connection = ((global::System.Data.OleDb.OleDbConnection)(revertConnections[this._cITASTableAdapter]));
-                    this._cITASTableAdapter.Transaction = null;
                 }
                 if ((this._sALASTableAdapter != null)) {
                     this._sALASTableAdapter.Connection = ((global::System.Data.OleDb.OleDbConnection)(revertConnections[this._sALASTableAdapter]));
