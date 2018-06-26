@@ -66,6 +66,7 @@
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.btn_Diagnostico = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.btn_Salas = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.schedulerBindingDataSource1)).BeginInit();
@@ -128,8 +129,11 @@
             // 
             // radScheduler1
             // 
+            this.radScheduler1.AllowAppointmentMove = false;
+            this.radScheduler1.AllowAppointmentResize = false;
             this.radScheduler1.AllowCopyPaste = Telerik.WinControls.UI.CopyPasteMode.Disallow;
             this.radScheduler1.AutoScroll = true;
+            this.radScheduler1.AutoSizeAppointments = true;
             this.radScheduler1.Culture = new System.Globalization.CultureInfo("es-MX");
             this.radScheduler1.DataSource = this.schedulerBindingDataSource1;
             this.radScheduler1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -377,6 +381,7 @@
             this.btn_Complementos,
             this.btn_Diagnostico,
             this.toolStripSeparator7,
+            this.toolStripButton2,
             this.btn_Salas,
             this.btn_Usuarios,
             this.toolStripSeparator5,
@@ -430,6 +435,17 @@
             // 
             this.toolStripSeparator7.Name = "toolStripSeparator7";
             this.toolStripSeparator7.Size = new System.Drawing.Size(6, 52);
+            // 
+            // toolStripButton2
+            // 
+            this.toolStripButton2.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton2.Image")));
+            this.toolStripButton2.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton2.Name = "toolStripButton2";
+            this.toolStripButton2.Size = new System.Drawing.Size(54, 49);
+            this.toolStripButton2.Text = "Reservar";
+            this.toolStripButton2.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.toolStripButton2.Click += new System.EventHandler(this.Reservar_Click);
             // 
             // btn_Salas
             // 
@@ -530,6 +546,7 @@
         private System.Windows.Forms.ToolStripButton btnCotizador;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private Telerik.WinControls.UI.RadScheduler radScheduler1;
+        private System.Windows.Forms.ToolStripButton toolStripButton2;
     }
 }
 

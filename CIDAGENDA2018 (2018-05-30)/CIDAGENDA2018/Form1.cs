@@ -687,5 +687,11 @@ namespace CIDAGENDA2018
                 MessageBox.Show("No tienes permiso para ingresar a este modulo.");
             }
         }
+
+        private void Reservar_Click(object sender, EventArgs e)
+        {
+            frm_reservar frm = new frm_reservar();
+            frm.Show();
+        }
     }
 }

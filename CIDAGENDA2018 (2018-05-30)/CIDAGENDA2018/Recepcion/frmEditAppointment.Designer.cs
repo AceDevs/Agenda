@@ -404,6 +404,7 @@
             this.radGridEstudios.Size = new System.Drawing.Size(1130, 157);
             this.radGridEstudios.TabIndex = 903;
             this.radGridEstudios.Text = "radGridView2";
+            this.radGridEstudios.UserDeletingRow += new Telerik.WinControls.UI.GridViewRowCancelEventHandler(this.radGridEstudios_UserDeletingRow);
             // 
             // tabControl1
             // 
@@ -468,7 +469,7 @@
             // txt_medico
             // 
             this.txt_medico.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_medico.Location = new System.Drawing.Point(590, 76);
+            this.txt_medico.Location = new System.Drawing.Point(590, 71);
             this.txt_medico.Name = "txt_medico";
             this.txt_medico.Size = new System.Drawing.Size(268, 20);
             this.txt_medico.TabIndex = 119;
@@ -477,7 +478,7 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(542, 79);
+            this.label13.Location = new System.Drawing.Point(542, 74);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(42, 13);
             this.label13.TabIndex = 120;

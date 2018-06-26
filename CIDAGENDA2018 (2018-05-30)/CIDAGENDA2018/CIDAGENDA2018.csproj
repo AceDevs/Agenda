@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -141,6 +142,12 @@
     <Compile Include="frm_login.Designer.cs">
       <DependentUpon>frm_login.cs</DependentUpon>
     </Compile>
+    <Compile Include="frm_reservar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frm_reservar.Designer.cs">
+      <DependentUpon>frm_reservar.cs</DependentUpon>
+    </Compile>
     <Compile Include="frm_search_paciente.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -212,6 +219,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frm_login.resx">
       <DependentUpon>frm_login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frm_reservar.resx">
+      <DependentUpon>frm_reservar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frm_search_paciente.resx">
       <DependentUpon>frm_search_paciente.cs</DependentUpon>

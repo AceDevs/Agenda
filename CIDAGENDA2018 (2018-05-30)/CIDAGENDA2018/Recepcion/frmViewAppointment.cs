@@ -39,9 +39,6 @@ namespace CIDAGENDA2018.Recepcion
                 txt_salas.DataSource = dt;
                 txt_salas.ValueMember = "RoomCode";
                 txt_salas.DisplayMember = "RoomName";
-                radAutoCompleteBox1.AutoCompleteDataSource = dt;
-                radAutoCompleteBox1.AutoCompleteValueMember = "RoomCode";
-                radAutoCompleteBox1.AutoCompleteDisplayMember = "RoomName";
 
                 dt = null;
 
@@ -412,51 +409,64 @@ namespace CIDAGENDA2018.Recepcion
         {
             try
             {
-                if (e.Appointment.Description == "N")
+                if (e.Appointment.Description.Length > 0)
                 {
-                    e.AppointmentElement.BorderColor = Color.DarkBlue;
-                    e.AppointmentElement.BorderBoxStyle = BorderBoxStyle.SingleBorder;
-                    e.AppointmentElement.BorderWidth = 1;
-                    e.AppointmentElement.BackColor = Color.White;
-                    e.AppointmentElement.BackColor2 = Color.White;
-                    e.AppointmentElement.BackColor3 = Color.White;
-                }
-                else if (e.Appointment.Description == "C")
-                {
-                    e.AppointmentElement.Visibility = ElementVisibility.Collapsed;
-                    e.AppointmentElement.BorderColor = Color.Gold;
-                    e.AppointmentElement.BorderBoxStyle = BorderBoxStyle.SingleBorder;
-                    e.AppointmentElement.BorderWidth = 1;
-                    e.AppointmentElement.BackColor = Color.Gold;
-                    e.AppointmentElement.BackColor2 = Color.Gold;
-                    e.AppointmentElement.BackColor3 = Color.Gold;
-                }
-                else if (e.Appointment.Description == "D")
-                {
-                    e.AppointmentElement.BorderColor = Color.IndianRed;
-                    e.AppointmentElement.BorderBoxStyle = BorderBoxStyle.SingleBorder;
-                    e.AppointmentElement.BorderWidth = 1;
-                    e.AppointmentElement.BackColor = Color.IndianRed;
-                    e.AppointmentElement.BackColor2 = Color.IndianRed;
-                    e.AppointmentElement.BackColor3 = Color.IndianRed;
-                }
-                else if (e.Appointment.Description == "P")
-                {
-                    e.AppointmentElement.BorderColor = Color.LightGreen;
-                    e.AppointmentElement.BorderBoxStyle = BorderBoxStyle.SingleBorder;
-                    e.AppointmentElement.BorderWidth = 1;
-                    e.AppointmentElement.BackColor = Color.LightGreen;
-                    e.AppointmentElement.BackColor2 = Color.LightGreen;
-                    e.AppointmentElement.BackColor3 = Color.LightGreen;
-                }
-                else if (e.Appointment.Description == "R")
-                {
-                    e.AppointmentElement.BorderColor = Color.Gray;
-                    e.AppointmentElement.BorderBoxStyle = BorderBoxStyle.SingleBorder;
-                    e.AppointmentElement.BorderWidth = 1;
-                    e.AppointmentElement.BackColor = Color.Gray;
-                    e.AppointmentElement.BackColor2 = Color.Gray;
-                    e.AppointmentElement.BackColor3 = Color.Gray;
+                    if (e.Appointment.Description[0] == 'N')
+                    {
+                        e.AppointmentElement.BorderColor = Color.DarkBlue;
+                        e.AppointmentElement.BorderBoxStyle = BorderBoxStyle.SingleBorder;
+                        e.AppointmentElement.BorderWidth = 1;
+                        e.AppointmentElement.BackColor = Color.White;
+                        e.AppointmentElement.BackColor2 = Color.White;
+                        e.AppointmentElement.BackColor3 = Color.White;
+                    }
+                    else if (e.Appointment.Description[0] == 'C')
+                    {
+                        e.AppointmentElement.Visibility = ElementVisibility.Collapsed;
+                        e.AppointmentElement.BorderColor = Color.Gold;
+                        e.AppointmentElement.BorderBoxStyle = BorderBoxStyle.SingleBorder;
+                        e.AppointmentElement.BorderWidth = 1;
+                        e.AppointmentElement.BackColor = Color.Gold;
+                        e.AppointmentElement.BackColor2 = Color.Gold;
+                        e.AppointmentElement.BackColor3 = Color.Gold;
+                    }
+                    else if (e.Appointment.Description[0] == 'D')
+                    {
+                        e.AppointmentElement.BorderColor = Color.IndianRed;
+                        e.AppointmentElement.BorderBoxStyle = BorderBoxStyle.SingleBorder;
+                        e.AppointmentElement.BorderWidth = 1;
+                        e.AppointmentElement.BackColor = Color.IndianRed;
+                        e.AppointmentElement.BackColor2 = Color.IndianRed;
+                        e.AppointmentElement.BackColor3 = Color.IndianRed;
+                    }
+                    else if (e.Appointment.Description[0] == 'P')
+                    {
+                        e.AppointmentElement.BorderColor = Color.LightGreen;
+                        e.AppointmentElement.BorderBoxStyle = BorderBoxStyle.SingleBorder;
+                        e.AppointmentElement.BorderWidth = 1;
+                        e.AppointmentElement.BackColor = Color.LightGreen;
+                        e.AppointmentElement.BackColor2 = Color.LightGreen;
+                        e.AppointmentElement.BackColor3 = Color.LightGreen;
+                    }
+                    else if (e.Appointment.Description[0] == 'R')
+                    {
+                        e.AppointmentElement.BorderColor = Color.Gray;
+                        e.AppointmentElement.BorderBoxStyle = BorderBoxStyle.SingleBorder;
+                        e.AppointmentElement.BorderWidth = 1;
+                        e.AppointmentElement.BackColor = Color.Gray;
+                        e.AppointmentElement.BackColor2 = Color.Gray;
+                        e.AppointmentElement.BackColor3 = Color.Gray;
+                    }
+                    else if (e.Appointment.Description[0] == 'A')
+                    {
+                        e.AppointmentElement.BorderColor = Color.Purple;
+                        e.AppointmentElement.BorderBoxStyle = BorderBoxStyle.SingleBorder;
+                        e.AppointmentElement.BorderWidth = 1;
+                        e.AppointmentElement.BackColor = Color.Purple;
+                        e.AppointmentElement.BackColor2 = Color.Purple;
+                        e.AppointmentElement.BackColor3 = Color.Purple;
+                        e.AppointmentElement.ForeColor = Color.White;
+                    }
                 }
             }
             catch (Exception ex)
@@ -532,16 +542,28 @@ namespace CIDAGENDA2018.Recepcion
 
             try
             {
-                if (e.Appointment.DataItem != null)
+                if (e.Appointment.DataItem != null && !chk_nuevaCita.Value)
                 {
-                    cs_reservar.Start = e.Appointment.Start;
-                    cs_reservar.End = e.Appointment.End;
-                    cs_reservar.ResourceId = e.Appointment.ResourceId.KeyValue.ToString();
-                    cs_reservar.NewDocEntry = int.Parse(e.Appointment.UniqueId.KeyValue.ToString());
+                    if (e.Appointment.Description == "R")
+                    {
+                        frm_reservar form = new frm_reservar(int.Parse(e.Appointment.UniqueId.KeyValue.ToString()));
+                        form.ShowDialog();
+                        form = null;
+                    }
+                    else
+                    {
+                        cs_reservar.Start = e.Appointment.Start;
+                        cs_reservar.End = e.Appointment.End;
+                        cs_reservar.ResourceId = e.Appointment.ResourceId.KeyValue.ToString();
+                        cs_reservar.NewDocEntry = int.Parse(e.Appointment.UniqueId.KeyValue.ToString());
 
-                    frmEditAppointment frm = new frmEditAppointment();
-                    frm.ShowDialog();
-                    frm = null;
+                        frmEditAppointment frm = new frmEditAppointment();
+                        frm.ShowDialog();
+                        frm = null;
+                    }
+                    this.InitializeRadSchedulerDataBinding(); // primero carga los datos de la base de datos
+                    if (txt_salas.Text != "") this.InitializeRadSchedulerResource();
+                    else this.InitializeRadSchedulerResources();
                 }
                 else
                 {

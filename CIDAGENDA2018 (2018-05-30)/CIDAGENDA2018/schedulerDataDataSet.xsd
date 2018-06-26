@@ -170,6 +170,7 @@
 Concat( T0.DocEntry, '-', T1.LineNum) As UniqueLine,
 T0."DocEntry", 
 "DocNum", 
+T1."LineNum",
 "CANCELED", 
 "DocStatus", 
 T0."DocDate", 
@@ -255,6 +256,7 @@ Inner Join cid.CITA1 T1 On T0.DocEntry = t1.DocEntry</CommandText>
               <Mapping SourceColumn="Email" DataSetColumn="Email" />
               <Mapping SourceColumn="Visible" DataSetColumn="Visible" />
               <Mapping SourceColumn="UniqueLine" DataSetColumn="UniqueLine" />
+              <Mapping SourceColumn="LineNum" DataSetColumn="LineNum" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -599,13 +601,14 @@ Inner Join cid.CITA1 T1 On T0.DocEntry = t1.DocEntry</CommandText>
                 </xs:simpleType>
               </xs:element>
               <xs:element name="Visible" msprop:Generator_ColumnVarNameInTable="columnVisible" msprop:Generator_ColumnPropNameInRow="Visible" msprop:Generator_ColumnPropNameInTable="VisibleColumn" msprop:Generator_UserColumnName="Visible" type="xs:boolean" />
-              <xs:element name="UniqueLine" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnUniqueLine" msprop:Generator_ColumnPropNameInRow="UniqueLine" msprop:Generator_ColumnPropNameInTable="UniqueLineColumn" msprop:Generator_UserColumnName="UniqueLine">
+              <xs:element name="UniqueLine" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnUniqueLine" msprop:Generator_ColumnPropNameInRow="UniqueLine" msprop:Generator_ColumnPropNameInTable="UniqueLineColumn" msprop:Generator_UserColumnName="UniqueLine" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="25" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
+              <xs:element name="LineNum" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnLineNum" msprop:Generator_ColumnPropNameInRow="LineNum" msprop:Generator_ColumnPropNameInTable="LineNumColumn" msprop:Generator_UserColumnName="LineNum" type="xs:int" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

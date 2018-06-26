@@ -676,7 +676,7 @@ namespace CIDAGENDA2018.Recepcion
             try
             {
                 cs_sapbo sapo = new cs_sapbo();
-                if (sapo.INSERT_CITARECURSOS(int.Parse(txt_DocEntry.Text), -1, "Ambulancia") == true)
+                if (sapo.INSERT_CITARECURSOS(int.Parse(txt_DocEntry.Text), "AB-001", "Ambulancia") == true)
                 {
                     radGridRecursos.DataSource = sapo.GET_CITARECURSOS(int.Parse(txt_DocEntry.Text));
                     radGridRecursos.Refresh();
@@ -699,7 +699,7 @@ namespace CIDAGENDA2018.Recepcion
             {
                 cs_sapbo sapo = new cs_sapbo();
                 string code = txt_Anestesiologo.SelectedValue.ToString();
-                if (sapo.INSERT_CITARECURSOS(int.Parse(txt_DocEntry.Text), int.Parse(code), txt_Anestesiologo.Text) == true)
+                if (sapo.INSERT_CITARECURSOS(int.Parse(txt_DocEntry.Text), "ANE-" + code, txt_Anestesiologo.Text) == true)
                 {
                     radGridRecursos.DataSource = sapo.GET_CITARECURSOS(int.Parse(txt_DocEntry.Text));
                     radGridRecursos.Refresh();
@@ -725,7 +725,7 @@ namespace CIDAGENDA2018.Recepcion
                 {
                     if (radGridRecursos.Rows[i].IsSelected == true)
                     {
-                        if (sapo.DELETE_CITARECURSOS(int.Parse(txt_DocEntry.Text), int.Parse(radGridRecursos.Rows[i].Cells["RecursoCode"].Value.ToString())) == true)
+                        if (sapo.DELETE_CITARECURSOS(int.Parse(txt_DocEntry.Text), radGridRecursos.Rows[i].Cells["RecursoCode"].Value.ToString()) == true)
                         {
                             radGridRecursos.DataSource = sapo.GET_CITARECURSOS(int.Parse(txt_DocEntry.Text));
                             radGridRecursos.Refresh();
@@ -766,6 +766,16 @@ namespace CIDAGENDA2018.Recepcion
         {
             if (e.Appointment.Description == "C")
                 e.AppointmentElement.Visibility = ElementVisibility.Collapsed;
+        }
+
+        private void radGridEstudios_UserDeletingRow(object sender, GridViewRowCancelEventArgs e)
+        {
+            cs_sapbo sapbo = new cs_sapbo();
+            sapbo.DELETE_CITA1(int.Parse(txt_DocEntry.Text), (int.Parse(e.Rows.First().Cells["LineNum"].Value.ToString())));
+            sapbo.REORDER_CITA1_Lines(int.Parse(txt_DocEntry.Text));
+            radGridEstudios.DataSource = sapbo.GET_CITAS_RGV(int.Parse(txt_DocEntry.Text));
+            radGridEstudios.Refresh();
+            sapbo = null;
         }
     }
 }

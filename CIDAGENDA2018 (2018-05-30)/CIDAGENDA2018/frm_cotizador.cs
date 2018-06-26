@@ -44,27 +44,27 @@ namespace CIDAGENDA2018
             }
         }
 
-        private void txt_instituciones_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            try
-            {
-                if (txt_instituciones.Items.Count > 0 && txt_estudios.Items.Count > 0)
-                {
-                    cs_sapbo sapo = new cs_sapbo();
-                    if (txt_salas.Items.Count > 0)
-                        rgvPrecios.DataSource = sapo.GET_PRECIOS(txt_estudios.Items[0].Value.ToString(), txt_salas.Items[0].Value.ToString(), txt_instituciones.Items[0].Value.ToString());
-                    else
-                        rgvPrecios.DataSource = sapo.GET_PRECIOS(txt_estudios.Items[0].Value.ToString(), txt_instituciones.Items[0].Value.ToString(), true);
-                }
-                else
-                    rgvPrecios.DataSource = null;
-                rgvPrecios.Refresh();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
+        //private void txt_instituciones_SelectedIndexChanged(object sender, EventArgs e)
+        //{
+        //    try
+        //    {
+        //        if (txt_instituciones.Items.Count > 0 && txt_estudios.Items.Count > 0)
+        //        {
+        //            cs_sapbo sapo = new cs_sapbo();
+        //            if (txt_salas.Items.Count > 0)
+        //                rgvPrecios.DataSource = sapo.GET_PRECIOS(txt_estudios.Items[0].Value.ToString(), txt_salas.Items[0].Value.ToString(), txt_instituciones.Items[0].Value.ToString());
+        //            else
+        //                rgvPrecios.DataSource = sapo.GET_PRECIOS(txt_estudios.Items[0].Value.ToString(), txt_instituciones.Items[0].Value.ToString(), true);
+        //        }
+        //        else
+        //            rgvPrecios.DataSource = null;
+        //        rgvPrecios.Refresh();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        //    }
+        //}
 
         private void txt_estudios_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -75,17 +75,17 @@ namespace CIDAGENDA2018
                     cs_sapbo sapo = new cs_sapbo();
                     if (txt_salas.Items.Count > 0)
                     {
-                        if (txt_instituciones.Items.Count > 0)
-                            rgvPrecios.DataSource = sapo.GET_PRECIOS(txt_estudios.Items[0].Value.ToString(), txt_salas.Items[0].Value.ToString(), txt_instituciones.Items[0].Value.ToString());
-                        else
-                            rgvPrecios.DataSource = sapo.GET_PRECIOS((string)txt_estudios.Items[0].Value, (string)txt_salas.Items[0].Value);
+                        //if (txt_instituciones.Items.Count > 0)
+                        //    rgvPrecios.DataSource = sapo.GET_PRECIOS(txt_estudios.Items[0].Value.ToString(), txt_salas.Items[0].Value.ToString(), txt_instituciones.Items[0].Value.ToString());
+                        //else
+                        rgvPrecios.DataSource = sapo.GET_PRECIOS((string)txt_estudios.Items[0].Value, (string)txt_salas.Items[0].Value);
                     }
                     else
                     {
-                        if (txt_instituciones.Items.Count > 0)
-                            rgvPrecios.DataSource = sapo.GET_PRECIOS(txt_estudios.Items[0].Value.ToString(), txt_instituciones.Items[0].Value.ToString(), true);
-                        else
-                            rgvPrecios.DataSource = sapo.GET_PRECIOS((string)txt_estudios.Items[0].Value);
+                        //if (txt_instituciones.Items.Count > 0)
+                        //    rgvPrecios.DataSource = sapo.GET_PRECIOS(txt_estudios.Items[0].Value.ToString(), txt_instituciones.Items[0].Value.ToString(), true);
+                        //else
+                        rgvPrecios.DataSource = sapo.GET_PRECIOS((string)txt_estudios.Items[0].Value);
                     }
                     rgvPrecios.Refresh();
                 }
@@ -108,12 +108,20 @@ namespace CIDAGENDA2018
             txt_salas.AutoCompleteValueMember = "RoomCode";
             txt_salas.AutoCompleteDisplayMember = "RoomName";
 
-            txt_instituciones.AutoCompleteDataSource = sapbo.GET_INSTITUCIONES_DDL();
-            txt_instituciones.AutoCompleteDisplayMember = "CardName";
-            txt_instituciones.AutoCompleteValueMember = "CardCode";
+            txt_estudios.AutoCompleteDataSource = sapbo.GET_ESTUDIOS_DDL("");
+            txt_estudios.AutoCompleteValueMember = "ItemCode";
+            txt_estudios.AutoCompleteDisplayMember = "ItemName";
+
+            //txt_instituciones.AutoCompleteDataSource = sapbo.GET_INSTITUCIONES_DDL();
+            //txt_instituciones.AutoCompleteDisplayMember = "CardName";
+            //txt_instituciones.AutoCompleteValueMember = "CardCode";
 
             rgvListado.DataSource = quotingItems;
-            GridViewDecimalColumn decimalColumn = (GridViewDecimalColumn)rgvListado.Columns["Precio"];
+            GridViewDecimalColumn decimalColumn = (GridViewDecimalColumn)rgvListado.Columns["VentaMostrador"];
+            decimalColumn.FormatString = "{0:C}";
+            decimalColumn = (GridViewDecimalColumn)rgvListado.Columns["SectorSalud"];
+            decimalColumn.FormatString = "{0:C}";
+            decimalColumn = (GridViewDecimalColumn)rgvListado.Columns["Aseguradora"];
             decimalColumn.FormatString = "{0:C}";
             quotingItems.ListChanged += QuotingItems_ListChanged;
 
@@ -122,7 +130,9 @@ namespace CIDAGENDA2018
 
         private void QuotingItems_ListChanged(object sender, ListChangedEventArgs e)
         {
-            txt_doc_total.Text = quotingItems.Sum(i => i.Precio).ToString("C");
+            txt_VentaMostrador.Text = quotingItems.Sum(i => i.VentaMostrador - (i.VentaMostrador * (double)num_porcentaje.Value / 100)).ToString("C");
+            txt_Aseguradora.Text = quotingItems.Sum(i => i.Aseguradora - (i.Aseguradora * (double)num_porcentaje.Value / 100)).ToString("C");
+            txt_SectorSalud.Text = quotingItems.Sum(i => i.SectorSalud - (i.SectorSalud * (double)num_porcentaje.Value / 100)).ToString("C");
         }
 
         private void btn_Salir_Click(object sender, EventArgs e)
@@ -139,8 +149,9 @@ namespace CIDAGENDA2018
                     CodigoProducto = txt_estudios.Items[0].Value.ToString(),
                     Producto = txt_estudios.Text,
                     Sala = txt_salas.Text,
-                    Institucion = txt_instituciones.Text,
-                    Precio = double.Parse(rgvPrecios.SelectedRows[0].Cells["Price"].Value.ToString())
+                    VentaMostrador = double.Parse(rgvPrecios.Rows[0].Cells["Price"].Value.ToString()),
+                    Aseguradora = double.Parse(rgvPrecios.Rows[0].Cells["Price"].Value.ToString()),
+                    SectorSalud = double.Parse(rgvPrecios.Rows[0].Cells["Price"].Value.ToString())
                 });
                 rgvListado.Refresh();
                 txt_estudios.Clear();
@@ -184,19 +195,20 @@ namespace CIDAGENDA2018
                     cs_sapbo sapo = new cs_sapbo();
                     if (txt_salas.Items.Count > 0)
                     {
-                        if (txt_instituciones.Items.Count > 0)
-                            rgvPrecios.DataSource = sapo.GET_PRECIOS(txt_estudios.Items[0].Value.ToString(), txt_salas.Items[0].Value.ToString(), txt_instituciones.Items[0].Value.ToString());
-                        else
-                            rgvPrecios.DataSource = sapo.GET_PRECIOS((string)txt_estudios.Items[0].Value, (string)txt_salas.Items[0].Value);
+                        //if (txt_instituciones.Items.Count > 0)
+                        //    rgvPrecios.DataSource = sapo.GET_PRECIOS(txt_estudios.Items[0].Value.ToString(), txt_salas.Items[0].Value.ToString(), txt_instituciones.Items[0].Value.ToString());
+                        //else
+                        rgvPrecios.DataSource = sapo.GET_PRECIOS((string)txt_estudios.Items[0].Value, (string)txt_salas.Items[0].Value);
                     }
                     else
                     {
-                        if (txt_instituciones.Items.Count > 0)
-                            rgvPrecios.DataSource = sapo.GET_PRECIOS(txt_estudios.Items[0].Value.ToString(), txt_instituciones.Items[0].Value.ToString(), true);
-                        else
-                            rgvPrecios.DataSource = sapo.GET_PRECIOS((string)txt_estudios.Items[0].Value);
+                        //if (txt_instituciones.Items.Count > 0)
+                        //    rgvPrecios.DataSource = sapo.GET_PRECIOS(txt_estudios.Items[0].Value.ToString(), txt_instituciones.Items[0].Value.ToString(), true);
+                        //else
+                        rgvPrecios.DataSource = sapo.GET_PRECIOS((string)txt_estudios.Items[0].Value);
                     }
                     rgvPrecios.Refresh();
+                    btnAdd.PerformClick();
                 }
                 else
                 {
@@ -210,30 +222,33 @@ namespace CIDAGENDA2018
             }
         }
 
-        private void txt_instituciones_TextChanged(object sender, EventArgs e)
+        private void num_porcentaje_ValueChanged(object sender, EventArgs e)
         {
+            txt_VentaMostrador.Text = quotingItems.Sum(i => i.VentaMostrador - (i.VentaMostrador * (double)num_porcentaje.Value / 100)).ToString("C");
+            txt_Aseguradora.Text = quotingItems.Sum(i => i.Aseguradora - (i.Aseguradora * (double)num_porcentaje.Value / 100)).ToString("C");
+            txt_SectorSalud.Text = quotingItems.Sum(i => i.SectorSalud - (i.SectorSalud * (double)num_porcentaje.Value / 100)).ToString("C");
         }
 
-        private void txt_instituciones_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            try
-            {
-                if (txt_instituciones.Items.Count > 0 && txt_estudios.Items.Count > 0)
-                {
-                    cs_sapbo sapo = new cs_sapbo();
-                    if (txt_salas.Items.Count > 0)
-                        rgvPrecios.DataSource = sapo.GET_PRECIOS(txt_estudios.Items[0].Value.ToString(), txt_salas.Items[0].Value.ToString(), txt_instituciones.Items[0].Value.ToString());
-                    else
-                        rgvPrecios.DataSource = sapo.GET_PRECIOS(txt_estudios.Items[0].Value.ToString(), txt_instituciones.Items[0].Value.ToString(), true);
-                }
-                else
-                    rgvPrecios.DataSource = null;
-                rgvPrecios.Refresh();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
-            }
-        }
+        //private void txt_instituciones_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //{
+        //    try
+        //    {
+        //        if (txt_instituciones.Items.Count > 0 && txt_estudios.Items.Count > 0)
+        //        {
+        //            cs_sapbo sapo = new cs_sapbo();
+        //            if (txt_salas.Items.Count > 0)
+        //                rgvPrecios.DataSource = sapo.GET_PRECIOS(txt_estudios.Items[0].Value.ToString(), txt_salas.Items[0].Value.ToString(), txt_instituciones.Items[0].Value.ToString());
+        //            else
+        //                rgvPrecios.DataSource = sapo.GET_PRECIOS(txt_estudios.Items[0].Value.ToString(), txt_instituciones.Items[0].Value.ToString(), true);
+        //        }
+        //        else
+        //            rgvPrecios.DataSource = null;
+        //        rgvPrecios.Refresh();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show(ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+        //    }
+        //}
     }
 }

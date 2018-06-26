@@ -976,6 +976,8 @@ namespace CIDAGENDA2018 {
             
             private global::System.Data.DataColumn columnUniqueLine;
             
+            private global::System.Data.DataColumn columnLineNum;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             public CITASDataTable() {
@@ -1331,6 +1333,14 @@ namespace CIDAGENDA2018 {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public global::System.Data.DataColumn LineNumColumn {
+                get {
+                    return this.columnLineNum;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1405,7 +1415,8 @@ namespace CIDAGENDA2018 {
                         int ParentID, 
                         string Email, 
                         bool Visible, 
-                        string UniqueLine) {
+                        string UniqueLine, 
+                        int LineNum) {
                 CITASRow rowCITASRow = ((CITASRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -1447,7 +1458,8 @@ namespace CIDAGENDA2018 {
                         ParentID,
                         Email,
                         Visible,
-                        UniqueLine};
+                        UniqueLine,
+                        LineNum};
                 rowCITASRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowCITASRow);
                 return rowCITASRow;
@@ -1517,6 +1529,7 @@ namespace CIDAGENDA2018 {
                 this.columnEmail = base.Columns["Email"];
                 this.columnVisible = base.Columns["Visible"];
                 this.columnUniqueLine = base.Columns["UniqueLine"];
+                this.columnLineNum = base.Columns["LineNum"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1602,6 +1615,8 @@ namespace CIDAGENDA2018 {
                 base.Columns.Add(this.columnVisible);
                 this.columnUniqueLine = new global::System.Data.DataColumn("UniqueLine", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnUniqueLine);
+                this.columnLineNum = new global::System.Data.DataColumn("LineNum", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnLineNum);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnUniqueLine}, true));
                 this.columnDocEntry.AutoIncrement = true;
@@ -1635,6 +1650,8 @@ namespace CIDAGENDA2018 {
                 this.columnUniqueLine.ReadOnly = true;
                 this.columnUniqueLine.Unique = true;
                 this.columnUniqueLine.MaxLength = 25;
+                this.columnLineNum.AllowDBNull = false;
+                this.columnLineNum.ReadOnly = true;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3273,6 +3290,17 @@ namespace CIDAGENDA2018 {
                 }
                 set {
                     this[this.tableCITAS.UniqueLineColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "15.0.0.0")]
+            public int LineNum {
+                get {
+                    return ((int)(this[this.tableCITAS.LineNumColumn]));
+                }
+                set {
+                    this[this.tableCITAS.LineNumColumn] = value;
                 }
             }
             
@@ -5247,6 +5275,7 @@ namespace CIDAGENDA2018.schedulerDataDataSetTableAdapters {
             tableMapping.ColumnMappings.Add("Email", "Email");
             tableMapping.ColumnMappings.Add("Visible", "Visible");
             tableMapping.ColumnMappings.Add("UniqueLine", "UniqueLine");
+            tableMapping.ColumnMappings.Add("LineNum", "LineNum");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -5267,6 +5296,7 @@ namespace CIDAGENDA2018.schedulerDataDataSetTableAdapters {
 Concat( T0.DocEntry, '-', T1.LineNum) As UniqueLine,
 T0.""DocEntry"", 
 ""DocNum"", 
+T1.""LineNum"",
 ""CANCELED"", 
 ""DocStatus"", 
 T0.""DocDate"", 

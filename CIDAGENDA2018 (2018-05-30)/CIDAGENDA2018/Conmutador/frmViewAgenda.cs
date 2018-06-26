@@ -187,7 +187,7 @@ namespace CIDAGENDA2018.Conmutador
                 appointmentMappingInfo.End = "End";
                 appointmentMappingInfo.Summary = "PatientName";
                 appointmentMappingInfo.Description = "DocStatus";
-                appointmentMappingInfo.Location = "Location";
+                appointmentMappingInfo.Location = "UniqueLine";
                 appointmentMappingInfo.BackgroundId = "BackgroundID";
                 appointmentMappingInfo.StatusId = "StatusID";
                 appointmentMappingInfo.RecurrenceRule = "RecurrenceRule";
@@ -455,6 +455,16 @@ namespace CIDAGENDA2018.Conmutador
                     e.AppointmentElement.BackColor2 = Color.Gray;
                     e.AppointmentElement.BackColor3 = Color.Gray;
                 }
+                else if (e.Appointment.Description == "A")
+                {
+                    e.AppointmentElement.BorderColor = Color.Purple;
+                    e.AppointmentElement.BorderBoxStyle = BorderBoxStyle.SingleBorder;
+                    e.AppointmentElement.BorderWidth = 1;
+                    e.AppointmentElement.BackColor = Color.Purple;
+                    e.AppointmentElement.BackColor2 = Color.Purple;
+                    e.AppointmentElement.BackColor3 = Color.Purple;
+                    e.AppointmentElement.ForeColor = Color.White;
+                }
             }
             catch (Exception ex)
             {
@@ -494,11 +504,12 @@ namespace CIDAGENDA2018.Conmutador
                     DateTime _End = _Start.Add(_diferencia);
                     DateTime _DocDate = e.NewDate.Date;
                     int _DocEntry = int.Parse(e.Appointment.UniqueId.KeyValue.ToString());
+                    int _LineNum = int.Parse(e.Appointment.Location.Split('-')[1]);
 
                     cs_sapbo sapo = new cs_sapbo();
                     if (sapo.UPDATE_CITAS(_Start, _End, _DocDate, _DocEntry) == true)
                     {
-                        if (sapo.UPDATE_CITA1(_Start, _End, _DocDate, _DocEntry) == true)
+                        if (sapo.UPDATE_CITA1(_Start, _End, _DocDate, _DocEntry, _LineNum) == true)
                         {
                             this.InitializeRadSchedulerDataBinding(); // primero carga los datos de la base de datos
 
@@ -529,7 +540,7 @@ namespace CIDAGENDA2018.Conmutador
 
             try
             {
-                if (e.Appointment.DataItem != null)
+                if (e.Appointment.DataItem != null && !chk_nuevaCita.Value)
                 {
                     cs_reservar.Start = e.Appointment.Start;
                     cs_reservar.End = e.Appointment.End;

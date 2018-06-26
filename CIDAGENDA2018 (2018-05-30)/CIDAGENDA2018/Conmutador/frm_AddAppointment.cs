@@ -471,7 +471,7 @@ namespace CIDAGENDA2018.Conmutador
                 radGridPrecios.Refresh();
 
                 DataTable dt = sapo.GET_PREPARACION((string)txt_estudios.Items[0].Value);
-                listPreparacion.Clear();
+                listPreparacion.Items.Clear();
                 if (dt != null)
                 {
                     for (int i = 0; i < dt.Rows.Count; i++)
@@ -481,7 +481,7 @@ namespace CIDAGENDA2018.Conmutador
                     listPreparacion.Refresh();
                 }
                 dt = sapo.GET_COMPLEMENTOS((string)txt_estudios.Items[0].Value);
-                listComplementos.Clear();
+                listComplementos.Items.Clear();
                 if (dt != null)
                 {
                     for (int i = 0; i < dt.Rows.Count; i++)
@@ -491,7 +491,7 @@ namespace CIDAGENDA2018.Conmutador
                     listComplementos.Refresh();
                 }
                 dt = sapo.GET_DIAGNOSTICO((string)txt_estudios.Items[0].Value);
-                listDiagnostico.Clear();
+                listDiagnostico.Items.Clear();
                 if (dt != null)
                 {
                     for (int i = 0; i < dt.Rows.Count; i++)
@@ -727,6 +727,8 @@ namespace CIDAGENDA2018.Conmutador
                         cita.DocNum = int.Parse(txt_DocEntry.Text);
                         cita.CANCELED = "N";
                         cita.DocStatus = "N";
+                        if (Anestesiologo())
+                            cita.DocStatus = "A";
                         cita.DocDate = DateTime.Now.Date;
                         cita.NumAtCard = "";
 
@@ -796,12 +798,19 @@ namespace CIDAGENDA2018.Conmutador
             }
         }
 
+        private bool Anestesiologo()
+        {
+            cs_sapbo sapo = new cs_sapbo();
+
+            return sapo.HAS_ANESTESIOLOGO(int.Parse(txt_DocEntry.Text));
+        }
+
         private void btn_ambulancia_Click(object sender, EventArgs e)
         {
             try
             {
                 cs_sapbo sapo = new cs_sapbo();
-                if (sapo.INSERT_CITARECURSOS(int.Parse(txt_DocEntry.Text), -1, "Ambulancia") == true)
+                if (sapo.INSERT_CITARECURSOS(int.Parse(txt_DocEntry.Text), "AB-001", "Ambulancia") == true)
                 {
                     radGridRecursos.DataSource = sapo.GET_CITARECURSOS(int.Parse(txt_DocEntry.Text));
                     radGridRecursos.Refresh();
@@ -824,7 +833,7 @@ namespace CIDAGENDA2018.Conmutador
             {
                 cs_sapbo sapo = new cs_sapbo();
                 string code = txt_Anestesiologo.SelectedValue.ToString();
-                if (sapo.INSERT_CITARECURSOS(int.Parse(txt_DocEntry.Text), int.Parse(code), txt_Anestesiologo.Text) == true)
+                if (sapo.INSERT_CITARECURSOS(int.Parse(txt_DocEntry.Text), "ANE-" + code, txt_Anestesiologo.Text) == true)
                 {
                     radGridRecursos.DataSource = sapo.GET_CITARECURSOS(int.Parse(txt_DocEntry.Text));
                     radGridRecursos.Refresh();
@@ -850,7 +859,7 @@ namespace CIDAGENDA2018.Conmutador
                 {
                     if (radGridRecursos.Rows[i].IsSelected == true)
                     {
-                        if (sapo.DELETE_CITARECURSOS(int.Parse(txt_DocEntry.Text), int.Parse(radGridRecursos.Rows[i].Cells["RecursoCode"].Value.ToString())) == true)
+                        if (sapo.DELETE_CITARECURSOS(int.Parse(txt_DocEntry.Text), radGridRecursos.Rows[i].Cells["RecursoCode"].Value.ToString()) == true)
                         {
                             radGridRecursos.DataSource = sapo.GET_CITARECURSOS(int.Parse(txt_DocEntry.Text));
                             radGridRecursos.Refresh();
@@ -904,6 +913,48 @@ namespace CIDAGENDA2018.Conmutador
             if (((RadAutoCompleteBox)sender).Items.Count >= 1 && e.NewValue.Length > e.OldValue.Replace(";", "").Length)
             {
                 e.Cancel = true;
+            }
+        }
+
+        private void radGridEstudios_UserDeletedRow(object sender, GridViewRowEventArgs e)
+        {
+            cs_sapbo sapbo = new cs_sapbo();
+            sapbo.DELETE_CITA1(int.Parse(txt_DocEntry.Text), (int.Parse(e.Row.Cells["LineNum"].Value.ToString())));
+            sapbo.REORDER_CITA1_Lines(int.Parse(txt_DocEntry.Text));
+            radGridEstudios.DataSource = sapbo.GET_CITAS_RGV(int.Parse(txt_DocEntry.Text));
+            radGridEstudios.Refresh();
+            sapbo = null;
+        }
+
+        private void radGridEstudios_UserDeletingRow(object sender, GridViewRowCancelEventArgs e)
+        {
+            cs_sapbo sapbo = new cs_sapbo();
+            sapbo.DELETE_CITA1(int.Parse(txt_DocEntry.Text), (int.Parse(e.Rows.First().Cells["LineNum"].Value.ToString())));
+            sapbo.REORDER_CITA1_Lines(int.Parse(txt_DocEntry.Text));
+            radGridEstudios.DataSource = sapbo.GET_CITAS_RGV(int.Parse(txt_DocEntry.Text));
+            radGridEstudios.Refresh();
+            sapbo = null;
+        }
+
+        private void btn_contraste_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                cs_sapbo sapo = new cs_sapbo();
+                if (sapo.INSERT_CITARECURSOS(int.Parse(txt_DocEntry.Text), "CO-001", "Contraste Gadolineo") == true)
+                {
+                    radGridRecursos.DataSource = sapo.GET_CITARECURSOS(int.Parse(txt_DocEntry.Text));
+                    radGridRecursos.Refresh();
+                }
+                else
+                {
+                    MessageBox.Show(sapo.MessageError, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                sapo = null;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
     }

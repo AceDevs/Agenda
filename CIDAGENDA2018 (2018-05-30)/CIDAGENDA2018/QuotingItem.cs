@@ -14,7 +14,9 @@ namespace CIDAGENDA2018
         public string CodigoProducto { get; set; }
         public string Producto { get; set; }
         public string Sala { get; set; }
-        public string Institucion { get; set; }
-        public double Precio { get; set; }
+        public double VentaMostrador { get; set; }
+        public double SectorSalud { get; set; }
+        public double Aseguradora { get; set; }
+        //public double Precio { get; set; }
     }
 }

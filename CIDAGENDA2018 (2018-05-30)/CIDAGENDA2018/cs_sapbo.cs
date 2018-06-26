@@ -21,6 +21,40 @@ namespace CIDAGENDA2018
         private SAPbobsCOM.Company oCompany = new SAPbobsCOM.Company();
         private SAPbobsCOM.Company oCompany2 = new SAPbobsCOM.Company();
         private int lErrCode = 0;
+
+        public DataTable GET_Reservado(int docEntry)
+        {
+            try
+            {
+                SqlConnection conn;
+                SqlCommand cmd;
+                DataTable dt = new DataTable();
+                SqlDataAdapter sda;
+
+                string query = "select T0.DocEntry,T0.[Start],T0.[End], T0.[Comments] T1.[Dscription], T1.[RoomCode]" +
+                                "from [cid].[CITAS] T0 inner join [cid].[CITA1] T1 on T1.DocEntry=T0.DocEntry " +
+                                "where T0.[DocEntry]=@DocEntry";
+
+                conn = new SqlConnection(_SQLClientConnection);
+                conn.Open();
+                cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("DocEntry", docEntry);
+
+                sda = new SqlDataAdapter(cmd);
+                sda.Fill(dt);
+
+                cmd.Connection.Close();
+                conn.Close();
+
+                return dt;
+            }
+            catch (Exception ex)
+            {
+                _message_error = ex.Message;
+                return null;
+            }
+        }
+
         private int lRetCode;
         private string sErrMsg;
         public int NewDocNumORDR = 0;
@@ -292,7 +326,7 @@ namespace CIDAGENDA2018
                 DataTable dt = new DataTable();
                 SqlDataAdapter sda;
 
-                string query = "select T1.RoomCode,T2.RoomName,T1.ItemCode,T1.Dscription,T1.[Start],T1.[End],T1.[Quantity],T1.[Price],T1.DiscPrcnt,T1.LineTotal " +
+                string query = "select T1.RoomCode,T2.RoomName,T1.ItemCode,T1.Dscription,T1.[Start],T1.[End],T1.[Quantity],T1.[Price],T1.DiscPrcnt,T1.LineTotal, T1.LineNum " +
                                 "from [cid].[CITAS] T0 inner join [cid].[CITA1] T1 on T1.DocEntry=T0.DocEntry " +
                                 " inner join [cid].[SALAS] T2 on T2.RoomCode=T1.RoomCode " +
                                 "where T0.[DocEntry]=@DocEntry";
@@ -945,6 +979,79 @@ namespace CIDAGENDA2018
             }
         }
 
+        internal bool DELETE_CITA1(int DocEntry, int LineNumber)
+        {
+            try
+            {
+                bool resul = false;
+                SqlConnection conn;
+                SqlCommand cmd;
+
+                conn = new SqlConnection(_SQLClientConnection);
+                conn.Open();
+                cmd = new SqlCommand("delete from [cid].[CITA1] where DocEntry=@DocEntry And LineNum=@LineNum", conn);
+                cmd.Parameters.AddWithValue("DocEntry", DocEntry);
+                cmd.Parameters.AddWithValue("LineNum", LineNumber);
+                int r = cmd.ExecuteNonQuery();
+                if (r > 0) { resul = true; }
+                cmd.Connection.Close();
+                conn.Close();
+
+                return resul;
+            }
+            catch (Exception ex)
+            {
+                _message_error = "Warning: " + ex.Message;
+                return false;
+            }
+        }
+
+        public bool REORDER_CITA1_Lines(int DocEntry)
+        {
+            try
+            {
+                bool resul = false;
+                SqlConnection conn;
+                SqlCommand cmd;
+                SqlDataAdapter sda;
+                DataTable dt;
+                dt = new DataTable();
+
+                string query = "select LineNum from [cid].[CITA1] where DocEntry=@DocEntry";
+                string query2 = "Update [cid].[CITA1] Set LineNum = @newLine Where DocEntry=@DocEntry And LineNum=@oldLine";
+                conn = new SqlConnection(_SQLClientConnection);
+                conn.Open();
+                cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("DocEntry", DocEntry);
+
+                sda = new SqlDataAdapter(cmd);
+                sda.Fill(dt);
+                int selectedLine = 1;
+                for (int i = 0; i < dt.Rows.Count; i++)
+                {
+                    cmd = new SqlCommand(string.Format(query2, selectedLine), conn);
+                    cmd.Parameters.AddWithValue("DocEntry", DocEntry);
+                    cmd.Parameters.AddWithValue("newLine", selectedLine);
+                    cmd.Parameters.AddWithValue("oldLine", dt.Rows[i]["LineNum"]);
+                    cmd.ExecuteNonQuery();
+                    selectedLine += 1;
+                }
+                resul = true;
+                sda.Dispose();
+                cmd.Connection.Close();
+                cmd.Connection.Dispose();
+                conn.Close();
+                conn.Dispose();
+
+                return resul;
+            }
+            catch (Exception ex)
+            {
+                _message_error = ex.Message;
+                return false;
+            }
+        }
+
         public bool UPDATE_CITA1(cs_cita cita)
         {
             try
@@ -1021,7 +1128,43 @@ namespace CIDAGENDA2018
             }
         }
 
-        public bool INSERT_CITARECURSOS(int DocEntry, int RecursoCode, string Recurso)
+        public bool HAS_ANESTESIOLOGO(int docEntry)
+        {
+            try
+            {
+                bool resul = false;
+                SqlConnection conn;
+                SqlCommand cmd;
+                SqlDataReader reader;
+
+                conn = new SqlConnection(_SQLClientConnection);
+                conn.Open();
+                cmd = new SqlCommand("select * from [cid].[CITARECURSOS] where DocEntry=@DocEntry And RecursoCode Like 'ANE-%'", conn);
+                cmd.Parameters.AddWithValue("DocEntry", docEntry);
+
+                reader = cmd.ExecuteReader();
+                if (reader.Read() == true)
+                {
+                    resul = true;
+                }
+
+                reader.Close();
+                reader.Dispose();
+                cmd.Connection.Close();
+                cmd.Connection.Dispose();
+                conn.Close();
+                conn.Dispose();
+
+                return resul;
+            }
+            catch (Exception ex)
+            {
+                _message_error = "Warning: " + ex.Message;
+                return false;
+            }
+        }
+
+        public bool INSERT_CITARECURSOS(int DocEntry, string RecursoCode, string Recurso)
         {
             try
             {
@@ -1051,7 +1194,7 @@ namespace CIDAGENDA2018
             }
         }
 
-        public bool DELETE_CITARECURSOS(int DocEntry, int RecursoCode)
+        public bool DELETE_CITARECURSOS(int DocEntry, string RecursoCode)
         {
             try
             {
@@ -1300,6 +1443,37 @@ namespace CIDAGENDA2018
                 cmd.Parameters.AddWithValue("End", End);
                 cmd.Parameters.AddWithValue("DocDate", DocDate);
                 cmd.Parameters.AddWithValue("DocEntry", DocEntry);
+
+                int r = cmd.ExecuteNonQuery();
+                if (r > 0) { resul = true; }
+                cmd.Connection.Close();
+                conn.Close();
+
+                return resul;
+            }
+            catch (Exception ex)
+            {
+                _message_error = "Warning: " + ex.Message;
+                return false;
+            }
+        }
+
+        public bool UPDATE_CITA1(DateTime Start, DateTime End, DateTime DocDate, int DocEntry, int LineNum)
+        {
+            try
+            {
+                bool resul = false;
+                SqlConnection conn;
+                SqlCommand cmd;
+
+                conn = new SqlConnection(_SQLClientConnection);
+                conn.Open();
+                cmd = new SqlCommand("update [cid].[CITA1] set [Start]=@Start,[End]=@End,[DocDate]=@DocDate where DocEntry=@DocEntry And LineNum=@LineNum", conn);
+                cmd.Parameters.AddWithValue("Start", Start);
+                cmd.Parameters.AddWithValue("End", End);
+                cmd.Parameters.AddWithValue("DocDate", DocDate);
+                cmd.Parameters.AddWithValue("DocEntry", DocEntry);
+                cmd.Parameters.AddWithValue("LineNum", LineNum);
 
                 int r = cmd.ExecuteNonQuery();
                 if (r > 0) { resul = true; }

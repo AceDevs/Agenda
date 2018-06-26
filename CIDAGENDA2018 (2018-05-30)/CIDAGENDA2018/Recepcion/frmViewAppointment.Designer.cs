@@ -49,11 +49,12 @@
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.btn_Salir = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.btnCotizador = new System.Windows.Forms.ToolStripButton();
             this.panelBarraAmarilla = new System.Windows.Forms.Panel();
             this.cita1TableAdapter1 = new CIDAGENDA2018.schedulerDataDataSetTableAdapters.CITA1TableAdapter();
             this.panelGeneral = new System.Windows.Forms.Panel();
-            this.radAutoCompleteBox1 = new Telerik.WinControls.UI.RadAutoCompleteBox();
-            this.btnCotizador = new System.Windows.Forms.ToolStripButton();
+            this.chk_nuevaCita = new Telerik.WinControls.UI.RadToggleSwitch();
+            this.label4 = new System.Windows.Forms.Label();
             this.panelScheduler.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.radScheduler1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.schedulerBindingDataSource1)).BeginInit();
@@ -63,7 +64,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.radSchedulerNavigator1)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.panelGeneral.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radAutoCompleteBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chk_nuevaCita)).BeginInit();
             this.SuspendLayout();
             // 
             // salasTableAdapter1
@@ -97,7 +98,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(334, 45);
+            this.label2.Location = new System.Drawing.Point(340, 47);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(108, 13);
             this.label2.TabIndex = 37;
@@ -107,7 +108,7 @@
             // 
             this.btn_forward_resource.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.btn_forward_resource.Image = ((System.Drawing.Image)(resources.GetObject("btn_forward_resource.Image")));
-            this.btn_forward_resource.Location = new System.Drawing.Point(504, 34);
+            this.btn_forward_resource.Location = new System.Drawing.Point(510, 36);
             this.btn_forward_resource.Name = "btn_forward_resource";
             this.btn_forward_resource.Size = new System.Drawing.Size(50, 35);
             this.btn_forward_resource.TabIndex = 36;
@@ -118,7 +119,7 @@
             // 
             this.btn_back_resource.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.btn_back_resource.Image = ((System.Drawing.Image)(resources.GetObject("btn_back_resource.Image")));
-            this.btn_back_resource.Location = new System.Drawing.Point(448, 34);
+            this.btn_back_resource.Location = new System.Drawing.Point(454, 36);
             this.btn_back_resource.Name = "btn_back_resource";
             this.btn_back_resource.Size = new System.Drawing.Size(50, 35);
             this.btn_back_resource.TabIndex = 35;
@@ -158,8 +159,11 @@
             // 
             // radScheduler1
             // 
+            this.radScheduler1.AllowAppointmentMove = false;
+            this.radScheduler1.AllowAppointmentResize = false;
             this.radScheduler1.AllowCopyPaste = Telerik.WinControls.UI.CopyPasteMode.Disallow;
             this.radScheduler1.AutoScroll = true;
+            this.radScheduler1.AutoSizeAppointments = true;
             this.radScheduler1.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.radScheduler1.Culture = new System.Globalization.CultureInfo("es-MX");
             this.radScheduler1.DataSource = this.schedulerBindingDataSource1;
@@ -263,6 +267,17 @@
             this.toolStrip1.TabIndex = 908;
             this.toolStrip1.Text = "toolStrip1";
             // 
+            // btnCotizador
+            // 
+            this.btnCotizador.Image = ((System.Drawing.Image)(resources.GetObject("btnCotizador.Image")));
+            this.btnCotizador.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.btnCotizador.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnCotizador.Name = "btnCotizador";
+            this.btnCotizador.Size = new System.Drawing.Size(62, 41);
+            this.btnCotizador.Text = "Cotizador";
+            this.btnCotizador.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
+            this.btnCotizador.Click += new System.EventHandler(this.btnCotizador_Click);
+            // 
             // panelBarraAmarilla
             // 
             this.panelBarraAmarilla.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(252)))), ((int)(((byte)(185)))), ((int)(((byte)(19)))));
@@ -278,7 +293,8 @@
             // 
             // panelGeneral
             // 
-            this.panelGeneral.Controls.Add(this.radAutoCompleteBox1);
+            this.panelGeneral.Controls.Add(this.chk_nuevaCita);
+            this.panelGeneral.Controls.Add(this.label4);
             this.panelGeneral.Controls.Add(this.label3);
             this.panelGeneral.Controls.Add(this.txt_unidad_negocio);
             this.panelGeneral.Controls.Add(this.label2);
@@ -292,24 +308,26 @@
             this.panelGeneral.Size = new System.Drawing.Size(1039, 95);
             this.panelGeneral.TabIndex = 909;
             // 
-            // radAutoCompleteBox1
+            // chk_nuevaCita
             // 
-            this.radAutoCompleteBox1.Location = new System.Drawing.Point(585, 11);
-            this.radAutoCompleteBox1.Name = "radAutoCompleteBox1";
-            this.radAutoCompleteBox1.ShowRemoveButton = false;
-            this.radAutoCompleteBox1.Size = new System.Drawing.Size(164, 26);
-            this.radAutoCompleteBox1.TabIndex = 41;
+            this.chk_nuevaCita.Location = new System.Drawing.Point(337, 14);
+            this.chk_nuevaCita.Name = "chk_nuevaCita";
+            this.chk_nuevaCita.OffText = "No";
+            this.chk_nuevaCita.OnText = "Si";
+            this.chk_nuevaCita.Size = new System.Drawing.Size(50, 22);
+            this.chk_nuevaCita.TabIndex = 911;
+            this.chk_nuevaCita.Text = "Cita";
+            this.chk_nuevaCita.ToggleStateMode = Telerik.WinControls.UI.ToggleStateMode.Click;
+            this.chk_nuevaCita.Value = false;
             // 
-            // btnCotizador
+            // label4
             // 
-            this.btnCotizador.Image = ((System.Drawing.Image)(resources.GetObject("btnCotizador.Image")));
-            this.btnCotizador.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
-            this.btnCotizador.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnCotizador.Name = "btnCotizador";
-            this.btnCotizador.Size = new System.Drawing.Size(62, 41);
-            this.btnCotizador.Text = "Cotizador";
-            this.btnCotizador.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btnCotizador.Click += new System.EventHandler(this.btnCotizador_Click);
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(389, 19);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(60, 13);
+            this.label4.TabIndex = 910;
+            this.label4.Text = "Nueva Cita";
             // 
             // frmViewAppointment
             // 
@@ -342,7 +360,7 @@
             this.toolStrip1.PerformLayout();
             this.panelGeneral.ResumeLayout(false);
             this.panelGeneral.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.radAutoCompleteBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chk_nuevaCita)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -370,7 +388,8 @@
         private System.Windows.Forms.Panel panelBarraAmarilla;
         private schedulerDataDataSetTableAdapters.CITA1TableAdapter cita1TableAdapter1;
         private System.Windows.Forms.Panel panelGeneral;
-        private Telerik.WinControls.UI.RadAutoCompleteBox radAutoCompleteBox1;
         private System.Windows.Forms.ToolStripButton btnCotizador;
+        private Telerik.WinControls.UI.RadToggleSwitch chk_nuevaCita;
+        private System.Windows.Forms.Label label4;
     }
 }
